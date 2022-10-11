@@ -16,9 +16,13 @@ public:
 	// 描画関数（オプション）
 	void draw() const override;
 
+	//プレイヤー格納配列
 	Array<Player> player;
+
+	//エンティティ格納配列
 	Array<Entity> entity;
 
+	//動作範囲
 	Rect Are;
 
 

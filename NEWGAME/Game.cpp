@@ -7,6 +7,9 @@ Game::Game(const InitData& init)
 	//経過時間の初期化
 	time = 0;
 
+	//動作範囲
+	Are = Rect{ 0, 0, 600, 600 };
+
 	//ステージ表示
 	//Print << getData().stage;
 
@@ -20,13 +23,12 @@ void Game::update() {
 	time += Scene::DeltaTime();
 
 	//敵の出現
-	if (time >= 10) {
-		entity << Entity{ { 600 , 50 },2 };
-		time = 0;
-	}
+	//if (time >= 10) {
+	//	entity << Entity{ { 600 , 50 },2 };
+	//	time = 0;
+	//}
 
-	//操作範囲
-	Are = Rect{ 20, 20, 450, 560 };
+	
 
 	//敵の動作処理
 	for (auto& en : entity)
@@ -43,8 +45,9 @@ void Game::update() {
 
 	//for (auto& en : entity) {
 	//	if (en.Del == true)
-	//		entity << Entity{ { 100 , 100 },getData().stage };
+	//		entity << Entity{ { 100 , 100 },1 };
 	//}
+
 
 	//消去判定
 	entity.remove_if([](const Entity& en) { return en.Del == true; });
