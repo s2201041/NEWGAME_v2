@@ -1,7 +1,7 @@
 ﻿#include "Player.h"
 
 Player::Player(Vec2 pos,int typ, int vel)
-	:m_texture{ U"texture/player.png" }
+	:m_texture{ U"texture/player/player.png" }
 {
 	Pos = pos;
 	Vel = vel;

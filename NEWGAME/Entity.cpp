@@ -24,7 +24,7 @@ Entity::Entity(Vec2 pos, int typ)
 	//タイプ別の初期値の初期化
 	switch (Typ) {
 	case 1:
-		m_texture = Texture{ U"example/windmill.png" };
+		m_texture = Texture{ U"texture/entity/enemy.png"  };
 
 		break;
 

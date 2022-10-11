@@ -41,10 +41,10 @@ void Game::update() {
 			changeScene(State::Title);
 	}
 
-	for (auto& en : entity) {
-		if (en.Del == true)
-			entity << Entity{ { 100 , 100 },getData().stage };
-	}
+	//for (auto& en : entity) {
+	//	if (en.Del == true)
+	//		entity << Entity{ { 100 , 100 },getData().stage };
+	//}
 
 	//消去判定
 	entity.remove_if([](const Entity& en) { return en.Del == true; });

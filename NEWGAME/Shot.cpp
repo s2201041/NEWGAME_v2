@@ -1,7 +1,7 @@
 ﻿#include "Shot.h"
 
 Shot::Shot( Vec2 pos, Vec2 dir, int vel,int typ)
-	:m_texture{ U"texture/Shot.png" }
+	:m_texture{ U"texture/shot/Shot.png" }
 {
 	Pos = pos;
 	Dir = dir;
