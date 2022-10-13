@@ -72,7 +72,14 @@ void Player::draw() const
 {
 	m_texture.scaled(2.0).drawAt(Pos);
 
-	TextureAsset(U"player_1_up").scaled(2.0).drawAt(Pos);
+	if(inputRight.pressed())
+		TextureAsset(U"player_1_right").scaled(2.0).drawAt(Pos);
+	else if (inputLeft.pressed())
+		TextureAsset(U"player_1_left").scaled(2.0).drawAt(Pos);
+	else if (inputDown.pressed())
+		TextureAsset(U"player_1_down").scaled(2.0).drawAt(Pos);
+	else 
+		TextureAsset(U"player_1_up").scaled(2.0).drawAt(Pos);
 
 	//ショットの描画
 	for (auto& en : shot)
