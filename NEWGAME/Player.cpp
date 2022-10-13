@@ -20,8 +20,6 @@ Player::Player(Vec2 pos,int typ,Rect are)
 
 void Player::update() 
 {
-
- 
 	//キー操作
 		switch (Typ){
 		case 1:
@@ -52,6 +50,7 @@ void Player::update()
 		else
 			shot << Shot{ Pos ,{0,-1} ,500 ,1 ,Are};
 	}
+
 	//ショットの動作処理
 	for (auto& sh : shot){
 		sh.GoPos = EnPos;
@@ -65,8 +64,6 @@ void Player::update()
 	if (0 >= Hp)
 		Del = true;
 
-
-
 	//コライダーの更新
 	Col = Circle{ Pos, 30 };
 }
@@ -74,7 +71,6 @@ void Player::update()
 void Player::draw() const
 {
 	m_texture.scaled(2.0).drawAt(Pos);
-
 
 	TextureAsset(U"player_1_up").scaled(2.0).drawAt(Pos);
 
@@ -84,11 +80,6 @@ void Player::draw() const
 
 	//コライダー確認用
 	Col.draw(ColorF{ 0.0, 0.5, 1.0, 0.8 });
-
-
-	//HPゲージの描画
-	//RectF{ 610 , 550, Hp * 1.8, 20 }.draw(Palette::Red);;
-	//RectF{ 610 , 550, 180, 20 }.draw(Palette::Orange);;
 
 }
 
@@ -100,6 +91,7 @@ void Player::sh_cla() {
 void Player::en_cla(int typ) {
 	switch (typ) {
 	case 2:
+
 		break;
 	}
 }

@@ -28,8 +28,6 @@ void Game::update() {
 		time = 0;
 	}
 
-	
-
 	//敵の動作処理
 	for (auto& en : entity)
 		en.update();
@@ -121,17 +119,14 @@ void Game::draw() const
 		RectF{ 610 , 550, 180, 20 }.draw(Palette::Orange);;
 		RectF{ 610 , 550, pl.Hp * 1.8, 20 }.draw(Palette::Red);;
 	}
-
-
 	
 	//敵の描画
 	for (int i = 0; i < entity.size(); i++) {
 		entity[i].draw();
 		RectF{ 25 , 25 + i * 30 , 550, 15 }.draw(Palette::Orange);;
 		RectF{ 25 , 25 + i * 30 , entity[i].Hp * 5.5, 15}.draw(Palette::Red);;
-		hp_font(entity[i].Hp).drawAt( 10, 300, 25 + i * 30);
-		hp_font(entity[i].Nam).drawAt(20, 300, 35 + i * 30);
-
+		hp_font(entity[i].Hp).drawAt( 300, 30 + i * 30);
+		hp_font(entity[i].Nam).drawAt( 300, 45 + i * 30);
 	}
 
 

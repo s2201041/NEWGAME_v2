@@ -29,7 +29,7 @@ private:
 
 	double time;
 
-	const Font hp_font{ FontMethod::MSDF, 10, Typeface::Bold };
+	const Font hp_font{ FontMethod::MSDF, 20, Typeface::Bold };
 
 
 

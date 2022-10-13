@@ -31,6 +31,7 @@ public:
 	//消去判定
 	bool Del;
 
+	//目的座標
 	Vec2 GoPos;
 
 private:
