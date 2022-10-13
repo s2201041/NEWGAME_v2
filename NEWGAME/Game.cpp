@@ -111,7 +111,7 @@ void Game::draw() const
 {
 	//背景の描画
 	TextureAsset(U"haikei").scaled(2.0).draw();
-
+	
 	//システムウィンドウの描画
 	Rect{ 600, 0, 200, 600 }.draw();
 
