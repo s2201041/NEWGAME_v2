@@ -12,7 +12,7 @@ class Entity {
 public:
 
 	//コンストラクタ
-	Entity(Vec2 pos, int typ);
+	Entity(Vec2 pos, int typ,Rect are);
 
 	//１フレーム毎の処理
 	void update();
@@ -21,7 +21,8 @@ public:
 	void draw() const ;
 
 	//諸突処理関数
-	void cla();
+	void sh_cla();
+	void pl_cla();
 
 	//ショットの定義
 	Array<Shot> shot;
@@ -44,6 +45,12 @@ public:
 	//敵の種類の定義
 	int Typ;
 
+	//敵のHPの定義
+	int Hp;
+
+	//敵の名前の定義
+	String Nam;
+
 private:
 
 	Texture m_texture;
@@ -54,14 +61,15 @@ private:
 	//速度の定義
 	int Vel;
 
-	//敵のHPの定義
-	int Hp;
-
 	//コライダーサイズの定義
 	double size;
 
 	//タイマー変数の定義
 	double Timer;
+
+	//動作範囲
+	Rect Are;
+
 };
 
 #endif

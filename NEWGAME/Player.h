@@ -12,7 +12,7 @@ class Player {
 public:
 
 	//コンストラクタ
-	Player(Vec2 pos,int typ, int vel);
+	Player(Vec2 pos,int typ ,Rect are);
 
 	//１フレーム毎の処理
 	void update();
@@ -21,7 +21,8 @@ public:
 	void draw() const;
 
 	//諸突処理関数
-	void cla();
+	void sh_cla();
+	void en_cla(int typ);
 
 	//ショットの定義
 	Array<Shot> shot;
@@ -37,7 +38,6 @@ public:
 
 	//直近の敵座標
 	Vec2 EnPos;
-private:
 
 	Texture m_texture;
 
@@ -53,7 +53,8 @@ private:
 	//HPの定義
 	int Hp;
 
-	//const double deltaTime = Scene::DeltaTime();
+	//動作範囲
+	Rect Are;
 
 	//Keyconfigの定義
 	InputGroup inputLeft;

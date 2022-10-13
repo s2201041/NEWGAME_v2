@@ -12,9 +12,16 @@ void Main()
 	Scene::SetResizeMode(ResizeMode::Keep);
 	Window::SetStyle(WindowStyle::Sizable);
 
-	//sceneを跨いで使用するアセットはここで定義.
+	//アセットの定義.
 	FontAsset::Register(U"TitleFont", 60, Typeface::Heavy, FontStyle::Bitmap);
 	TextureAsset::Register(U"haikei", U"texture/haikei.png", TextureDesc::Mipped);
+
+	TextureAsset::Register(U"player_1_up", U"texture/player/player_1_up.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"player_1_down", U"texture/player/player_1_down.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"player_1_left", U"texture/player/player_1_left.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"player_1_right", U"texture/player/player_1_right.png", TextureDesc::Mipped);
+
+
 
 	//sceneの追加
 	App manager;

@@ -1,11 +1,12 @@
 ﻿#include "Player.h"
 
-Player::Player(Vec2 pos,int typ, int vel)
+Player::Player(Vec2 pos,int typ,Rect are)
 	:m_texture{ U"texture/player/player.png" }
 {
 	Pos = pos;
-	Vel = vel;
+	//Vel = vel;
 	Typ = typ;
+	Are = are;
 	Dir = { 0,0 };
 	Hp = 100;
 
@@ -43,17 +44,14 @@ void Player::update()
 	const Vec2 move = Vec2{ (inputRight.pressed() - inputLeft.pressed()), (inputDown.pressed() - inputUp.pressed()) }
 	.setLength(Scene::DeltaTime() * 550 * (KeyShift.pressed() ? 0.5 : 1.0));
 
-	Pos.moveBy(move).clamp(Scene::Rect());
-
-	//.clamp(Rect{ 20, 20, 450, 560 })
+	Pos.moveBy(move).clamp(Scene::Rect()).clamp(Are);
 
 	if (inputShot.down()) {
 		if (KeyShift.pressed())
-			shot << Shot{ Pos ,{0,-1} ,500 ,3  };
+			shot << Shot{ Pos ,{0,-1} ,500 ,3 ,Are};
 		else
-			shot << Shot{ Pos ,{0,-1} ,500 ,1 };
+			shot << Shot{ Pos ,{0,-1} ,500 ,1 ,Are};
 	}
-
 	//ショットの動作処理
 	for (auto& sh : shot){
 		sh.GoPos = EnPos;
@@ -77,6 +75,9 @@ void Player::draw() const
 {
 	m_texture.scaled(2.0).drawAt(Pos);
 
+
+	TextureAsset(U"player_1_up").scaled(2.0).drawAt(Pos);
+
 	//ショットの描画
 	for (auto& en : shot)
 		en.draw();
@@ -84,14 +85,21 @@ void Player::draw() const
 	//コライダー確認用
 	Col.draw(ColorF{ 0.0, 0.5, 1.0, 0.8 });
 
-	//当たり判定の描画
-	RectF{ 550 , 550, 200, 20 }.draw(Palette::Orange);;
 
 	//HPゲージの描画
-	RectF{ 550 , 550, Hp * 2, 20 }.draw(Palette::Red);;
+	//RectF{ 610 , 550, Hp * 1.8, 20 }.draw(Palette::Red);;
+	//RectF{ 610 , 550, 180, 20 }.draw(Palette::Orange);;
+
 }
 
-void Player::cla() {
+void Player::sh_cla() {
 	if(!(Hp <= 0))
 		Hp -= 5;
+}
+
+void Player::en_cla(int typ) {
+	switch (typ) {
+	case 2:
+		break;
+	}
 }

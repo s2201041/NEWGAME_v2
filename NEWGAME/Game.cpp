@@ -13,8 +13,8 @@ Game::Game(const InitData& init)
 	//ステージ表示
 	//Print << getData().stage;
 
-	entity << Entity{ { 100 , 100 },1 };
-	player << Player{ {0,0} ,1, 550 };
+	entity << Entity{ { 100 , 100 },1 ,Are};
+	player << Player{ { 0 , 0 } ,1 ,Are};
 }
 
 void Game::update() {
@@ -23,10 +23,10 @@ void Game::update() {
 	time += Scene::DeltaTime();
 
 	//敵の出現
-	//if (time >= 10) {
-	//	entity << Entity{ { 600 , 50 },2 };
-	//	time = 0;
-	//}
+	if (time >= 5) {
+		entity << Entity{ { 600 , 50 },Random(1,2) ,Are};
+		time = 0;
+	}
 
 	
 
@@ -62,18 +62,18 @@ void Game::update() {
 				//自機ショットと敵の衝突処理
 				if (en.Col.intersects(sh.Col)) {
 					sh.cla();
-					en.cla();
+					en.sh_cla();
 				}
 			for (auto& sh : en.shot)
 				//敵ショットと自機の衝突処理
 				if (pl.Col.intersects(sh.Col)) {
 					sh.cla();
-					pl.cla();
+					pl.sh_cla();
 				}
 			//敵と自機の衝突判定
 			if (en.Col.intersects(pl.Col)) {
-				//en.cla();
-				//pl.cla();
+				en.pl_cla();
+				pl.en_cla(en.Typ);
 			}
 		}
 
@@ -104,8 +104,7 @@ void Game::update() {
 					imin = i;
 				}
 			}
-			pl.EnPos = entity[imin].Pos;
-		}
+			pl.EnPos = entity[imin].Pos; }
 }
 
 void Game::draw() const
@@ -113,17 +112,28 @@ void Game::draw() const
 	//背景の描画
 	TextureAsset(U"haikei").scaled(2.0).draw();
 
-	//
+	//システムウィンドウの描画
 	Rect{ 600, 0, 200, 600 }.draw();
 
-	//敵の描画
-	for (auto& sh : entity)
-		sh.draw();
-
 	//プレイヤーの描画
-	for (auto& pl : player)
+	for (auto& pl : player) {
 		pl.draw();
+		RectF{ 610 , 550, 180, 20 }.draw(Palette::Orange);;
+		RectF{ 610 , 550, pl.Hp * 1.8, 20 }.draw(Palette::Red);;
+	}
 
-	//システムウィンドウの描画
+
+	
+	//敵の描画
+	for (int i = 0; i < entity.size(); i++) {
+		entity[i].draw();
+		RectF{ 25 , 25 + i * 30 , 550, 15 }.draw(Palette::Orange);;
+		RectF{ 25 , 25 + i * 30 , entity[i].Hp * 5.5, 15}.draw(Palette::Red);;
+		hp_font(entity[i].Hp).drawAt( 10, 300, 25 + i * 30);
+		hp_font(entity[i].Nam).drawAt(20, 300, 35 + i * 30);
+
+	}
+
+
 }
 

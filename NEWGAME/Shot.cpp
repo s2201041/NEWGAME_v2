@@ -1,12 +1,13 @@
 ﻿#include "Shot.h"
 
-Shot::Shot( Vec2 pos, Vec2 dir, int vel,int typ)
+Shot::Shot( Vec2 pos, Vec2 dir, int vel,int typ,Rect are)
 	:m_texture{ U"texture/shot/Shot.png" }
 {
 	Pos = pos;
 	Dir = dir;
 	Vel = vel;
 	Typ = typ;
+	Are = are;
 
 	Del = false;
 
@@ -46,8 +47,8 @@ void Shot::update()
 	}
 
 	//範囲外のショットの消去
-	//if (false == Col.intersects(Scene::Rect()))
-	//	Del = true;
+	if (false == Col.intersects(Are))
+		Del = true;
 
 	//コライダーの更新
 	Col = Circle{ Pos, 8 };

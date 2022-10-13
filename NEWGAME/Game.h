@@ -25,10 +25,12 @@ public:
 	//動作範囲
 	Rect Are;
 
-
-
 private:
 
 	double time;
+
+	const Font hp_font{ FontMethod::MSDF, 10, Typeface::Bold };
+
+
 
 };

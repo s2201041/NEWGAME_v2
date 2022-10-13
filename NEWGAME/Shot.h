@@ -11,7 +11,7 @@ class Shot {
 public:
 
 	//コンストラクタ
-	Shot( Vec2 pos, Vec2 dir, int vel,int typ);
+	Shot( Vec2 pos, Vec2 dir, int vel,int typ,Rect are);
 
 	//１フレーム毎の処理
 	void update();
@@ -45,6 +45,9 @@ private:
 
 	//タイマー変数の定義
 	double Time;
+
+	//動作範囲
+	Rect Are;
 };
 
 #endif
