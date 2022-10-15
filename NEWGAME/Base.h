@@ -1,8 +1,8 @@
 ﻿#pragma once
 
 //インクルードガード
-#ifndef ENTITY_H
-#define ENTITY_H
+#ifndef BASE_H
+#define BASE_H
 
 #include "common.h"
 
@@ -11,7 +11,7 @@ class Base {
 public:
 
 	//コンストラクタ
-	Base(Vec2 pos, Vec2 dir, int vel,int typ,Rect are);
+	Base(Vec2 pos,int typ,Rect are);
 
 	//１フレーム毎の処理
 	void update();

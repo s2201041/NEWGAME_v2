@@ -1,6 +1,6 @@
 ﻿#include "Base.h"
 
-Base::Base(Vec2 pos, Vec2 dir, int vel,int typ,Rect are)
+Base::Base(Vec2 pos,int typ,Rect are)
 {
 	Pos = pos;	
 	Typ = typ;

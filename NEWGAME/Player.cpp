@@ -1,5 +1,6 @@
 ﻿#include "Player.h"
 
+
 Player::Player(Vec2 pos,int typ,Rect are)
 	:m_texture{ U"texture/player/player.png" }
 {
