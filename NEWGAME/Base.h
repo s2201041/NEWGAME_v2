@@ -13,6 +13,10 @@ public:
 	//コンストラクタ
 	Base(Vec2 pos,int typ,Rect are);
 
+	//ショット用コンストラクタのoverroad
+	Base(Vec2 pos, Vec2 dir, int vel, int typ, Rect are);
+
+
 	//１フレーム毎の処理
 	virtual void update();
 

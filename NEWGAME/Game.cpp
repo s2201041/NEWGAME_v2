@@ -21,8 +21,9 @@ Game::Game(const InitData& init)
 //	entity[0] = new Entity({ { 100 , 100 },1 ,Are });
 
 
-	entity.emplace_back(new Entity{ { 100 , 100 },1 ,Are});
-	entity.emplace_back(new Player{ { 100 , 100 },1 ,Are});
+	entity.emplace_back(new Entity{ { 100 , 100 },1 ,Are });
+	entity.emplace_back(new Player{ { 100 , 100 },1 ,Are });
+	entity.emplace_back(new Shot{ { 100 , 100} ,{0,1} ,900 ,1 ,Are });
 	//entity << Entity{ { 0 , 0 } ,1 ,Are};
 
 }
@@ -137,7 +138,6 @@ void Game::draw() const
 		RectF{ 25 , 25 + i * 30 , entity[i]->Hp * 5.5, 15}.draw(Palette::Red);;
 		hp_font(entity[i]->Hp).drawAt( 300, 30 + i * 30);
 		hp_font(entity[i]->Nam).drawAt( 300, 45 + i * 30);
-		
 	}
 
 
