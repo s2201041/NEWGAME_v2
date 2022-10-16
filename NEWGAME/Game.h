@@ -20,7 +20,9 @@ public:
 	Array<Player> player;
 
 	//エンティティ格納配列
-	Array<Entity> entity;
+	Array<std::shared_ptr<Base>> entity;
+
+	//Base * entity[2];
 
 	//動作範囲
 	Rect Are;

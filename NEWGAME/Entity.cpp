@@ -1,6 +1,6 @@
 ﻿#include "Entity.h"
 
-Entity::Entity(Vec2 pos,int typ,Rect are)  : Base(pos, typ, are)
+Entity::Entity(Vec2 pos,int typ,Rect are) : Base(pos, typ, are)
 {
 	
 	//デバッグ用
@@ -33,7 +33,7 @@ Entity::Entity(Vec2 pos,int typ,Rect are)  : Base(pos, typ, are)
 
 void Entity::update()
 {
-
+	Print << U"aa";
 	//タイプ別の動作処理の分岐
 	switch (Typ) {
 	case 1:
@@ -42,7 +42,7 @@ void Entity::update()
 
 		if (Timer > 0.5) {
 			shot << Shot{ Pos ,{0,1} ,900 ,1 ,Are};
-			GoPos = { PlPos.x,Random(20,280) };
+			GoPos = { NearPos.x,Random(20,280) };
 			Timer = 0;
 		}
 		//タイマーの加算
@@ -56,7 +56,7 @@ void Entity::update()
 
 		if (Timer > 0.5) {
 			shot << Shot{ Pos ,{0,1} ,1200 ,2 ,Are };
-			GoPos = { PlPos.x,Random(20,280) };
+			GoPos = { NearPos.x,Random(20,280) };
 			Timer = 0;
 		}
 		//タイマーの加算
@@ -72,7 +72,7 @@ void Entity::update()
 
 	//ショットの処理
 	for (auto& sh : shot) {
-		sh.GoPos = PlPos;
+		sh.GoPos = NearPos;
 		sh.update();
 	}
 
