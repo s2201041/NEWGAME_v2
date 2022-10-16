@@ -47,8 +47,6 @@ public:
 	//敵の名前の定義
 	String Nam;
 
-private:
-
 	Texture m_texture;
 
 	//座標と向きの定義
