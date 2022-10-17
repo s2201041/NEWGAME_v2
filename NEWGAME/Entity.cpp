@@ -1,8 +1,19 @@
 ﻿#include "Entity.h"
+#include "Game.h"
 
-Entity::Entity(Vec2 pos,int typ,Rect are)  : Base(pos, typ, are)
+Entity::Entity(Vec2 pos,int typ,Rect are)
 {
-	
+	Pos = pos;	
+	Typ = typ;
+	Are = are;
+	Del = false;
+	//タイマーの初期化
+	Timer = 0;
+
+	//コライダーの初期化
+	Col = Circle{ Pos, size };
+
+
 	//デバッグ用
 	//Print << Typ;
 
@@ -33,7 +44,6 @@ Entity::Entity(Vec2 pos,int typ,Rect are)  : Base(pos, typ, are)
 
 void Entity::update()
 {
-
 	//タイプ別の動作処理の分岐
 	switch (Typ) {
 	case 1:
@@ -90,6 +100,7 @@ void Entity::update()
 
 void Entity::draw() const
 {
+
 	switch (Typ) {
 	case 1:
 		m_texture.scaled(2.0).drawAt(Pos);

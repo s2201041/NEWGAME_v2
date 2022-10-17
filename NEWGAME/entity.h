@@ -7,7 +7,7 @@
 #include "Base.h"
 #include "Shot.h"
 
-class Entity: public Base {
+class Entity {
 	
 public:
 

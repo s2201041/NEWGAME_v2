@@ -2,6 +2,7 @@
 #include "Common.h"
 #include "Entity.h"
 #include "Player.h"
+#include "Effect.cpp"
 
 class Game : public App::Scene
 {
@@ -16,6 +17,8 @@ public:
 	// 描画関数（オプション）
 	void draw() const override;
 
+	void tes();
+
 	//プレイヤー格納配列
 	Array<Player> player;
 
@@ -24,6 +27,8 @@ public:
 
 	//動作範囲
 	Rect Are;
+
+	Effect effect;
 
 private:
 

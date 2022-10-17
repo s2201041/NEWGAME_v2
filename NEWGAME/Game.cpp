@@ -103,6 +103,16 @@ void Game::update() {
 				}
 			}
 			pl.EnPos = entity[imin].Pos; }
+
+
+	if (MouseL.down())
+	{
+		// エフェクトを発生
+		effect.add<RingEffect>(Cursor::Pos());
+	}
+
+	tes();
+
 }
 
 void Game::draw() const
@@ -129,6 +139,11 @@ void Game::draw() const
 		hp_font(entity[i].Nam).drawAt( 300, 45 + i * 30);
 	}
 
+	effect.update();
 
 }
 
+void Game::tes() {
+
+}
+	
