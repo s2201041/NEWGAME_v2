@@ -88,7 +88,7 @@ void Game::update() {
 					imin = i;
 				}
 			}
-			en.PlPos = player[imin].Pos;
+			en.NearPos = player[imin].Pos;
 		}
 
 	//自機から最も近い敵の座標
@@ -102,7 +102,7 @@ void Game::update() {
 					imin = i;
 				}
 			}
-			pl.EnPos = entity[imin].Pos; }
+			pl.NearPos = entity[imin].Pos; }
 }
 
 void Game::draw() const

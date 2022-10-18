@@ -1,10 +1,9 @@
 ﻿#include "Entity.h"
 #include "Game.h"
 
-Entity::Entity(Game* gam, Vec2 pos, int typ, Rect are) : Base(pos, typ, are)
+Entity::Entity( Vec2 pos, int typ, Rect are) : Base(pos, typ, are)
 
 {
-	game = gam;
 
 	//デバッグ用
 	//Print << Typ;
