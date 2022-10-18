@@ -70,6 +70,8 @@ private:
 	//動作範囲
 	Rect Are;
 
+	Effect effect;
+
 };
 
 #endif

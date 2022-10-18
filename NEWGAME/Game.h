@@ -28,9 +28,14 @@ public:
 	//動作範囲
 	Rect Are;
 
-	Effect effect;
 
 private:
+
+	Texture winner;
+
+	int score;
+
+	bool win;
 
 	double time;
 

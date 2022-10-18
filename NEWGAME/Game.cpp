@@ -4,6 +4,12 @@
 Game::Game(const InitData& init)
 	: IScene{ init }
 {
+	winner = Texture{ U"texture/winner.png" };
+
+	score = 0;
+
+	win = false;
+
 	//経過時間の初期化
 	time = 0;
 
@@ -61,6 +67,7 @@ void Game::update() {
 				if (en.Col.intersects(sh.Col)) {
 					sh.cla();
 					en.sh_cla();
+					score++;
 				}
 			for (auto& sh : en.shot)
 				//敵ショットと自機の衝突処理
@@ -108,10 +115,12 @@ void Game::update() {
 	if (MouseL.down())
 	{
 		// エフェクトを発生
-		effect.add<RingEffect>(Cursor::Pos());
 	}
 
 	tes();
+
+	if (score > 10)
+		win = true;
 
 }
 
@@ -139,8 +148,9 @@ void Game::draw() const
 		hp_font(entity[i].Nam).drawAt( 300, 45 + i * 30);
 	}
 
-	effect.update();
-
+	if(win){
+		winner.scaled(0.75).drawAt(400,300);
+	}
 }
 
 void Game::tes() {

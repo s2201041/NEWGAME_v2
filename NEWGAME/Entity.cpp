@@ -51,6 +51,7 @@ void Entity::update()
 		Pos = Pos.lerp(GoPos, 0.1);
 
 		if (Timer > 0.5) {
+			effect.add<RingEffect>(Pos);
 			shot << Shot{ Pos ,{0,1} ,900 ,1 ,Are};
 			GoPos = { PlPos.x,Random(20,280) };
 			Timer = 0;
@@ -122,6 +123,8 @@ void Entity::draw() const
 	//HPゲージの描画
 	//RectF{ 50 , 50, 300, 10 }.draw(Palette::Orange);;
 	//RectF{ 50 , 50, Hp * 3, 10 }.draw(Palette::Red);;
+
+	//effect.update();
 }
 
 void Entity::sh_cla() {
