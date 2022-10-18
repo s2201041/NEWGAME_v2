@@ -13,8 +13,10 @@ Game::Game(const InitData& init)
 	//ステージ表示
 	//Print << getData().stage;
 
-	entity.emplace_back(new Entity{ this,{ 100 , 100 },1 ,Are });
-	entity.emplace_back(new Player{ { 100 , 100 },1 ,Are });
+	//entity.emplace_back(new Entity{ this,{ 100 , 100 },1 ,Are });
+	//entity.emplace_back(new Player{ { 100 , 100 },1 ,Are });
+
+	entity << std::make_unique<Entity>(this, Vec2 { 100 , 100 }, 1, Are);
 
 }
 
