@@ -17,7 +17,6 @@ Base::Base(Vec2 pos, Vec2 dir, int vel,int typ,Rect are)
 
 void Base::update()
 {
-	
 }
 
 void Base::draw() const

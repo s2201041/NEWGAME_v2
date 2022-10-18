@@ -14,10 +14,10 @@ public:
 	Base(Vec2 pos, Vec2 dir, int vel,int typ,Rect are);
 
 	//１フレーム毎の処理
-	void update();
+	virtual void update();
 
 	//描画
-	void draw() const ;
+	virtual void draw() const ;
 
 	//諸突処理関数
 	void sh_cla();
