@@ -32,5 +32,6 @@ private:
 	const Font hp_font{ FontMethod::MSDF, 10, Typeface::Bold };
 
 
-
+	const Font font{ 32, U"example/font/DotGothic16/DotGothic16-Regular.ttf", FontStyle::Bitmap };
+	const String stage = Format(getData().stage);
 };
