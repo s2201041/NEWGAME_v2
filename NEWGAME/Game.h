@@ -33,7 +33,7 @@ private:
 
 	Texture winner;
 
-	int score;
+	int Score;
 
 	bool win;
 
@@ -41,6 +41,7 @@ private:
 
 	const Font hp_font{ FontMethod::MSDF, 20, Typeface::Bold };
 
+	Stopwatch stopwatch{ StartImmediately::Yes};
 
 
 };

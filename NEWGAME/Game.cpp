@@ -4,9 +4,10 @@
 Game::Game(const InitData& init)
 	: IScene{ init }
 {
+
 	winner = Texture{ U"texture/winner.png" };
 
-	score = 0;
+	Score = 0;
 
 	win = false;
 
@@ -35,8 +36,11 @@ void Game::update() {
 	}
 
 	//敵の動作処理
-	for (auto& en : entity)
+	for (auto& en : entity) {
 		en.update();
+		if (en.Del == true)
+			Score++;
+	}
 
 	//プレイヤーの動作処理
 	for (auto& pl : player)
@@ -58,6 +62,7 @@ void Game::update() {
 	player.remove_if([](const Player& pl) { return pl.Del == true; });
 
 
+					
 
 	//衝突判定
 	for (auto& en : entity)
@@ -67,7 +72,6 @@ void Game::update() {
 				if (en.Col.intersects(sh.Col)) {
 					sh.cla();
 					en.sh_cla();
-					score++;
 				}
 			for (auto& sh : en.shot)
 				//敵ショットと自機の衝突処理
@@ -119,9 +123,18 @@ void Game::update() {
 
 	tes();
 
-	if (score > 10)
+	if (Score > 10) {
 		win = true;
+		Score = 0;
+		stopwatch.start();
 
+	if(win)
+
+		changeScene(State::Title);
+
+	}
+
+	Print << stopwatch;
 }
 
 void Game::draw() const
