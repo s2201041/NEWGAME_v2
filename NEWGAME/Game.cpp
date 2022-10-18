@@ -13,7 +13,7 @@ Game::Game(const InitData& init)
 	//ステージ表示
 	//Print << getData().stage;
 
-	entity.emplace_back(new Entity{ { 100 , 100 },1 ,Are });
+	entity.emplace_back(new Entity{ this,{ 100 , 100 },1 ,Are });
 	entity.emplace_back(new Player{ { 100 , 100 },1 ,Are });
 
 }
@@ -25,13 +25,12 @@ void Game::update() {
 
 	//敵の出現
 	if (time >= 5) {
-		tes(entity);
-		Print << 1;
+		tes();
 		time = 0;
 	}
 
 	//敵の動作処理
-	for (auto&& en : entity)
+	for (auto& en : entity)
 		en->update();
 
 //	//プレイヤーの動作処理
@@ -50,7 +49,7 @@ void Game::update() {
 
 
 	//消去判定
-//	entity.remove_if([](const Entity& en) { return en->Del == true; });
+//	entity.remove_if([](const Entity& en) { return en.Del == true; });
 //	player.remove_if([](const Player& pl) { return pl.Del == true; });
 
 
@@ -134,8 +133,9 @@ void Game::draw() const
 
 }
 
-void Game::tes(Array<Base*> base) {
+void Game::tes() {
 
-	for (auto&& en : entity)
+
+	entity.emplace_back(new Entity{ this,{ 100 , 100 },1 ,Are });
 		Print << U"A";
 }

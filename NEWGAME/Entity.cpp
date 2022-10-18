@@ -1,10 +1,11 @@
 ﻿#include "Entity.h"
 #include "Game.h"
 
-Entity::Entity( Vec2 pos, int typ, Rect are) : Base(pos, typ, are)
+Entity::Entity(Game* gam, Vec2 pos, int typ, Rect are) : Base(pos, typ, are)
 
 {
-	
+	game = gam;
+
 	//デバッグ用
 	//Print << Typ;
 
@@ -40,9 +41,9 @@ void Entity::update()
 	case 1:
 
 		Pos = Pos.lerp(GoPos, 0.1);
-
 		if (Timer > 0.5) {
-
+			//game->tes();
+			//game->entity.emplace_back(new Player{ { 100 , 100 },1 ,Are });
 			shot << Shot{ Pos ,{0,1} ,900 ,1 ,Are};
 			GoPos = { NearPos.x,Random(20,280) };
 			Timer = 0;
