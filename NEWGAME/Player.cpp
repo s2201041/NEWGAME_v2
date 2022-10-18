@@ -1,18 +1,13 @@
 ﻿#include "Player.h"
 
-Player::Player(Vec2 pos,int typ,Rect are)
-	:m_texture{ U"texture/player/player.png" }
+Player::Player(Vec2 pos,int typ,Rect are) : Base(pos, typ, are)
 {
-	Pos = pos;
-	//Vel = vel;
-	Typ = typ;
-	Are = are;
+	m_texture = Texture{ U"texture/player/player.png" };
+
 	Dir = { 0,0 };
 	Hp = 100;
 
-	EnPos = { 0,0 };
-
-	Del = false;
+	NearPos = { 0,0 };
 
 	//コライダーの初期化
 	Col = Circle{ Pos, 30 };
@@ -53,7 +48,7 @@ void Player::update()
 
 	//ショットの動作処理
 	for (auto& sh : shot){
-		sh.GoPos = EnPos;
+		sh.GoPos = NearPos;
 		sh.update();
 	}
 

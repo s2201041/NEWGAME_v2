@@ -1,17 +1,10 @@
 ﻿#include "Entity.h"
+#include "Game.h"
 
-Entity::Entity(Vec2 pos, int typ,Rect are)
+Entity::Entity(Game* gam, Vec2 pos, int typ, Rect are) : Base(pos, typ, are)
+
 {
-	Pos = pos;
-	Typ = typ;
-	Are = are;
-	Del = false;
-
-	//タイマーの初期化
-	Timer = 0;
-
-	//コライダーの初期化
-	Col = Circle{ Pos, size };
+	game = gam;
 
 	//デバッグ用
 	//Print << Typ;
@@ -43,16 +36,16 @@ Entity::Entity(Vec2 pos, int typ,Rect are)
 
 void Entity::update()
 {
-
 	//タイプ別の動作処理の分岐
 	switch (Typ) {
 	case 1:
 
 		Pos = Pos.lerp(GoPos, 0.1);
-
 		if (Timer > 0.5) {
+			//game->tes();
+			//game->entity.emplace_back(new Player{ { 100 , 100 },1 ,Are });
 			shot << Shot{ Pos ,{0,1} ,900 ,1 ,Are};
-			GoPos = { PlPos.x,Random(20,280) };
+			GoPos = { NearPos.x,Random(20,280) };
 			Timer = 0;
 		}
 		//タイマーの加算
@@ -66,7 +59,7 @@ void Entity::update()
 
 		if (Timer > 0.5) {
 			shot << Shot{ Pos ,{0,1} ,1200 ,2 ,Are };
-			GoPos = { PlPos.x,Random(20,280) };
+			GoPos = { NearPos.x,Random(20,280) };
 			Timer = 0;
 		}
 		//タイマーの加算
@@ -82,7 +75,7 @@ void Entity::update()
 
 	//ショットの処理
 	for (auto& sh : shot) {
-		sh.GoPos = PlPos;
+		sh.GoPos = NearPos;
 		sh.update();
 	}
 

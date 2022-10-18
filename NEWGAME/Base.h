@@ -1,8 +1,8 @@
 ﻿#pragma once
 
 //インクルードガード
-#ifndef ENTITY_H
-#define ENTITY_H
+#ifndef BASE_H
+#define BASE_H
 
 #include "common.h"
 
@@ -11,7 +11,14 @@ class Base {
 public:
 
 	//コンストラクタ
-	Base(Vec2 pos, Vec2 dir, int vel,int typ,Rect are);
+	Base(Vec2 pos,int typ,Rect are);
+
+	//コンストラクタ
+	//Base(Array<Base*> base ,Vec2 pos,int typ,Rect are);
+
+	//ショット用コンストラクタのoverroad
+	Base(Vec2 pos, Vec2 dir, int vel, int typ, Rect are);
+
 
 	//１フレーム毎の処理
 	virtual void update();
@@ -20,8 +27,8 @@ public:
 	virtual void draw() const ;
 
 	//諸突処理関数
-	void sh_cla();
-	void pl_cla();
+	virtual void sh_cla();
+	virtual void pl_cla();
 
 	//コライダー
 	Circle Col;
@@ -36,7 +43,7 @@ public:
 	Vec2 Pos;
 
 	//直近座標
-	Vec2 PlPos;
+	Vec2 NearPos;
 
 	//種類の定義
 	int Typ;
@@ -44,10 +51,10 @@ public:
 	//HPの定義
 	int Hp;
 
-	//敵の名前の定義
+	//名前の定義
 	String Nam;
 
-private:
+protected:
 
 	Texture m_texture;
 

@@ -4,9 +4,9 @@
 #ifndef SHOT_H
 #define SHOT_H
 
-#include "common.h"
+#include "Base.h"
 
-class Shot {
+class Shot : public Base {
 
 public:
 

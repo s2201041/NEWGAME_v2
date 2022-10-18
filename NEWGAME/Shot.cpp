@@ -1,6 +1,6 @@
 ﻿#include "Shot.h"
 
-Shot::Shot( Vec2 pos, Vec2 dir, int vel,int typ,Rect are)
+Shot::Shot( Vec2 pos, Vec2 dir, int vel,int typ,Rect are):Base(pos, dir , vel,typ, are)
 {
 	Pos = pos;
 	Dir = dir;
