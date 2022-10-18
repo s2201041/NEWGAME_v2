@@ -75,7 +75,7 @@ void Shot::draw() const
 	}
 
 	//コライダー確認用
-	Col.draw(ColorF{ 0.0, 0.5, 1.0, 0.8 });
+	Col.draw(ColorF{ 0.8, 0.1, 0.7, 1.0 });
 }
 
 void Shot::cla() {

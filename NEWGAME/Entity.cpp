@@ -26,13 +26,13 @@ Entity::Entity(Vec2 pos, int typ,Rect are)
 	switch (Typ) {
 	case 1:
 		m_texture = Texture{ U"texture/entity/enemy.png" };
-		Nam = U"タオルの怪物_1";
+		Nam = U"タオルの妖怪_1";
 
 			break;
 	
 	case 2:
 		m_texture = Texture{ U"texture/entity/enemys.png" };
-		Nam = U"タオルの怪物_2";
+		Nam = U"タオルの妖怪_2";
 
 		break;
 

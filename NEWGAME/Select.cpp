@@ -16,6 +16,7 @@ void Select::update()
 
 		//ステージ1を選択
 		getData().stage = 1;
+
 	}
 
 	if (SimpleGUI::Button(U"Stage2", Vec2{ 350, 300 }))

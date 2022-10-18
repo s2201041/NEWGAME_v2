@@ -13,7 +13,7 @@ void Main()
 	Window::SetStyle(WindowStyle::Sizable);
 
 	//アセットの定義.
-	FontAsset::Register(U"TitleFont", 60, Typeface::Heavy, FontStyle::Bitmap);
+	FontAsset::Register(U"TitleFont", 60, Typeface::Heavy, FontStyle::Italic);
 	TextureAsset::Register(U"haikei", U"texture/haikei.png", TextureDesc::Mipped);
 
 	TextureAsset::Register(U"player_1_up", U"texture/player/player_1_up.png", TextureDesc::Mipped);

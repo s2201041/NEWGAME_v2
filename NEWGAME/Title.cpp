@@ -23,7 +23,6 @@ void Title::draw() const
 {
 	TextureAsset(U"haikei").scaled(4.0).draw();
 
-	FontAsset(U"TitleFont")(U"new Game").drawAt(400, 100);
-
+	FontAsset(U"TitleFont")(U"妖怪討伐大作戦(仮)").drawAt(400, 100);
 	
 }
