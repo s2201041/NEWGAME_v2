@@ -16,11 +16,13 @@ public:
 	// 描画関数（オプション）
 	void draw() const override;
 
+	void tes(Array<Base*> base);
+
 	//プレイヤー格納配列
 	Array<Player> player;
 
 	//エンティティ格納配列
-	Array<std::shared_ptr<Base>> entity;
+	Array<Base*> entity;
 
 	//Base * entity[2];
 

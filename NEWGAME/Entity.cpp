@@ -1,6 +1,8 @@
 ﻿#include "Entity.h"
+#include "Game.h"
 
-Entity::Entity(Vec2 pos,int typ,Rect are) : Base(pos, typ, are)
+Entity::Entity( Vec2 pos, int typ, Rect are) : Base(pos, typ, are)
+
 {
 	
 	//デバッグ用
@@ -33,7 +35,6 @@ Entity::Entity(Vec2 pos,int typ,Rect are) : Base(pos, typ, are)
 
 void Entity::update()
 {
-	Print << U"aa";
 	//タイプ別の動作処理の分岐
 	switch (Typ) {
 	case 1:
@@ -41,6 +42,7 @@ void Entity::update()
 		Pos = Pos.lerp(GoPos, 0.1);
 
 		if (Timer > 0.5) {
+
 			shot << Shot{ Pos ,{0,1} ,900 ,1 ,Are};
 			GoPos = { NearPos.x,Random(20,280) };
 			Timer = 0;

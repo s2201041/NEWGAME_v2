@@ -13,18 +13,8 @@ Game::Game(const InitData& init)
 	//ステージ表示
 	//Print << getData().stage;
 
-//	Entity ent({ { 100 , 100 },1 ,Are });
-
-//	entity.back(new Entity({ { 100 , 100 },1 ,Are }));
-	//entity.emplace_back(&enti);
-
-//	entity[0] = new Entity({ { 100 , 100 },1 ,Are });
-
-
 	entity.emplace_back(new Entity{ { 100 , 100 },1 ,Are });
 	entity.emplace_back(new Player{ { 100 , 100 },1 ,Are });
-	entity.emplace_back(new Shot{ { 100 , 100} ,{0,1} ,900 ,1 ,Are });
-	//entity << Entity{ { 0 , 0 } ,1 ,Are};
 
 }
 
@@ -34,10 +24,11 @@ void Game::update() {
 	time += Scene::DeltaTime();
 
 	//敵の出現
-	//if (time >= 5) {
-	//	entity << Entity{ { 600 , 50 },Random(1,2) ,Are};
-	//	time = 0;
-	//}
+	if (time >= 5) {
+		tes(entity);
+		Print << 1;
+		time = 0;
+	}
 
 	//敵の動作処理
 	for (auto&& en : entity)
@@ -59,7 +50,7 @@ void Game::update() {
 
 
 	//消去判定
-//	entity.remove_if([](const Entity& en) { return en.Del == true; });
+//	entity.remove_if([](const Entity& en) { return en->Del == true; });
 //	player.remove_if([](const Player& pl) { return pl.Del == true; });
 
 
@@ -143,3 +134,8 @@ void Game::draw() const
 
 }
 
+void Game::tes(Array<Base*> base) {
+
+	for (auto&& en : entity)
+		Print << U"A";
+}
