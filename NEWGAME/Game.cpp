@@ -123,7 +123,7 @@ void Game::update() {
 
 	tes();
 
-	if (Score > 10) {
+	if (Score >= 1) {
 		win = true;
 		Score = 0;
 		stopwatch.start();
