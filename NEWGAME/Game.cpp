@@ -99,7 +99,7 @@ void Game::update() {
 					imin = i;
 				}
 			}
-			en.PlPos = player[imin].Pos;
+			en.NearPos = player[imin].Pos;
 		}
 
 	//自機から最も近い敵の座標
@@ -143,7 +143,13 @@ void Game::draw() const
 	TextureAsset(U"haikei").scaled(2.0).draw();
 
 	//システムウィンドウの描画
-	Rect{ 600, 0, 200, 600 }.draw();
+	Rect{ 600, 0, 200, 600 }.draw(Arg::top = Palette::White, Arg::bottom =Palette::Silver).drawFrame(5, 0, Palette::Black);
+	Line{ 605, 80, 800, 80 }.draw(3, Palette::Black);
+	Line{ 605, 160, 800, 160 }.draw(3, Palette::Black);
+	Line{ 605, 500, 800, 500 }.draw(3, Palette::Black);
+	font(U"ステージ"+stage).draw(620, 13, Palette::Black);
+	font(U"残り時間").draw(620, 93, Palette::Black);
+
 
 	//プレイヤーの描画
 	for (auto& pl : player) {
@@ -151,6 +157,9 @@ void Game::draw() const
 		RectF{ 610 , 550, 180, 20 }.draw(Palette::Orange);;
 		RectF{ 610 , 550, pl.Hp * 1.8, 20 }.draw(Palette::Red);;
 	}
+	
+	
+	
 	
 	//敵の描画
 	for (int i = 0; i < entity.size(); i++) {

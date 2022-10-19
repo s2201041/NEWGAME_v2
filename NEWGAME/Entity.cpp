@@ -92,6 +92,7 @@ void Entity::update()
 
 void Entity::draw() const
 {
+
 	switch (Typ) {
 	case 1:
 		m_texture.scaled(2.0).drawAt(Pos);
@@ -113,6 +114,8 @@ void Entity::draw() const
 	//HPゲージの描画
 	//RectF{ 50 , 50, 300, 10 }.draw(Palette::Orange);;
 	//RectF{ 50 , 50, Hp * 3, 10 }.draw(Palette::Red);;
+
+	//effect.update();
 }
 
 void Entity::sh_cla() {
