@@ -2,6 +2,7 @@
 #include "Common.h"
 #include "Entity.h"
 #include "Player.h"
+#include "Effect.cpp"
 
 class Game : public App::Scene
 {
@@ -16,6 +17,8 @@ public:
 	// 描画関数（オプション）
 	void draw() const override;
 
+	void tes();
+
 	//プレイヤー格納配列
 	Array<Player> player;
 
@@ -25,12 +28,20 @@ public:
 	//動作範囲
 	Rect Are;
 
+
 private:
+
+	Texture winner;
+
+	int Score;
+
+	bool win;
 
 	double time;
 
 	const Font hp_font{ FontMethod::MSDF, 20, Typeface::Bold };
 
+	Stopwatch stopwatch{ StartImmediately::Yes};
 
 	const Font font{ 32, U"example/font/DotGothic16/DotGothic16-Regular.ttf", FontStyle::Bitmap };
 	const String stage = Format(getData().stage);

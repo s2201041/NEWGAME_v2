@@ -4,6 +4,13 @@
 Game::Game(const InitData& init)
 	: IScene{ init }
 {
+
+	winner = Texture{ U"texture/winner.png" };
+
+	Score = 0;
+
+	win = false;
+
 	//経過時間の初期化
 	time = 0;
 
@@ -29,8 +36,11 @@ void Game::update() {
 	}
 
 	//敵の動作処理
-	for (auto& en : entity)
+	for (auto& en : entity) {
 		en.update();
+		if (en.Del == true)
+			Score++;
+	}
 
 	//プレイヤーの動作処理
 	for (auto& pl : player)
@@ -52,6 +62,7 @@ void Game::update() {
 	player.remove_if([](const Player& pl) { return pl.Del == true; });
 
 
+					
 
 	//衝突判定
 	for (auto& en : entity)
@@ -88,7 +99,7 @@ void Game::update() {
 					imin = i;
 				}
 			}
-			en.NearPos = player[imin].Pos;
+			en.PlPos = player[imin].Pos;
 		}
 
 	//自機から最も近い敵の座標
@@ -102,7 +113,28 @@ void Game::update() {
 					imin = i;
 				}
 			}
-			pl.NearPos = entity[imin].Pos; }
+			pl.EnPos = entity[imin].Pos; }
+
+
+	if (MouseL.down())
+	{
+		// エフェクトを発生
+	}
+
+	tes();
+
+	if (Score >= 1) {
+		win = true;
+		Score = 0;
+		stopwatch.start();
+
+	if(win)
+
+		changeScene(State::Title);
+
+	}
+
+	Print << stopwatch;
 }
 
 void Game::draw() const
@@ -111,13 +143,7 @@ void Game::draw() const
 	TextureAsset(U"haikei").scaled(2.0).draw();
 
 	//システムウィンドウの描画
-	Rect{ 600, 0, 200, 600 }.draw(Arg::top = Palette::White, Arg::bottom =Palette::Silver).drawFrame(5, 0, Palette::Black);
-	Line{ 605, 80, 800, 80 }.draw(3, Palette::Black);
-	Line{ 605, 160, 800, 160 }.draw(3, Palette::Black);
-	Line{ 605, 500, 800, 500 }.draw(3, Palette::Black);
-	font(U"ステージ"+stage).draw(620, 13, Palette::Black);
-	font(U"残り時間").draw(620, 93, Palette::Black);
-
+	Rect{ 600, 0, 200, 600 }.draw();
 
 	//プレイヤーの描画
 	for (auto& pl : player) {
@@ -125,9 +151,6 @@ void Game::draw() const
 		RectF{ 610 , 550, 180, 20 }.draw(Palette::Orange);;
 		RectF{ 610 , 550, pl.Hp * 1.8, 20 }.draw(Palette::Red);;
 	}
-	
-	
-	
 	
 	//敵の描画
 	for (int i = 0; i < entity.size(); i++) {
@@ -138,6 +161,12 @@ void Game::draw() const
 		hp_font(entity[i].Nam).drawAt( 300, 45 + i * 30);
 	}
 
-
+	if(win){
+		winner.scaled(0.75).drawAt(400,300);
+	}
 }
 
+void Game::tes() {
+
+}
+	
