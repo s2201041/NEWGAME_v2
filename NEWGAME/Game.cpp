@@ -96,6 +96,7 @@ void Game::update() {
 				j = (player[i].Pos.x - en.Pos.x) * (player[i].Pos.x - en.Pos.x) + (player[i].Pos.y - en.Pos.y) * (player[i].Pos.y - en.Pos.y);
 				if (jmin < j) {
 					jmin = j;
+					imin = 0;
 					imin = i;
 				}
 			}
@@ -110,10 +111,11 @@ void Game::update() {
 				j = (entity[i].Pos.x - pl.Pos.x) * (entity[i].Pos.x - pl.Pos.x) + (entity[i].Pos.y - pl.Pos.y) * (entity[i].Pos.y - pl.Pos.y);
 				if (jmin < j) {
 					jmin = j;
+					imin = 0;
 					imin = i;
 				}
 			}
-			pl.EnPos = entity[imin].Pos; }
+			pl.NearPos = entity[imin].Pos; }
 
 
 	if (MouseL.down())
@@ -123,7 +125,7 @@ void Game::update() {
 
 	tes();
 
-	if (Score >= 1) {
+	if (Score >= 10) {
 		win = true;
 		Score = 0;
 		stopwatch.start();
@@ -134,7 +136,6 @@ void Game::update() {
 
 	}
 
-	Print << stopwatch;
 }
 
 void Game::draw() const
@@ -149,6 +150,8 @@ void Game::draw() const
 	Line{ 605, 500, 800, 500 }.draw(3, Palette::Black);
 	font(U"ステージ"+stage).draw(620, 13, Palette::Black);
 	font(U"残り時間").draw(620, 93, Palette::Black);
+	font(U"スコア："+Format(Score)).draw(620, 150, Palette::Black);
+
 
 
 	//プレイヤーの描画

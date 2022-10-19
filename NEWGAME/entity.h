@@ -24,7 +24,7 @@ public:
 
 	//諸突処理関数
 	void sh_cla();
-	void pl_cla();
+	void en_cla();
 
 	//ショットの定義
 	Array<Shot> shot;

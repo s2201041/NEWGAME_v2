@@ -122,7 +122,7 @@ void Entity::sh_cla() {
 	Hp -= 10;
 }
 
-void Entity::pl_cla() {
+void Entity::en_cla() {
 	switch(Typ){
 		case 1:
 

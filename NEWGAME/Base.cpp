@@ -26,6 +26,6 @@ void Base::draw() const
 void Base::sh_cla() {
 }
 
-void Base::pl_cla() {
+void Base::en_cla() {
 }
 
