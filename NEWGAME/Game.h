@@ -16,7 +16,7 @@ public:
 	// 描画関数（オプション）
 	void draw() const override;
 
-	void tes();
+	void tes(Game* gam);
 
 	//プレイヤー格納配列
 	Array<Player> player;

@@ -27,7 +27,7 @@ void Game::update() {
 
 	//敵の出現
 	if (time >= 5) {
-		tes();
+		//tes();
 		time = 0;
 	}
 
@@ -135,9 +135,9 @@ void Game::draw() const
 
 }
 
-void Game::tes() {
+void Game::tes(Game* gam) {
 
 
-	entity.emplace_back(new Entity{ this,{ 100 , 100 },1 ,Are });
+	gam->entity.emplace_back(new Entity{ this,{ 100 , 100 },1 ,Are });
 		Print << U"A";
 }
