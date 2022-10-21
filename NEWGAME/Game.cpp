@@ -71,17 +71,17 @@ void Game::update() {
 				//自機ショットと敵の衝突処理
 				if (en.Col.intersects(sh.Col)) {
 					sh.cla();
-					en.sh_cla();
+					en.sh_cla(sh.Typ,sh.Dam);
 				}
 			for (auto& sh : en.shot)
 				//敵ショットと自機の衝突処理
 				if (pl.Col.intersects(sh.Col)) {
 					sh.cla();
-					pl.sh_cla();
+					pl.sh_cla(sh.Typ,sh.Dam);
 				}
 			//敵と自機の衝突判定
 			if (en.Col.intersects(pl.Col)) {
-				en.pl_cla();
+				en.en_cla(pl.Typ);
 				pl.en_cla(en.Typ);
 			}
 		}
@@ -118,12 +118,6 @@ void Game::update() {
 			pl.NearPos = entity[imin].Pos; }
 
 
-	if (MouseL.down())
-	{
-		// エフェクトを発生
-	}
-
-	tes();
 
 	if (Score >= 10) {
 		win = true;
@@ -178,7 +172,3 @@ void Game::draw() const
 	}
 }
 
-void Game::tes() {
-
-}
-	

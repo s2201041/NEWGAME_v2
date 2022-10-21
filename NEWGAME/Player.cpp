@@ -41,7 +41,7 @@ void Player::update()
 
 	if (inputShot.down()) {
 		if (KeyShift.pressed())
-			shot << Shot{ Pos ,{0,-1} ,500 ,3 ,Are};
+			shot << Shot{ Pos ,{0,-1} ,500 ,2 ,Are};
 		else
 			shot << Shot{ Pos ,{0,-1} ,500 ,1 ,Are};
 	}
@@ -85,10 +85,10 @@ void Player::draw() const
 
 }
 
-void Player::sh_cla() {
-	if(!(Hp <= 0))
-		Hp -= 5;
-}
+//void Player::sh_cla(int typ) {
+//	if(!(Hp <= 0))
+//		Hp -= 5;
+//}
 
 void Player::en_cla(int typ) {
 	switch (typ) {

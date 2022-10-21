@@ -18,12 +18,12 @@ Shot::Shot( Vec2 pos, Vec2 dir, int vel,int typ,Rect are):Base(pos, dir , vel,ty
 
 	switch (Typ) {
 	case 1:
-
+		Dam = 10;
 		m_texture = Texture{ U"texture/shot/shot_1.png" };
 		break;
 
 	case 2:
-
+		Dam = 5;
 		m_texture = Texture{ U"texture/shot/shot_2.png" };
 		break;
 
@@ -84,8 +84,8 @@ void Shot::draw() const
 	case 3:
 		m_texture.scaled(2.0).drawAt(Pos);
 		break;
-
 	}
+	effect.update();
 
 }
 

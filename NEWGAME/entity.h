@@ -23,11 +23,13 @@ public:
 	void draw() const ;
 
 	//諸突処理関数
-	void sh_cla();
-	void en_cla();
+	void sh_cla(int typ,int dma) ;
+	void en_cla(int typ);
 
 	//ショットの定義
 	Array<Shot> shot;
+
+	Effect effect;
 
 };
 

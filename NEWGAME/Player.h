@@ -21,7 +21,7 @@ public:
 	void draw() const;
 
 	//諸突処理関数
-	void sh_cla();
+	//void sh_cla(int typ);
 	void en_cla(int typ);
 
 	//ショットの定義

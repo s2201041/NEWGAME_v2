@@ -43,6 +43,7 @@ void Entity::update()
 		if (Timer > 0.5) {
 			//game->tes();
 			//game->entity.emplace_back(new Player{ { 100 , 100 },1 ,Are });
+
 			shot << Shot{ Pos ,{0,1} ,900 ,1 ,Are};
 			GoPos = { NearPos.x,Random(20,280) };
 			Timer = 0;
@@ -115,22 +116,14 @@ void Entity::draw() const
 	//RectF{ 50 , 50, 300, 10 }.draw(Palette::Orange);;
 	//RectF{ 50 , 50, Hp * 3, 10 }.draw(Palette::Red);;
 
-	//effect.update();
+	effect.update();
 }
 
-void Entity::sh_cla() {
-	Hp -= 10;
+void Entity::sh_cla(int typ,int dma) {
+	Hp -= dma;
 }
 
-void Entity::en_cla() {
-	switch(Typ){
-		case 1:
-
-			break;
-
-		case 2:
-
-
-			break;
+void Entity::en_cla(int typ) {
+	switch(typ){
 	}
 }

@@ -27,7 +27,7 @@ public:
 	virtual void draw() const ;
 
 	//諸突処理関数
-	virtual void sh_cla(int typ);
+	virtual void sh_cla(int typ,int dam);
 	virtual void en_cla(int typ);
 
 	//コライダー
