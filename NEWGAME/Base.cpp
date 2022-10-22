@@ -23,9 +23,9 @@ void Base::draw() const
 {
 }
 
-void Base::sh_cla() {
+void Base::sh_cla(int typ) {
 }
 
-void Base::en_cla() {
+void Base::en_cla(int typ) {
 }
 

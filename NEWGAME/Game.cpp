@@ -81,7 +81,7 @@ void Game::update() {
 				}
 			//敵と自機の衝突判定
 			if (en.Col.intersects(pl.Col)) {
-				en.pl_cla();
+				en.en_cla();
 				pl.en_cla(en.Typ);
 			}
 		}
