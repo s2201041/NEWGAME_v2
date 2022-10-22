@@ -14,14 +14,17 @@ Game::Game(const InitData& init)
 	//経過時間の初期化
 	time = 0;
 
+	Time_Left = 100;
+
 	//動作範囲
 	Are = Rect{ 0, 0, 600, 600 };
 
 	//ステージ表示
 	//Print << getData().stage;
 
-	entity << Entity{ { 100 , 100 },1 ,Are};
+	entity << Entity{ &shot, { 100 , 100 },1 ,Are};
 	player << Player{ { 0 , 0 } ,1 ,Are};
+	shot << Shot{ {0,0} ,{1,0},1,1,Are };
 }
 
 void Game::update() {
@@ -29,9 +32,11 @@ void Game::update() {
 	//経過時間
 	time += Scene::DeltaTime();
 
+	Time_Left -= Scene::DeltaTime();
+
 	//敵の出現
 	if (time >= 5) {
-		entity << Entity{ { 600 , 50 },Random(1,2) ,Are};
+		entity << Entity{ &shot, { 600 , 50 },Random(1,2) ,Are};
 		time = 0;
 	}
 
