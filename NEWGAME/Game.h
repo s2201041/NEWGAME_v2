@@ -25,6 +25,9 @@ public:
 	//エンティティ格納配列
 	Array<Entity> entity;
 
+	//ショット格納配列
+	Array<Shot> shot;
+
 	//動作範囲
 	Rect Are;
 

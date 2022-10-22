@@ -43,13 +43,17 @@ void Game::update() {
 	}
 
 	//プレイヤーの動作処理
-	for (auto& pl : player)
-		pl.update();
-
 	for (auto& pl : player) {
+		pl.update();
 		if (pl.Del == true)
 			changeScene(State::Title);
 	}
+
+	//ショットの動作処理
+	for (auto& sh : shot) {
+		sh.update();
+	}
+
 
 	//for (auto& en : entity) {
 	//	if (en.Del == true)
@@ -152,17 +156,12 @@ void Game::draw() const
 	font(U"残り時間").draw(620, 93, Palette::Black);
 	font(U"スコア："+Format(Score)).draw(620, 150, Palette::Black);
 
-
-
 	//プレイヤーの描画
 	for (auto& pl : player) {
 		pl.draw();
 		RectF{ 610 , 550, 180, 20 }.draw(Palette::Orange);;
 		RectF{ 610 , 550, pl.Hp * 1.8, 20 }.draw(Palette::Red);;
 	}
-	
-	
-	
 	
 	//敵の描画
 	for (int i = 0; i < entity.size(); i++) {
@@ -171,6 +170,10 @@ void Game::draw() const
 		RectF{ 25 , 25 + i * 30 , entity[i].Hp * 5.5, 15}.draw(Palette::Red);;
 		hp_font(entity[i].Hp).drawAt( 300, 30 + i * 30);
 		hp_font(entity[i].Nam).drawAt( 300, 45 + i * 30);
+	}
+
+	for (int i = 0; i < shot.size(); i++) {
+		shot[i].draw();
 	}
 
 	if(win){
