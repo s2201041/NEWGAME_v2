@@ -23,7 +23,7 @@ Shot::Shot( Vec2 pos, Vec2 dir, int vel,int typ,Rect are):Base(pos, dir , vel,ty
 		break;
 
 	case 2:
-		Dam = 5;
+		Dam = 50;
 		m_texture = Texture{ U"texture/shot/shot_2.png" };
 		break;
 

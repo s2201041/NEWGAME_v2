@@ -1,11 +1,11 @@
 ﻿#include "Entity.h"
 #include "Game.h"
 
-Entity::Entity(Array<Shot>* gsho, Vec2 pos, int typ, Rect are) : Base(pos, typ, are)
+Entity::Entity(Array<Shot>* sh, Vec2 pos, int typ, Rect are) : Base(pos, typ, are)
 
 {
 
-	gshot = gsho;
+	shot = sh;
 
 	//デバッグ用
 	//Print << Typ;
@@ -42,8 +42,8 @@ void Entity::update()
 	case 1:
 
 		Pos = Pos.lerp(GoPos, 0.1);
-		if (Timer > 0.5) {
-			*gshot << Shot{ Pos ,{0,1},900,1,Are };
+		if (Timer > 0.05) {
+			*shot << Shot{ Pos ,{0,1},900,1,Are };
 			//game->tes();
 			//game->entity.emplace_back(new Player{ { 100 , 100 },1 ,Are });
 			//shot << Shot{ Pos ,{0,1} ,900 ,1 ,Are};
@@ -60,7 +60,7 @@ void Entity::update()
 		Pos = Pos.lerp(GoPos, 0.2);
 
 		if (Timer > 0.5) {
-			shot << Shot{ Pos ,{0,1} ,1200 ,2 ,Are };
+			//shot << Shot{ Pos ,{0,1} ,1200 ,2 ,Are };
 			GoPos = { NearPos.x,Random(20,280) };
 			Timer = 0;
 		}
@@ -74,15 +74,6 @@ void Entity::update()
 	
 	//すり抜け防止
 	Pos.clamp(Are);
-
-	//ショットの処理
-	for (auto& sh : shot) {
-		sh.GoPos = NearPos;
-		sh.update();
-	}
-
-	//ショットの消滅処理
-	shot.remove_if([](const Shot& sh) { return sh.Del == true;  });
 
 	//Hp0以下の敵の消去
 	if (0 >= Hp)
@@ -106,10 +97,6 @@ void Entity::draw() const
 		break;
 
 	}
-
-	//ショットの描画
-	for (auto& sh : shot) 
-		sh.draw();
 
 	//コライダー確認用
 	Col.draw(ColorF{ 0.0, 0.5, 1.0, 0.4 });

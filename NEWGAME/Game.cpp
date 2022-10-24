@@ -69,6 +69,7 @@ void Game::update() {
 	//消去判定
 	entity.remove_if([](const Entity& en) { return en.Del == true; });
 	player.remove_if([](const Player& pl) { return pl.Del == true; });
+	shot.remove_if([](const Shot& sh) { return sh.Del == true; });
 
 
 					
@@ -82,7 +83,7 @@ void Game::update() {
 					sh.cla();
 					en.sh_cla(sh.Typ,sh.Dam);
 				}
-			for (auto& sh : en.shot)
+			for (auto& sh : shot)
 				//敵ショットと自機の衝突処理
 				if (pl.Col.intersects(sh.Col)) {
 					sh.cla();
