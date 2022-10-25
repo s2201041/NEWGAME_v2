@@ -1,7 +1,7 @@
 ﻿#include "Entity.h"
 #include "Game.h"
 
-Entity::Entity(Array<Shot>* sh, Vec2 pos, int typ, Rect are) : Base(pos, typ, are)
+Entity::Entity(Game* sh, Vec2 pos, int typ, Rect are) : Base(pos, typ, are)
 
 {
 
@@ -42,8 +42,8 @@ void Entity::update()
 	case 1:
 
 		Pos = Pos.lerp(GoPos, 0.1);
-		if (Timer > 0.05) {
-			*shot << Shot{ Pos ,{0,1},900,1,Are };
+		if (Timer > 0.5) {
+			shot->shot << Shot{ Pos ,{0,1} ,900 ,1 ,1 ,Are };
 			//game->tes();
 			//game->entity.emplace_back(new Player{ { 100 , 100 },1 ,Are });
 			//shot << Shot{ Pos ,{0,1} ,900 ,1 ,Are};

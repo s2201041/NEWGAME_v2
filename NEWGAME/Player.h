@@ -12,7 +12,8 @@ class Player : public Base{
 public:
 
 	//コンストラクタ
-	Player(Vec2 pos,int typ ,Rect are);
+	Player(Array<Shot>* sh, Vec2 pos,int typ ,Rect are);
+
 
 	//１フレーム毎の処理
 	void update();
@@ -25,7 +26,8 @@ public:
 	void en_cla(int typ);
 
 	//ショットの定義
-	Array<Shot> shot;
+	Array<Shot>* shot;
+	Array<Shot>* en_shot;
 
 	//Keyconfigの定義
 	InputGroup inputLeft;

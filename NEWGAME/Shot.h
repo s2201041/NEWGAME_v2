@@ -12,7 +12,7 @@ class Shot : public Base {
 public:
 
 	//コンストラクタ
-	Shot( Vec2 pos, Vec2 dir, int vel,int typ,Rect are);
+	Shot( Vec2 pos, Vec2 dir, int vel,int typ , int par,Rect are);
 
 	//１フレーム毎の処理
 	void update();
@@ -37,6 +37,9 @@ public:
 
 	//球の種類の定義
 	int Typ;
+
+	//呼び出し元の定義
+	int Par;
 
 	//ダメージの定義
 	int Dam;

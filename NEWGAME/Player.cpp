@@ -1,6 +1,6 @@
 ﻿#include "Player.h"
 
-Player::Player(Vec2 pos,int typ,Rect are) : Base(pos, typ, are)
+Player::Player(Array<Shot>* sh, Vec2 pos,int typ,Rect are) : Base(pos, typ, are)
 {
 	m_texture = Texture{ U"texture/player/player.png" };
 
@@ -11,6 +11,8 @@ Player::Player(Vec2 pos,int typ,Rect are) : Base(pos, typ, are)
 
 	//コライダーの初期化
 	Col = Circle{ Pos, 30 };
+
+	shot = sh;
 }
 
 void Player::update() 
@@ -41,19 +43,10 @@ void Player::update()
 
 	if (inputShot.down()) {
 		if (KeyShift.pressed())
-			shot << Shot{ Pos ,{0,-1} ,500 ,2 ,Are};
+			*shot << Shot{ Pos ,{0,-1} ,500 ,2 ,0 ,Are};
 		else
-			shot << Shot{ Pos ,{0,-1} ,500 ,1 ,Are};
+			*shot << Shot{ Pos ,{0,-1} ,500 ,2 ,0 ,Are};
 	}
-
-	//ショットの動作処理
-	for (auto& sh : shot){
-		sh.GoPos = NearPos;
-		sh.update();
-	}
-
-	//ショットの消滅処理
-	shot.remove_if([](const Shot& sh) { return sh.Del == true;  });
 
 	//Hp0以下の処理
 	if (0 >= Hp)
@@ -75,10 +68,6 @@ void Player::draw() const
 		TextureAsset(U"player_1_down").scaled(2.0).drawAt(Pos);
 	else 
 		TextureAsset(U"player_1_up").scaled(2.0).drawAt(Pos);
-
-	//ショットの描画
-	for (auto& en : shot)
-		en.draw();
 
 	//コライダー確認用
 	Col.draw(ColorF{ 0.0, 0.5, 1.0, 0.8 });

@@ -1,12 +1,14 @@
 ﻿#include "Shot.h"
 
-Shot::Shot( Vec2 pos, Vec2 dir, int vel,int typ,Rect are):Base(pos, dir , vel,typ, are)
+Shot::Shot( Vec2 pos, Vec2 dir, int vel,int typ , int par ,Rect are):Base(pos, dir , vel,typ, are)
 {
 	Pos = pos;
 	Dir = dir;
 	Vel = vel;
 	Typ = typ;
 	Are = are;
+	Par = par;
+
 
 	Del = false;
 
@@ -23,7 +25,7 @@ Shot::Shot( Vec2 pos, Vec2 dir, int vel,int typ,Rect are):Base(pos, dir , vel,ty
 		break;
 
 	case 2:
-		Dam = 50;
+		Dam = 10;
 		m_texture = Texture{ U"texture/shot/shot_2.png" };
 		break;
 
@@ -35,13 +37,14 @@ void Shot::update()
 	switch (Typ) {
 	case 1:
 
-		const Circle Col{ Pos, 8 };
-
 		Pos += Dir * (Scene::DeltaTime() * Vel );
 
 		break;
 
 	case 2:
+
+		
+		Print << Del;
 
 		Pos = Pos.lerp(GoPos, 0.05);
 
@@ -66,6 +69,7 @@ void Shot::update()
 
 	//コライダーの更新
 	Col = Circle{ Pos, 8 };
+
 }
 
 void Shot::draw() const
@@ -86,6 +90,7 @@ void Shot::draw() const
 		break;
 	}
 	effect.update();
+
 
 }
 

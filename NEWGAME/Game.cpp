@@ -14,7 +14,7 @@ Game::Game(const InitData& init)
 	//経過時間の初期化
 	time = 0;
 
-	Time_Left = 100;
+	Time_Left = 1000;
 
 	//動作範囲
 	Are = Rect{ 0, 0, 600, 600 };
@@ -22,9 +22,9 @@ Game::Game(const InitData& init)
 	//ステージ表示
 	//Print << getData().stage;
 
-	entity << Entity{ &shot, { 100 , 100 },1 ,Are};
-	player << Player{ { 0 , 0 } ,1 ,Are};
-	shot << Shot{ {0,0} ,{1,0},1,1,Are };
+	entity << Entity{ this, { 100 , 100 },1 ,Are};
+	player << Player{ &shot, { 0 , 0 } ,1 ,Are};
+	//shot << Shot{ {0,0} ,{1,0},1,1,Are };
 }
 
 void Game::update() {
@@ -32,11 +32,13 @@ void Game::update() {
 	//経過時間
 	time += Scene::DeltaTime();
 
-	Time_Left -= Scene::DeltaTime();
+	Time_Left -= Scene::DeltaTime()/10;
+
+	if (Time_Left <= 0) win = true;
 
 	//敵の出現
 	if (time >= 5) {
-		entity << Entity{ &shot, { 600 , 50 },Random(1,2) ,Are};
+		entity << Entity{ this, { 600 , 50 },Random(1,2) ,Are};
 		time = 0;
 	}
 
@@ -60,12 +62,6 @@ void Game::update() {
 	}
 
 
-	//for (auto& en : entity) {
-	//	if (en.Del == true)
-	//		entity << Entity{ { 100 , 100 },1 };
-	//}
-
-
 	//消去判定
 	entity.remove_if([](const Entity& en) { return en.Del == true; });
 	player.remove_if([](const Player& pl) { return pl.Del == true; });
@@ -75,26 +71,26 @@ void Game::update() {
 					
 
 	//衝突判定
-	for (auto& en : entity)
-		for (auto& pl : player) {
-			for (auto& sh : pl.shot)
-				//自機ショットと敵の衝突処理
-				if (en.Col.intersects(sh.Col)) {
-					sh.cla();
-					en.sh_cla(sh.Typ,sh.Dam);
-				}
-			for (auto& sh : shot)
-				//敵ショットと自機の衝突処理
-				if (pl.Col.intersects(sh.Col)) {
-					sh.cla();
-					pl.sh_cla(sh.Typ,sh.Dam);
-				}
-			//敵と自機の衝突判定
-			if (en.Col.intersects(pl.Col)) {
-				en.en_cla(pl.Typ);
-				pl.en_cla(en.Typ);
-			}
-		}
+	//for (auto& en : entity)
+	//	for (auto& pl : player) {
+	//		for (auto& sh : shot)
+	//			//自機ショットと敵の衝突処理
+	//			if (en.Col.intersects(sh.Col)&&sh.Par == 0) {
+	//				sh.cla();
+	//				en.sh_cla(sh.Typ,sh.Dam);
+	//			}
+	//		for (auto& sh : shot)
+	//			//敵ショットと自機の衝突処理
+	//			if (pl.Col.intersects(sh.Col)&&sh.Par == 1) {
+	//				sh.cla();
+	//				pl.sh_cla(sh.Typ,sh.Dam);
+	//			}
+	//		//敵と自機の衝突判定
+	//		if (en.Col.intersects(pl.Col)) {
+	//			en.en_cla(pl.Typ);
+	///			pl.en_cla(en.Typ);
+	//		}
+	//	}
 
 
 
@@ -153,7 +149,7 @@ void Game::draw() const
 	Line{ 605, 160, 800, 160 }.draw(3, Palette::Black);
 	Line{ 605, 500, 800, 500 }.draw(3, Palette::Black);
 	font(U"ステージ"+stage).draw(620, 13, Palette::Black);
-	font(U"残り時間").draw(620, 93, Palette::Black);
+	font(U"残り時間"+Format(Time_Left)).draw(620, 93, Palette::Black);
 	font(U"スコア："+Format(Score)).draw(620, 150, Palette::Black);
 
 	//プレイヤーの描画
@@ -174,6 +170,7 @@ void Game::draw() const
 
 	for (int i = 0; i < shot.size(); i++) {
 		shot[i].draw();
+		Print << shot[i].Typ;
 	}
 
 	if(win){
