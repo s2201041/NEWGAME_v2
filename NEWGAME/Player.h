@@ -7,12 +7,14 @@
 #include "Base.h"
 #include "Shot.h"
 
+class Game;
+
 class Player : public Base{
 
 public:
 
 	//コンストラクタ
-	Player(Array<Shot>* sh, Vec2 pos,int typ ,Rect are);
+	Player(Game* sh, Vec2 pos,int typ ,Rect are);
 
 
 	//１フレーム毎の処理
@@ -26,8 +28,7 @@ public:
 	void en_cla(int typ);
 
 	//ショットの定義
-	Array<Shot>* shot;
-	Array<Shot>* en_shot;
+	Game* shot;
 
 	//Keyconfigの定義
 	InputGroup inputLeft;

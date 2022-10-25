@@ -14,7 +14,7 @@ Game::Game(const InitData& init)
 	//経過時間の初期化
 	time = 0;
 
-	Time_Left = 1000;
+	Time_Left = 100;
 
 	//動作範囲
 	Are = Rect{ 0, 0, 600, 600 };
@@ -22,8 +22,8 @@ Game::Game(const InitData& init)
 	//ステージ表示
 	//Print << getData().stage;
 
-	entity << Entity{ this, { 100 , 100 },1 ,Are};
-	player << Player{ &shot, { 0 , 0 } ,1 ,Are};
+	entity << Entity{ this, { 100 , 100 },2 ,Are};
+	player << Player{ this, { 0 , 0 } ,1 ,Are};
 	//shot << Shot{ {0,0} ,{1,0},1,1,Are };
 }
 
@@ -32,7 +32,7 @@ void Game::update() {
 	//経過時間
 	time += Scene::DeltaTime();
 
-	Time_Left -= Scene::DeltaTime()/10;
+	Time_Left -= Scene::DeltaTime();
 
 	if (Time_Left <= 0) win = true;
 
@@ -71,38 +71,37 @@ void Game::update() {
 					
 
 	//衝突判定
-	//for (auto& en : entity)
-	//	for (auto& pl : player) {
-	//		for (auto& sh : shot)
-	//			//自機ショットと敵の衝突処理
-	//			if (en.Col.intersects(sh.Col)&&sh.Par == 0) {
-	//				sh.cla();
-	//				en.sh_cla(sh.Typ,sh.Dam);
-	//			}
-	//		for (auto& sh : shot)
-	//			//敵ショットと自機の衝突処理
-	//			if (pl.Col.intersects(sh.Col)&&sh.Par == 1) {
-	//				sh.cla();
-	//				pl.sh_cla(sh.Typ,sh.Dam);
-	//			}
-	//		//敵と自機の衝突判定
-	//		if (en.Col.intersects(pl.Col)) {
-	//			en.en_cla(pl.Typ);
-	///			pl.en_cla(en.Typ);
-	//		}
-	//	}
+	for (auto& en : entity)
+		for (auto& pl : player) {
+			for (auto& sh : shot)
+				//自機ショットと敵の衝突処理
+				if (en.Col.intersects(sh.Col)&&sh.Par == 0) {
+					sh.cla();
+					en.sh_cla(sh.Typ,sh.Dam);
+				}
+			for (auto& sh : shot)
+				//敵ショットと自機の衝突処理
+				if (pl.Col.intersects(sh.Col)&&sh.Par == 1) {
+					sh.cla();
+					pl.sh_cla(sh.Typ,sh.Dam);
+				}
+			//敵と自機の衝突判定
+			if (en.Col.intersects(pl.Col)) {
+				en.en_cla(pl.Typ);
+				pl.en_cla(en.Typ);
+			}
+		}
 
 
 
 	//敵から最も近い自機の座標
 	if (player.size() != 0)
 		for (auto& en : entity) {
-			double j, imin, jmin = -1;
+			double j, imin = 0, jmin = -1;
 			for (int i = 0; i < player.size(); i++) {
 				j = (player[i].Pos.x - en.Pos.x) * (player[i].Pos.x - en.Pos.x) + (player[i].Pos.y - en.Pos.y) * (player[i].Pos.y - en.Pos.y);
 				if (jmin < j) {
 					jmin = j;
-					imin = 0;
 					imin = i;
 				}
 			}
@@ -112,16 +111,43 @@ void Game::update() {
 	//自機から最も近い敵の座標
 	if (entity.size() != 0)
 		for (auto& pl : player) {
-			double j, imin, jmin = -1;
+			double j, imin = 0, jmin = -1;
 			for (int i = 0; i < entity.size(); i++) {
 				j = (entity[i].Pos.x - pl.Pos.x) * (entity[i].Pos.x - pl.Pos.x) + (entity[i].Pos.y - pl.Pos.y) * (entity[i].Pos.y - pl.Pos.y);
 				if (jmin < j) {
 					jmin = j;
-					imin = 0;
 					imin = i;
 				}
 			}
 			pl.NearPos = entity[imin].Pos; }
+	
+	//ショットから最も近いEntityの座標
+	if (entity.size() != 0)
+		for (auto& sh : shot) {
+			double j, imin = 0, jmin = -1;
+			if (sh.Par == 1) {
+				for (int i = 0; i < player.size(); i++) {
+					j = (player[i].Pos.x - sh.Pos.x) * (player[i].Pos.x - sh.Pos.x) + (player[i].Pos.y - sh.Pos.y) * (player[i].Pos.y - sh.Pos.y);
+					if (jmin < j) {
+						jmin = j;
+						imin = i;
+					}
+				}
+				sh.NearPos = player[imin].Pos;
+			}
+			if (sh.Par == 0) {
+				for (int i = 0; i < entity.size(); i++) {
+					j = (entity[i].Pos.x - sh.Pos.x) * (entity[i].Pos.x - sh.Pos.x) + (entity[i].Pos.y - sh.Pos.y) * (entity[i].Pos.y - sh.Pos.y);
+					if (jmin < j) {
+						jmin = j;
+						imin = i;
+					}
+				}
+				sh.NearPos = entity[imin].Pos;
+			}
+		}
+
+
 
 
 
@@ -170,7 +196,6 @@ void Game::draw() const
 
 	for (int i = 0; i < shot.size(); i++) {
 		shot[i].draw();
-		Print << shot[i].Typ;
 	}
 
 	if(win){

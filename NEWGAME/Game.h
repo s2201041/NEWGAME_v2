@@ -35,7 +35,7 @@ private:
 
 	int Score;
 
-	int Time_Left;
+	double Time_Left;
 
 	bool win;
 

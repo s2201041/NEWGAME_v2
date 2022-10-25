@@ -8,7 +8,7 @@ Shot::Shot( Vec2 pos, Vec2 dir, int vel,int typ , int par ,Rect are):Base(pos, d
 	Typ = typ;
 	Are = are;
 	Par = par;
-
+	
 
 	Del = false;
 
@@ -43,10 +43,7 @@ void Shot::update()
 
 	case 2:
 
-		
-		Print << Del;
-
-		Pos = Pos.lerp(GoPos, 0.05);
+		Pos = Pos.lerp(NearPos, 0.05);
 
 		Pos += Dir * (Scene::DeltaTime() * Vel);
 
@@ -83,6 +80,7 @@ void Shot::draw() const
 
 	case 2:
 		m_texture.scaled(2.0).drawAt(Pos);
+		Line{ Pos, NearPos }.draw(4, Palette::Yellow);
 		break;
 
 	case 3:
