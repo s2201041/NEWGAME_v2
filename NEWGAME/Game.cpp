@@ -22,9 +22,8 @@ Game::Game(const InitData& init)
 	//ステージ表示
 	//Print << getData().stage;
 
-	entity << Entity{ &shot, { 100 , 100 },1 ,Are};
-	player << Player{ { 0 , 0 } ,1 ,Are};
-	shot << Shot{ {0,0} ,{1,0},1,1,Are };
+	entity << Entity{ { 100 , 100 } ,1 ,Are};
+	player << Player{ { 100 , 100 } ,1 ,Are};
 }
 
 void Game::update() {
@@ -36,7 +35,7 @@ void Game::update() {
 
 	//敵の出現
 	if (time >= 5) {
-		entity << Entity{ &shot, { 600 , 50 },Random(1,2) ,Are};
+		entity << Entity{ { 600 , 50 },Random(1,2) ,Are};
 		time = 0;
 	}
 
@@ -52,11 +51,6 @@ void Game::update() {
 		pl.update();
 		if (pl.Del == true)
 			changeScene(State::Title);
-	}
-
-	//ショットの動作処理
-	for (auto& sh : shot) {
-		sh.update();
 	}
 
 
@@ -169,10 +163,6 @@ void Game::draw() const
 		RectF{ 25 , 25 + i * 30 , entity[i].Hp * 5.5, 15}.draw(Palette::Red);;
 		hp_font(entity[i].Hp).drawAt( 300, 30 + i * 30);
 		hp_font(entity[i].Nam).drawAt( 300, 45 + i * 30);
-	}
-
-	for (int i = 0; i < shot.size(); i++) {
-		shot[i].draw();
 	}
 
 	if(win){
