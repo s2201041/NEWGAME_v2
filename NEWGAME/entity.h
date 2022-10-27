@@ -28,6 +28,8 @@ public:
 
 	//ショットの定義
 	Array<Shot> shot;
+
+	Game* game;
 };
 
 #endif

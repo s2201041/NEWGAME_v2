@@ -7,6 +7,8 @@ Game::Game(const InitData& init)
 
 	winner = Texture{ U"texture/winner.png" };
 
+	Kill = 0;
+
 	Score = 0;
 
 	win = false;
@@ -146,8 +148,9 @@ void Game::draw() const
 	Line{ 605, 160, 800, 160 }.draw(3, Palette::Black);
 	Line{ 605, 500, 800, 500 }.draw(3, Palette::Black);
 	font(U"ステージ"+stage).draw(620, 13, Palette::Black);
-	font(U"残り時間").draw(620, 93, Palette::Black);
-	font(U"スコア："+Format(Score)).draw(620, 150, Palette::Black);
+	font(U"残り時間"+Format(Time_Left)).draw(620, 93, Palette::Black);
+	font(U"スコア："+Format(Score)).draw(620, 160, Palette::Black);
+	font(U"スコア："+Format(Kill)).draw(620, 160, Palette::Black);
 
 	//プレイヤーの描画
 	for (auto& pl : player) {

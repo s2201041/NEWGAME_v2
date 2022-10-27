@@ -28,6 +28,7 @@ Entity::Entity(Vec2 pos, int typ, Rect are) : Base(pos, typ, are)
 
 		break;
 
+
 	}
 
 

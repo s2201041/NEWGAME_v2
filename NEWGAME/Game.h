@@ -30,9 +30,9 @@ private:
 
 	Texture winner;
 
-	int Score;
+	int Score,Kill;
 
-	int Time_Left;
+	double Time_Left;
 
 	bool win;
 
