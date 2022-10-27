@@ -1,11 +1,13 @@
 ﻿#include "Entity.h"
 #include "Game.h"
 
-Entity::Entity(Game* sh, Vec2 pos, int typ, Rect are) : Base(pos, typ, are)
+Entity::Entity(Array<Shot>* sh, Vec2 pos, int typ, Rect are) : Base(pos, typ, are)
 
 {
 
 	shot = sh;
+
+	Print << shot;
 
 	//デバッグ用
 	//Print << Typ;
@@ -43,7 +45,7 @@ void Entity::update()
 
 		Pos = Pos.lerp(GoPos, 0.1);
 		if (Timer > 0.5) {
-			shot->shot << Shot{ Pos ,{0,1} ,900 ,1 ,1 ,Are };
+			*shot << Shot{ Pos ,{0,1} ,900 ,1 ,Are };
 			GoPos = { NearPos.x,Random(20,280) };
 			Timer = 0;
 		}
@@ -57,7 +59,7 @@ void Entity::update()
 		Pos = Pos.lerp(GoPos, 0.2);
 
 		if (Timer > 0.5) {
-			shot->shot << Shot{ Pos ,{0,1} ,900 ,2 ,1 ,Are };
+			*shot << Shot{ Pos ,{0,1} ,900 ,2 ,Are };
 			GoPos = { NearPos.x,Random(20,280) };
 			Timer = 0;
 		}

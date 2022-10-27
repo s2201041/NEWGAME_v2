@@ -14,7 +14,7 @@ class Entity: public Base {
 public:
 
 	//コンストラクタ
-	Entity(Game* sh,Vec2 pos,int typ,Rect are);
+	Entity(Array<Shot>* sh,Vec2 pos,int typ,Rect are);
 
 	//１フレーム毎の処理
 	void update();
@@ -27,7 +27,7 @@ public:
 	void en_cla(int typ);
 
 	//ショットの定義
-	Game* shot;
+	Array<Shot>* shot;
 
 	Effect effect;
 };

@@ -23,7 +23,8 @@ public:
 	Array<Entity> entity;
 
 	//ショット格納配列
-	Array<Shot> shot;
+	Array<Shot> en_shot;
+	Array<Shot>	pl_shot;
 
 	//動作範囲
 	Rect Are;

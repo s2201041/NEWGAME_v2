@@ -1,13 +1,12 @@
 ﻿#include "Shot.h"
 
-Shot::Shot( Vec2 pos, Vec2 dir, int vel,int typ , int par ,Rect are):Base(pos, dir , vel,typ, are)
+Shot::Shot( Vec2 pos, Vec2 dir, int vel,int typ ,Rect are):Base(pos, dir , vel,typ, are)
 {
 	Pos = pos;
 	Dir = dir;
 	Vel = vel;
 	Typ = typ;
 	Are = are;
-	Par = par;
 	
 
 	Del = false;
@@ -39,13 +38,20 @@ void Shot::update()
 
 		Pos += Dir * (Scene::DeltaTime() * Vel );
 
+		Col = Circle{ Pos, 8 };
+
 		break;
 
 	case 2:
 
-		Pos = Pos.lerp(NearPos, 0.05);
+	//	Pos = Pos.lerp(NearPos, 0.05);
 
-		Pos += Dir * (Scene::DeltaTime() * Vel);
+	//	Pos += Dir * (Scene::DeltaTime() * Vel);
+
+		Col = Circle{ Pos, 8 };
+
+		if(Vel == 1000)
+			Print << U"A";
 
 		break;
 
@@ -87,8 +93,9 @@ void Shot::draw() const
 		m_texture.scaled(2.0).drawAt(Pos);
 		break;
 	}
-	effect.update();
+	//effect.update();
 
+	Col.draw();
 
 }
 

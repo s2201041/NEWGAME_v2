@@ -5,14 +5,14 @@
 #define SHOT_H
 
 #include "Base.h"
-#include "Effect.cpp"
+//#include "Effect.cpp"
 
 class Shot : public Base {
 
 public:
 
 	//コンストラクタ
-	Shot( Vec2 pos, Vec2 dir, int vel,int typ , int par,Rect are);
+	Shot( Vec2 pos, Vec2 dir, int vel,int typ ,Rect are);
 
 	//１フレーム毎の処理
 	void update();
@@ -60,7 +60,7 @@ private:
 	Rect Are;
 
 	//エフェクト
-	Effect effect;
+	//Effect effect;
 };
 
 #endif

@@ -1,7 +1,7 @@
 ﻿#include "Player.h"
 #include "Game.h"
 
-Player::Player(Game* sh, Vec2 pos,int typ,Rect are) : Base(pos, typ, are)
+Player::Player(Array<Shot>* sh, Vec2 pos,int typ,Rect are) : Base(pos, typ, are)
 {
 	m_texture = Texture{ U"texture/player/player.png" };
 
@@ -14,6 +14,8 @@ Player::Player(Game* sh, Vec2 pos,int typ,Rect are) : Base(pos, typ, are)
 	Col = Circle{ Pos, 30 };
 
 	shot = sh;
+
+	Print << shot;
 }
 
 void Player::update() 
@@ -44,9 +46,10 @@ void Player::update()
 
 	if (inputShot.down()) {
 		if (KeyShift.pressed())
-			shot->shot << Shot{ Pos ,{0,-1} ,900 ,2 ,0 ,Are };
+	//		shot->shot << Shot{ Pos ,{0,-1} ,900 ,2 ,0 ,Are };
+			*shot << Shot{ Pos, { 0, -1 }, 1000, 2, Are };
 		else
-			shot->shot << Shot{ Pos ,{0,-1} ,500 ,1 ,0 ,Are};
+			*shot << Shot{ Pos ,{ 0, -1 } ,500 ,1 ,Are};
 	}
 
 	//Hp0以下の処理

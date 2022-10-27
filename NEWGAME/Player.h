@@ -14,7 +14,7 @@ class Player : public Base{
 public:
 
 	//コンストラクタ
-	Player(Game* sh, Vec2 pos,int typ ,Rect are);
+	Player(Array<Shot>* sh, Vec2 pos,int typ ,Rect are);
 
 
 	//１フレーム毎の処理
@@ -28,7 +28,7 @@ public:
 	void en_cla(int typ);
 
 	//ショットの定義
-	Game* shot;
+	Array<Shot>* shot;
 
 	//Keyconfigの定義
 	InputGroup inputLeft;
