@@ -14,7 +14,7 @@ class Entity: public Base {
 public:
 
 	//コンストラクタ
-	Entity(Vec2 pos,int typ,Rect are);
+	Entity(Game * gam,Vec2 pos,int typ,Rect are);
 
 	//１フレーム毎の処理
 	void update();

@@ -1,11 +1,14 @@
 ﻿#include "Player.h"
+#include "Game.h"
 
-Player::Player(Vec2 pos,int typ,Rect are) : Base(pos, typ, are)
+Player::Player(Game * gam,Vec2 pos,int typ,Rect are) : Base(pos, typ, are)
 {
-	m_texture = Texture{ U"texture/player/player.png" };
+
+	game = gam;
 
 	Dir = { 0,0 };
 	Hp = 100;
+	Vel = 550;
 
 	NearPos = { 0,0 };
 
@@ -35,13 +38,14 @@ void Player::update()
 
 
 	const Vec2 move = Vec2{ (inputRight.pressed() - inputLeft.pressed()), (inputDown.pressed() - inputUp.pressed()) }
-	.setLength(Scene::DeltaTime() * 550 * (KeyShift.pressed() ? 0.5 : 1.0));
+	.setLength(Scene::DeltaTime() * Vel * (KeyShift.pressed() ? 0.5 : 1.0));
 
 	Pos.moveBy(move).clamp(Scene::Rect()).clamp(Are);
 
 	if (inputShot.down()) {
-		if (KeyShift.pressed())
-			shot << Shot{ Pos ,{0,-1} ,500 ,2 ,Are};
+		if (KeyShift.pressed()) {
+			shot << Shot{ Pos ,{0,-1} ,500 ,2 ,Are };
+		}
 		else
 			shot << Shot{ Pos ,{0,-1} ,500 ,1 ,Are};
 	}
@@ -65,9 +69,9 @@ void Player::update()
 
 void Player::draw() const
 {
-	m_texture.scaled(2.0).drawAt(Pos);
+	TextureAsset(U"player_1_up").scaled(2.0).drawAt(Pos);
 
-	if(inputRight.pressed())
+	if (inputRight.pressed())
 		TextureAsset(U"player_1_right").scaled(2.0).drawAt(Pos);
 	else if (inputLeft.pressed())
 		TextureAsset(U"player_1_left").scaled(2.0).drawAt(Pos);
@@ -92,8 +96,8 @@ void Player::draw() const
 
 void Player::en_cla(int typ) {
 	switch (typ) {
-	case 2:
-
+	case 100:
+		Vel = 1000;
 		break;
 	}
 }

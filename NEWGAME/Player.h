@@ -7,12 +7,14 @@
 #include "Base.h"
 #include "Shot.h"
 
+class Game;
+
 class Player : public Base{
 
 public:
 
 	//コンストラクタ
-	Player(Vec2 pos,int typ ,Rect are);
+	Player(Game * gam,Vec2 pos,int typ ,Rect are);
 
 	//１フレーム毎の処理
 	void update();
@@ -34,6 +36,7 @@ public:
 	InputGroup inputDown;
 	InputGroup inputShot;
 
+	Game* game;
 };
 
 #endif

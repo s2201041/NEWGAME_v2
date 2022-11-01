@@ -25,18 +25,16 @@ public:
 	//動作範囲
 	Rect Are;
 
-
+	int Score,Kill;
 private:
 
 	Texture winner;
-
-	int Score,Kill;
 
 	double Time_Left;
 
 	bool win;
 
-	double time;
+	double Time,Time_2;
 
 	const Font hp_font{ FontMethod::MSDF, 20, Typeface::Bold };
 
