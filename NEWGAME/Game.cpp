@@ -1,5 +1,5 @@
 ﻿#include "Game.h"
-
+#include <vector>
 
 Game::Game(const InitData& init)
 	: IScene{ init }
@@ -24,10 +24,12 @@ Game::Game(const InitData& init)
 
 	entity << Entity{ &en_shot, { 100 , 100 },2 ,Are};
 	player << Player{ &pl_shot, { 0 , 0 } ,1 ,Are};
-	//en_shot << Shot{ {0,0} ,{1,0},1,1,Are };
 }
 
 void Game::update() {
+
+	Print << size(pl_shot);
+
 
 	//経過時間
 	time += Scene::DeltaTime();
@@ -37,8 +39,9 @@ void Game::update() {
 	if (Time_Left <= 0) win = true;
 
 	//敵の出現
-	if (time >= 5) {
-		entity << Entity{ &en_shot, { 600 , 50 },Random(1,2) ,Are};
+	if (time >= 0.5) {
+		//entity << Entity{ &en_shot, { 600 , 50 },Random(1,2) ,Are};
+		pl_shot << Shot{ {100,100}, {0, 1}, 1000, 2, Are };
 		time = 0;
 	}
 
@@ -55,6 +58,8 @@ void Game::update() {
 		if (pl.Del == true)
 			changeScene(State::Title);
 	}
+
+	pl_shot.swap(pl_shot);
 
 	//ショットの動作処理
 	for (auto& sh : en_shot) {
@@ -228,6 +233,7 @@ void Game::draw() const
 	for (int i = 0; i < pl_shot.size(); i++) {
 		pl_shot[i].draw();
 	}
+
 
 	if(win){
 		winner.scaled(0.75).drawAt(400,300);

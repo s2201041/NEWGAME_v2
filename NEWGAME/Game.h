@@ -2,6 +2,7 @@
 #include "Common.h"
 #include "Entity.h"
 #include "Player.h"
+#include <vector>
 
 class Game : public App::Scene
 {
@@ -25,6 +26,7 @@ public:
 	//ショット格納配列
 	Array<Shot> en_shot;
 	Array<Shot>	pl_shot;
+
 
 	//動作範囲
 	Rect Are;

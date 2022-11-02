@@ -44,14 +44,11 @@ void Shot::update()
 
 	case 2:
 
-	//	Pos = Pos.lerp(NearPos, 0.05);
+		Pos = Pos.lerp(NearPos, 0.05);
 
-	//	Pos += Dir * (Scene::DeltaTime() * Vel);
+		Pos += Dir * (Scene::DeltaTime() * Vel);
 
 		Col = Circle{ Pos, 8 };
-
-		if(Vel == 1000)
-			Print << U"A";
 
 		break;
 
