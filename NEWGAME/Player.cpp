@@ -46,8 +46,7 @@ void Player::update()
 
 	if (inputShot.down()) {
 		if (KeyShift.pressed())
-	//		shot->shot << Shot{ Pos ,{0,-1} ,900 ,2 ,0 ,Are };
-			*shot << Shot{ Pos, { 0, -1 }, 1000, 3, Are };
+			*shot << Shot{ Pos, { 0, -1 }, 1000, 2, Are };
 		else
 			*shot << Shot{ Pos ,{ 0, -1 } ,500 ,1 ,Are};
 	}

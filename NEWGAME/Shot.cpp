@@ -8,6 +8,7 @@ Shot::Shot( Vec2 pos, Vec2 dir, int vel,int typ ,Rect are):Base(pos, dir , vel,t
 	Typ = typ;
 	Are = are;
 	
+	NearPos = { 300,300 };
 
 	Del = false;
 
@@ -56,6 +57,10 @@ void Shot::update()
 		break;
 
 	case 3:
+
+		Print << NearPos;
+
+		Print << U"Sho" + Format( &NearPos);
 
 		Pos = Pos.lerp(NearPos, 0.05);
 

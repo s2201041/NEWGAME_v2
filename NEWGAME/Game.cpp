@@ -28,7 +28,7 @@ Game::Game(const InitData& init)
 
 void Game::update() {
 
-	Print << size(pl_shot);
+	//Print << size(pl_shot);
 
 
 	//経過時間
@@ -68,13 +68,6 @@ void Game::update() {
 	for (auto& sh : pl_shot) {
 		sh.update();
 	}
-
-
-	//消去判定
-	entity.remove_if([](const Entity& en) { return en.Del == true; });
-	player.remove_if([](const Player& pl) { return pl.Del == true; });
-	en_shot.remove_if([](const Shot& sh) { return sh.Del == true; });
-	pl_shot.remove_if([](const Shot& sh) { return sh.Del == true; });
 
 
 					
@@ -190,6 +183,13 @@ void Game::update() {
 		changeScene(State::Title);
 
 	}
+	//消去判定
+	entity.remove_if([](const Entity& en) { return en.Del == true; });
+	player.remove_if([](const Player& pl) { return pl.Del == true; });
+	en_shot.remove_if([](const Shot& sh) { return sh.Del == true; });
+	pl_shot.remove_if([](const Shot& sh) { return sh.Del == true; });
+
+
 
 }
 
