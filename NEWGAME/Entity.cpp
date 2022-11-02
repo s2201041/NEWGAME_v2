@@ -4,14 +4,9 @@
 Entity::Entity(Array<Shot>* sh, Vec2 pos, int typ, Rect are) : Base(pos, typ, are)
 
 {
-	game = gam;
+	//game = gam;
 
 	shot = sh;
-
-	Print << shot;
-
-	//デバッグ用
-	//Print << Typ;
 
 	Dir = { 0,1 };
 	Vel = 1100;
@@ -120,7 +115,7 @@ void Entity::draw() const
 
 void Entity::sh_cla(int typ,int dma) {
 	Hp -= dma;
-	game->Score += dma;
+	//game->Score += dma;
 
 }
 

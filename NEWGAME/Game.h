@@ -23,6 +23,9 @@ public:
 	//エンティティ格納配列
 	Array<Entity> entity;
 
+	//アイテム格納配列
+	//Array<Item> iteml
+
 	//ショット格納配列
 	Array<Shot> en_shot;
 	Array<Shot>	pl_shot;
@@ -35,8 +38,6 @@ public:
 private:
 
 	Texture winner;
-
-	double Time_Left;
 
 	double Time_Left;
 

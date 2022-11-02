@@ -4,10 +4,10 @@
 Player::Player(Array<Shot>* sh, Vec2 pos,int typ,Rect are) : Base(pos, typ, are)
 {
 
-	game = gam;
+	//game = gam;
 
 	Dir = { 0,0 };
-	Hp = 100;
+	Hp = 10000;
 	Vel = 550;
 
 	NearPos = { 0,0 };
@@ -17,7 +17,6 @@ Player::Player(Array<Shot>* sh, Vec2 pos,int typ,Rect are) : Base(pos, typ, are)
 
 	shot = sh;
 
-	Print << shot;
 }
 
 void Player::update() 

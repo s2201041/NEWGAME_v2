@@ -44,9 +44,14 @@ void Game::update() {
 	if (Time_Left <= 0) win = true;
 
 	//敵の出現
-	if (time >= 5) {
+	if (Time >= 5) {
 		entity << Entity{ &en_shot, { 600 , 50 },Random(1,2) ,Are};
-		time = 0;
+		Time = 0;
+	}
+	//敵の出現
+	if (Time_2 >= 5) {
+		entity << Entity{ &en_shot, { 600 , 50 },Random(100,100) ,Are};
+		Time_2 = 0;
 	}
 
 	//敵の動作処理
