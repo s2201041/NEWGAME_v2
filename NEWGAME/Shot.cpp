@@ -57,7 +57,9 @@ void Shot::update()
 
 	case 3:
 
-		Pos += Dir * (Scene::DeltaTime() * Vel );
+		Pos = Pos.lerp(NearPos, 0.05);
+
+		Pos += Dir * (Scene::DeltaTime() * Vel);
 
 		Col = Circle{ Pos, 8 };
 

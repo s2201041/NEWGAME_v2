@@ -58,8 +58,6 @@ void Game::update() {
 			changeScene(State::Title);
 	}
 
-	pl_shot.swap(pl_shot);
-
 	//ショットの動作処理
 	for (auto& sh : en_shot) {
 		sh.update();
