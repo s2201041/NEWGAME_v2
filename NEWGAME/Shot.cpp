@@ -28,6 +28,9 @@ Shot::Shot( Vec2 pos, Vec2 dir, int vel,int typ ,Rect are):Base(pos, dir , vel,t
 		m_texture = Texture{ U"texture/shot/shot_2.png" };
 		break;
 
+	case 3:
+		Dam = 1145141919810;
+		m_texture = Texture{ U"texture/shot/shot_2.png" };
 	}
 }
 
@@ -54,11 +57,9 @@ void Shot::update()
 
 	case 3:
 
-		Time += Scene::DeltaTime();
+		Pos += Dir * (Scene::DeltaTime() * Vel );
 
-		Pos.x = Pos.x + cos(Time * 2)* Time;
-
-		Pos.y = Pos.y + sin(Time * 2)* Time;
+		Col = Circle{ Pos, 8 };
 
 		break;
 	}

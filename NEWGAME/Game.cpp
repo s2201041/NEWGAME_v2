@@ -39,9 +39,8 @@ void Game::update() {
 	if (Time_Left <= 0) win = true;
 
 	//敵の出現
-	if (time >= 0.5) {
-		//entity << Entity{ &en_shot, { 600 , 50 },Random(1,2) ,Are};
-		pl_shot << Shot{ {100,100}, {0, 1}, 1000, 2, Are };
+	if (time >= 5) {
+		entity << Entity{ &en_shot, { 600 , 50 },Random(1,2) ,Are};
 		time = 0;
 	}
 
