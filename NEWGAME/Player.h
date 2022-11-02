@@ -37,6 +37,7 @@ public:
 	InputGroup inputDown;
 	InputGroup inputShot;
 
+	Game* game;
 };
 
 #endif

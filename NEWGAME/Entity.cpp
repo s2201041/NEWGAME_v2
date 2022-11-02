@@ -4,6 +4,7 @@
 Entity::Entity(Array<Shot>* sh, Vec2 pos, int typ, Rect are) : Base(pos, typ, are)
 
 {
+	game = gam;
 
 	shot = sh;
 
@@ -21,16 +22,21 @@ Entity::Entity(Array<Shot>* sh, Vec2 pos, int typ, Rect are) : Base(pos, typ, ar
 	//タイプ別の初期値の初期化
 	switch (Typ) {
 	case 1:
-		m_texture = Texture{ U"texture/entity/enemy.png"  };
 		Nam = U"敵_A";
 
 		break;
 
 	case 2:
-		m_texture = Texture{ U"texture/entity/enemys.png" };
 		Nam = U"敵_B";
 
 		break;
+
+	case 100:
+		Nam = U"加速";
+
+		break;
+
+
 
 	}
 
@@ -39,6 +45,7 @@ Entity::Entity(Array<Shot>* sh, Vec2 pos, int typ, Rect are) : Base(pos, typ, ar
 
 void Entity::update()
 {
+
 	//タイプ別の動作処理の分岐
 	switch (Typ) {
 	case 1:
@@ -88,11 +95,15 @@ void Entity::draw() const
 
 	switch (Typ) {
 	case 1:
-		m_texture.scaled(2.0).drawAt(Pos);
+		TextureAsset(U"enemy_1").scaled(2.0).drawAt(Pos);
 		break;
 
 	case 2:
-		m_texture.scaled(2.0).drawAt(Pos);
+		TextureAsset(U"enemy_2").scaled(2.0).drawAt(Pos);
+		break;
+
+	case 100:
+		TextureAsset(U"item_1").scaled(2.0).drawAt(Pos);
 		break;
 
 	}
@@ -104,14 +115,19 @@ void Entity::draw() const
 	//RectF{ 50 , 50, 300, 10 }.draw(Palette::Orange);;
 	//RectF{ 50 , 50, Hp * 3, 10 }.draw(Palette::Red);;
 
-	effect.update();
+	//effect.update();
 }
 
 void Entity::sh_cla(int typ,int dma) {
 	Hp -= dma;
+	game->Score += dma;
+
 }
 
 void Entity::en_cla(int typ) {
-	switch(typ){
+	switch(Typ){
+	case 100:
+		Del = true;
+		return;
 	}
 }

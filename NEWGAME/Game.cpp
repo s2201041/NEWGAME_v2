@@ -7,12 +7,16 @@ Game::Game(const InitData& init)
 
 	winner = Texture{ U"texture/winner.png" };
 
+	Kill = 0;
+
 	Score = 0;
 
 	win = false;
 
 	//経過時間の初期化
-	time = 0;
+	Time = 0;
+
+	Time_2 = 0;
 
 	Time_Left = 100;
 
@@ -32,7 +36,8 @@ void Game::update() {
 
 
 	//経過時間
-	time += Scene::DeltaTime();
+	Time += Scene::DeltaTime();
+	Time_2 += Scene::DeltaTime();
 
 	Time_Left -= Scene::DeltaTime();
 
@@ -48,7 +53,7 @@ void Game::update() {
 	for (auto& en : entity) {
 		en.update();
 		if (en.Del == true)
-			Score++;
+			Kill++;
 	}
 
 	//プレイヤーの動作処理
@@ -109,7 +114,7 @@ void Game::update() {
 					imin = i;
 				}
 			}
-			en.NearPos = player[imin].Pos;
+			en.Set_NearPos(player[imin].Pos);
 		}
 
 	//自機から最も近い敵の座標
@@ -123,7 +128,8 @@ void Game::update() {
 					imin = i;
 				}
 			}
-			pl.NearPos = entity[imin].Pos; }
+			pl.Set_NearPos(entity[imin].Pos);
+		}
 
 	//ショットからエンティティの直近座標
 	if (entity.size() != 0) {
@@ -196,7 +202,7 @@ void Game::update() {
 void Game::draw() const
 {
 	//背景の描画
-	TextureAsset(U"haikei").scaled(2.0).draw();
+	TextureAsset(U"haikei").scaled(2.5).draw();
 
 	//システムウィンドウの描画
 	Rect{ 600, 0, 200, 600 }.draw(Arg::top = Palette::White, Arg::bottom =Palette::Silver).drawFrame(5, 0, Palette::Black);
@@ -205,7 +211,8 @@ void Game::draw() const
 	Line{ 605, 500, 800, 500 }.draw(3, Palette::Black);
 	font(U"ステージ"+stage).draw(620, 13, Palette::Black);
 	font(U"残り時間"+Format(Time_Left)).draw(620, 93, Palette::Black);
-	font(U"スコア："+Format(Score)).draw(620, 150, Palette::Black);
+	font(U"スコア:"+Format(Score)).draw(620, 160, Palette::Black);
+	font(U"キル数："+Format(Kill)).draw(620, 190, Palette::Black);
 
 	//プレイヤーの描画
 	for (auto& pl : player) {

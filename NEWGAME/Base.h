@@ -30,6 +30,9 @@ public:
 	virtual void sh_cla(int typ,int dam);
 	virtual void en_cla(int typ);
 
+	//直近座標の取得関数
+	void Set_NearPos(Vec2 np);
+
 	//コライダー
 	Circle Col;
 
@@ -55,8 +58,6 @@ public:
 	String Nam;
 
 protected:
-
-	Texture m_texture;
 
 	//座標と向きの定義
 	Vec2 Dir, GoPos;
