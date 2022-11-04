@@ -7,7 +7,7 @@ Player::Player(Array<Shot>* sh, Vec2 pos,int typ,Rect are) : Base(pos, typ, are)
 	//game = gam;
 
 	Dir = { 0,0 };
-	Hp = 10000;
+	Hp = 100;
 	Vel = 550;
 
 	NearPos = { 0,0 };
@@ -85,7 +85,15 @@ void Player::draw() const
 
 void Player::en_cla(int typ) {
 	switch (typ) {
-	case 100:
+	case 1:
+		Hp -= Scene::DeltaTime() * 1;
+		break;
+	}
+}
+
+void Player::it_cla(int typ) {
+	switch (typ) {
+	case 1:
 		Vel = 1000;
 		break;
 	}

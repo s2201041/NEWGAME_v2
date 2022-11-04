@@ -120,9 +120,4 @@ void Entity::sh_cla(int typ,int dma) {
 }
 
 void Entity::en_cla(int typ) {
-	switch(Typ){
-	case 100:
-		Del = true;
-		return;
-	}
 }

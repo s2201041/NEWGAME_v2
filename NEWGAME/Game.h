@@ -2,6 +2,7 @@
 #include "Common.h"
 #include "Entity.h"
 #include "Player.h"
+#include "Item.h"
 #include <vector>
 
 class Game : public App::Scene
@@ -24,7 +25,7 @@ public:
 	Array<Entity> entity;
 
 	//アイテム格納配列
-	//Array<Item> iteml
+	Array<Item> item;
 
 	//ショット格納配列
 	Array<Shot> en_shot;

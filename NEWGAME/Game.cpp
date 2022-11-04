@@ -45,12 +45,14 @@ void Game::update() {
 
 	//敵の出現
 	if (Time >= 5) {
-		entity << Entity{ &en_shot, { 600 , 50 },Random(1,2) ,Are};
+		entity << Entity{ &en_shot, { 600 , 50 },Random(1,2) ,Are };
 		Time = 0;
 	}
-	//敵の出現
+	//アイテムの出現
+	Print << item.size();
 	if (Time_2 >= 5) {
-		entity << Entity{ &en_shot, { 600 , 50 },Random(100,100) ,Are};
+
+		item << Item{ { Random(0,600) , Random(0,600)},1 ,Are };
 		Time_2 = 0;
 	}
 
@@ -68,23 +70,27 @@ void Game::update() {
 			changeScene(State::Title);
 	}
 
-	//ショットの動作処理
+	//敵ショットの動作処理
 	for (auto& sh : en_shot) {
 		sh.update();
-		if (sh.Del == true){}
+		if (sh.Del == true) {}
 	}
 
-	//ショットの動作処理
+	//自機ショットの動作処理
 	for (auto& sh : pl_shot) {
 		sh.update();
 	}
 
+	//アイテムの動作処理
+	for (auto& it : item) {
+		it.update();
+	}
 
-					
+
 
 	//衝突判定
-	for (auto& en : entity)
-		for (auto& pl : player) {
+	for (auto& pl : player) {
+		for (auto& en : entity) {
 			for (auto& sh : pl_shot) {
 				//自機ショットと敵の衝突処理
 				if (en.Col.intersects(sh.Col)) {
@@ -105,9 +111,15 @@ void Game::update() {
 				pl.en_cla(en.Typ);
 			}
 		}
+		for (auto& it : item) {
+			if (it.Col.intersects(pl.Col)) {
+				Print << U"Te;";
+				pl.it_cla(it.Typ);
+				it.en_cla(pl.Typ);
+			}
+		}
 
-
-
+	}
 	//敵から最も近い自機の座標
 	if (player.size() != 0)
 		for (auto& en : entity) {
@@ -163,27 +175,6 @@ void Game::update() {
 		}
 	}
 
-//	//ショットから最も近いEntityの座標
-//	if (entity.size() != 0)
-//		for (auto& sh : en_shot) {
-//			double j, imin = 0, jmin = -1;
-//			if (sh.Par == 1 && player.size() != 0) {
-//				for (int i = 0; i < player.size(); i++) {
-//					j = (player[i].Pos.x - sh.Pos.x) * (player[i].Pos.x - sh.Pos.x) + (player[i].Pos.y - sh.Pos.y) * (player[i].Pos.y - sh.Pos.y);
-//				if (jmin < j) { jmin = j; imin = i; }
-//				}
-//					sh.NearPos = player[imin].Pos;
-//			}
-//			if (sh.Par == 0 && entity.size() !=0) {
-//				for (int i = 0; i < entity.size(); i++) {
-//					j = (entity[i].Pos.x - sh.Pos.x) * (entity[i].Pos.x - sh.Pos.x) + (entity[i].Pos.y - sh.Pos.y) * (entity[i].Pos.y - sh.Pos.y);
-//					if (jmin < j) { jmin = j; imin = i; }
-//				}
-//				sh.NearPos = entity[imin].Pos;
-//			}
-//		}
-
-
 	if (Score >= 10) {
 		win = true;
 		Score = 0;
@@ -199,6 +190,7 @@ void Game::update() {
 	player.remove_if([](const Player& pl) { return pl.Del == true; });
 	en_shot.remove_if([](const Shot& sh) { return sh.Del == true; });
 	pl_shot.remove_if([](const Shot& sh) { return sh.Del == true; });
+	item.remove_if([](const Item& it) { return it.Del == true; });
 
 
 
@@ -235,12 +227,19 @@ void Game::draw() const
 		hp_font(entity[i].Nam).drawAt( 300, 45 + i * 30);
 	}
 
+	//敵ショットの描画
 	for (int i = 0; i < en_shot.size(); i++) {
 		en_shot[i].draw();
 	}
 
+	//自機ショットの描画
 	for (int i = 0; i < pl_shot.size(); i++) {
 		pl_shot[i].draw();
+	}
+
+	//アイテムの描画
+	for (auto& it : item) {
+		it.draw();
 	}
 
 

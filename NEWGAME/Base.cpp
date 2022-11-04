@@ -1,10 +1,5 @@
 ﻿#include "Base.h"
 
-//Base::Base(Vec2 pos,int typ,Rect are)
-//	:Pos(pos),Typ(typ),Are(are),Del(false)
-//{
-//}
-
 Base::Base(Vec2 pos,int typ,Rect are)
 	:Pos(pos),Typ(typ),Are(are),Del(false)
 {
