@@ -26,7 +26,7 @@ Game::Game(const InitData& init)
 	//ステージ表示
 	//Print << getData().stage;
 
-	entity << Entity{ &en_shot, { 100 , 100 },2 ,Are};
+	entity << Entity{ this, { 100 , 100 },2 ,Are};
 	player << Player{ &pl_shot, { 0 , 0 } ,1 ,Are};
 
 
@@ -47,7 +47,7 @@ void Game::update() {
 
 	//敵の出現
 	if (Time >= 5) {
-		entity << Entity{ &en_shot, { 600 , 50 },Random(1,2) ,Are };
+		entity << Entity{ this, { 600 , 50 },Random(1,2) ,Are };
 		Time = 0;
 	}
 	//アイテムの出現

@@ -1,12 +1,12 @@
 ﻿#include "Entity.h"
 #include "Game.h"
 
-Entity::Entity(Array<Shot>* sh, Vec2 pos, int typ, Rect are) : Base(pos, typ, are)
+Entity::Entity(Game* gm, Vec2 pos, int typ, Rect are) : Base(pos, typ, are)
 
 {
-	//game = gam;
+	game = gm;
 
-	shot = sh;
+	//shot = sh;
 
 	Dir = { 0,1 };
 	Vel = 1100;
@@ -47,7 +47,8 @@ void Entity::update()
 
 		Pos = Pos.lerp(GoPos, 0.1);
 		if (Timer > 0.5) {
-			*shot << Shot{ Pos ,{0,1} ,900 ,1 ,Are };
+			//*shot << Shot{ Pos ,{0,1} ,900 ,1 ,Are };
+			game->en_shot << Shot{ Pos ,{0,1} ,900 ,1 ,Are };
 			GoPos = { NearPos.x,Random(20,280) };
 			Timer = 0;
 		}
@@ -62,6 +63,7 @@ void Entity::update()
 
 		if (Timer > 0.5) {
 			*shot << Shot{ Pos ,{0,1} ,900 ,2 ,Are };
+			game->en_shot << Shot{ Pos ,{0,1} ,900 ,2 ,Are };
 			GoPos = { NearPos.x,Random(20,280) };
 			Timer = 0;
 		}
