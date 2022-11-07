@@ -76,6 +76,8 @@ void Player::draw() const
 	//コライダー確認用
 	Col.draw(ColorF{ 0.0, 0.5, 1.0, 0.8 });
 
+	effect.update();
+
 }
 
 //void Player::sh_cla(int typ) {
@@ -94,7 +96,7 @@ void Player::en_cla(int typ) {
 void Player::it_cla(int typ) {
 	switch (typ) {
 	case 1:
-		Vel = 1000;
+		effect.add<Speed_Up>(&Vel,10);
 		break;
 	}
 }

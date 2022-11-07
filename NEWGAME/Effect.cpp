@@ -21,4 +21,31 @@ struct RingEffect : IEffect
 	}
 };
 
- 
+struct Speed_Up : IEffect
+{
+	int m_time;
+
+	int* m_speed;
+	
+	explicit Speed_Up(int* s,int time)
+		: m_time{ time }
+		, m_speed{ s }
+	{
+		*m_speed += 200;
+
+	}
+
+	~Speed_Up() {
+		*m_speed -= 200;
+	}
+	
+	bool update(double t) override
+	{
+
+		FontAsset(U"TitleFont")(U"加速:"+Format(m_time-t)).drawAt(400, 100);
+
+		// 1 秒未満なら継続
+		return (t < m_time );
+
+	}
+};

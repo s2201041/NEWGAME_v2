@@ -113,11 +113,11 @@ void Entity::draw() const
 	//effect.update();
 }
 
-void Entity::sh_cla(int typ,int dma) {
-	Hp -= dma;
-	//game->Score += dma;
-
-}
+//void Entity::sh_cla(int typ,int dma) {
+//	Hp -= dma;
+//	//game->Score += dma;
+//
+//}
 
 void Entity::en_cla(int typ) {
 }

@@ -28,6 +28,8 @@ Game::Game(const InitData& init)
 
 	entity << Entity{ &en_shot, { 100 , 100 },2 ,Are};
 	player << Player{ &pl_shot, { 0 , 0 } ,1 ,Are};
+
+
 }
 
 void Game::update() {
@@ -49,7 +51,6 @@ void Game::update() {
 		Time = 0;
 	}
 	//アイテムの出現
-	Print << item.size();
 	if (Time_2 >= 5) {
 
 		item << Item{ { Random(0,600) , Random(0,600)},1 ,Are };
@@ -111,9 +112,9 @@ void Game::update() {
 				pl.en_cla(en.Typ);
 			}
 		}
+		//自機とアイテムの衝突判定
 		for (auto& it : item) {
 			if (it.Col.intersects(pl.Col)) {
-				Print << U"Te;";
 				pl.it_cla(it.Typ);
 				it.en_cla(pl.Typ);
 			}

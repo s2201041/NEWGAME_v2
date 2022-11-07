@@ -24,7 +24,6 @@ void Item::draw() const
 {
 	switch (Typ) {
 	case 1:
-		Print << U"A";
 		TextureAsset(U"item_1").scaled(2.0).drawAt(Pos);
 		break;
 	}

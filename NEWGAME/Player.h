@@ -6,6 +6,7 @@
 
 #include "Base.h"
 #include "Shot.h"
+#include "Effect.cpp"
 
 class Game;
 
@@ -38,7 +39,7 @@ public:
 	InputGroup inputDown;
 	InputGroup inputShot;
 
-	Game* game;
+	Effect effect;
 };
 
 #endif
