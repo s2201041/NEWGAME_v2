@@ -62,7 +62,7 @@ void Entity::update()
 		Pos = Pos.lerp(GoPos, 0.2);
 
 		if (Timer > 0.5) {
-			*shot << Shot{ Pos ,{0,1} ,900 ,2 ,Are };
+			//*shot << Shot{ Pos ,{0,1} ,900 ,2 ,Are };
 			game->en_shot << Shot{ Pos ,{0,1} ,900 ,2 ,Are };
 			GoPos = { NearPos.x,Random(20,280) };
 			Timer = 0;

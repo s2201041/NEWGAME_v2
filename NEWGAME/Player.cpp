@@ -1,10 +1,10 @@
 ﻿#include "Player.h"
 #include "Game.h"
 
-Player::Player(Array<Shot>* sh, Vec2 pos,int typ,Rect are) : Base(pos, typ, are)
+Player::Player(Game* gm, Vec2 pos,int typ,Rect are) : Base(pos, typ, are)
 {
 
-	//game = gam;
+	game = gm;
 
 	Dir = { 0,0 };
 	Hp = 100;
@@ -15,7 +15,7 @@ Player::Player(Array<Shot>* sh, Vec2 pos,int typ,Rect are) : Base(pos, typ, are)
 	//コライダーの初期化
 	Col = Circle{ Pos, 30 };
 
-	shot = sh;
+	//shot = sh;
 
 }
 
@@ -47,9 +47,9 @@ void Player::update()
 
 	if (inputShot.down()) {
 		if (KeyShift.pressed())
-			*shot << Shot{ Pos, { 0, -1 }, 1000, 2, Are };
+			game->pl_shot << Shot{ Pos, { 0, -1 }, 1000, 2, Are };
 		else
-			*shot << Shot{ Pos ,{ 0, -1 } ,500 ,1 ,Are};
+			game->pl_shot << Shot{ Pos ,{ 0, -1 } ,500 ,1 ,Are};
 	}
 
 	//Hp0以下の処理
@@ -94,9 +94,4 @@ void Player::en_cla(int typ) {
 }
 
 void Player::it_cla(int typ) {
-	switch (typ) {
-	case 1:
-		effect.add<Speed_Up>(&Vel,10);
-		break;
-	}
 }

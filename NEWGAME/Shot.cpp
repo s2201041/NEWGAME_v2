@@ -91,7 +91,7 @@ void Shot::draw() const
 
 	case 2:
 		m_texture.scaled(2.0).drawAt(Pos);
-		Line{ Pos, NearPos }.draw(4, Palette::Yellow);
+		//Line{ Pos, NearPos }.draw(4, Palette::Yellow);
 		break;
 
 	case 3:
@@ -100,7 +100,7 @@ void Shot::draw() const
 	}
 	//effect.update();
 
-	Col.draw();
+	//Col.draw();
 
 }
 

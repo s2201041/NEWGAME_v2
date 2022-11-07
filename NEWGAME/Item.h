@@ -5,6 +5,8 @@
 
 #include "Base.h"
 
+#include "Player.h"
+
 class Item :  public Base
 {
 public:
@@ -19,11 +21,10 @@ public:
 
 	//諸突処理関数
 	void sh_cla(int typ,int dma) ;
-	void en_cla(int typ);
+	void en_cla(int typ,Player* pl);
 
-
-	Effect effect;
-	
+private:
+	double t;
 };
 
 #endif ITEM_H

@@ -27,7 +27,7 @@ Game::Game(const InitData& init)
 	//Print << getData().stage;
 
 	entity << Entity{ this, { 100 , 100 },2 ,Are};
-	player << Player{ &pl_shot, { 0 , 0 } ,1 ,Are};
+	player << Player{ this, { 0 , 0 } ,1 ,Are};
 
 
 }
@@ -53,7 +53,7 @@ void Game::update() {
 	//アイテムの出現
 	if (Time_2 >= 5) {
 
-		item << Item{ { Random(0,600) , Random(0,600)},1 ,Are };
+		item << Item{ { Random(0,600) , Random(0,600)},Random(1,2) ,Are};
 		Time_2 = 0;
 	}
 
@@ -116,7 +116,7 @@ void Game::update() {
 		for (auto& it : item) {
 			if (it.Col.intersects(pl.Col)) {
 				pl.it_cla(it.Typ);
-				it.en_cla(pl.Typ);
+				it.en_cla(pl.Typ,&pl);
 			}
 		}
 

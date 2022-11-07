@@ -15,7 +15,7 @@ class Player : public Base{
 public:
 
 	//コンストラクタ
-	Player(Array<Shot>* sh, Vec2 pos,int typ ,Rect are);
+	Player(Game* game, Vec2 pos,int typ ,Rect are);
 
 
 	//１フレーム毎の処理
@@ -40,6 +40,8 @@ public:
 	InputGroup inputShot;
 
 	Effect effect;
+
+	Game* game;
 };
 
 #endif
