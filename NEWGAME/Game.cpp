@@ -1,5 +1,5 @@
 ﻿#include "Game.h"
-
+#include "Effect.cpp"
 
 Game::Game(const InitData& init)
 	: IScene{ init }
@@ -15,6 +15,9 @@ Game::Game(const InitData& init)
 
 	entity << Entity{ { 100 , 100 },1 ,Are};
 	player << Player{ { 0 , 0 } ,1 ,Are};
+
+	hit = 1;
+
 }
 
 void Game::update() {
@@ -69,6 +72,7 @@ void Game::update() {
 				if (pl.Col.intersects(sh.Col)) {
 					sh.cla();
 					pl.sh_cla();
+					hit = 0;
 				}
 			//敵と自機の衝突判定
 			if (en.Col.intersects(pl.Col)) {
@@ -77,7 +81,7 @@ void Game::update() {
 			}
 		}
 
-
+	hit+= Scene::DeltaTime();
 
 	//敵から最も近い自機の座標
 	if (player.size() != 0)
@@ -117,9 +121,15 @@ void Game::draw() const
 	Line{ 605, 80, 800, 80 }.draw(3, Palette::Black);
 	Line{ 605, 160, 800, 160 }.draw(3, Palette::Black);
 	Line{ 605, 500, 800, 500 }.draw(3, Palette::Black);
-	font(U"ステージ"+stage).draw(620, 13, Palette::Black);
-	font(U"残り時間").draw(620, 93, Palette::Black);
 
+	font32(U"ステージ"+stage).draw(620, 13, Palette::Black);
+	font32(U"残り時間").draw(620, 93, Palette::Black);
+	font18(U"残り体力").draw(680, 513, Palette::Black);
+	
+	if (0.1 > hit) {
+		Rect{ 0, 0, 800, 600 }.draw(HSV(Palette::Red, 0.3));
+	}
+	//Rect{ 0, 0, 800, 600 }.draw(HSV(Palette::Red, 0.3));
 
 	//プレイヤーの描画
 	for (auto& pl : player) {
@@ -127,7 +137,6 @@ void Game::draw() const
 		RectF{ 610 , 550, 180, 20 }.draw(Palette::Orange);;
 		RectF{ 610 , 550, pl.Hp * 1.8, 20 }.draw(Palette::Red);;
 	}
-
 	
 	//敵の描画
 	for (int i = 0; i < entity.size(); i++) {
@@ -138,6 +147,8 @@ void Game::draw() const
 		hp_font(entity[i].Nam).drawAt(20, 300, 35 + i * 30);
 
 	}
+
+	effect.update();
 
 
 }

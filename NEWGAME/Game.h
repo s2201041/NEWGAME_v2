@@ -27,11 +27,14 @@ public:
 
 private:
 
-	double time;
+	Effect effect;
 
+	double time;
+    double hit;
 	const Font hp_font{ FontMethod::MSDF, 10, Typeface::Bold };
 
 
-	const Font font{ 32, U"example/font/DotGothic16/DotGothic16-Regular.ttf", FontStyle::Bitmap };
+	const Font font32{ 32, U"example/font/DotGothic16/DotGothic16-Regular.ttf", FontStyle::Bitmap };
+	const Font font18{ 18, U"example/font/DotGothic16/DotGothic16-Regular.ttf", FontStyle::Bitmap };
 	const String stage = Format(getData().stage);
 };
