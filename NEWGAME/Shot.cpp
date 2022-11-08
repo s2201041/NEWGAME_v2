@@ -3,7 +3,6 @@
 #include "Entity.h"
 #include "Player.h"
 
-
 Shot::Shot( Vec2 pos, Vec2 dir, int vel,int typ ,Rect are):Base(pos, dir , vel,typ, are)
 {
 	NearPos = { 300,300 };
@@ -112,8 +111,12 @@ void Shot::draw() const
 //}
 
 void Shot::cla(Base* en) {
+	AudioAsset(U"cla_sound").playOneShot();
+
 	if(en!=entity) {
 		Del = true;
 		en->Hp -= 10;
 	}
 }
+
+

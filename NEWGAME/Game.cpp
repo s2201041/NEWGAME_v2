@@ -54,6 +54,7 @@ void Game::update() {
 		Time_2 = 0;
 	}
 
+	
 	//敵の動作処理
 	for (auto& en : entity) {
 		en.update();
@@ -100,6 +101,7 @@ void Game::update() {
 				//敵ショットと自機の衝突処理
 				if (pl.Col.intersects(sh.Col)) {
 					pl.cla(&sh);
+					sh.cla(&pl);
 				}
 			}
 			//敵と自機の衝突判定
@@ -177,10 +179,11 @@ void Game::update() {
 		Score = 0;
 		stopwatch.start();
 
-	if(win)
+		if (win) {
+			AudioAsset(U"clear_sound").playOneShot();
 
-		changeScene(State::Title);
-
+			changeScene(State::Title);
+		}
 	}
 	//消去判定
 	entity.remove_if([](const Entity& en) { return en.Del == true; });
