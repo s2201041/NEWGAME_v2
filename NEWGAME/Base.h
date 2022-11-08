@@ -6,6 +6,12 @@
 
 #include "common.h"
 
+class Player;
+class Entity;
+class Item;
+class Shot;
+
+
 class Base {
 
 public:
@@ -27,8 +33,7 @@ public:
 	virtual void draw() const ;
 
 	//諸突処理関数
-	virtual void sh_cla(int typ,int dam);
-	virtual void en_cla(int typ);
+	void cla(Base* en);
 
 	//直近座標の取得関数
 	void Set_NearPos(Vec2 np);

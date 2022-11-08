@@ -28,14 +28,11 @@ Game::Game(const InitData& init)
 
 	entity << Entity{ this, { 100 , 100 },2 ,Are};
 	player << Player{ this, { 0 , 0 } ,1 ,Are};
-
-
 }
 
 void Game::update() {
 
 	//Print << size(pl_shot);
-
 
 	//経過時間
 	Time += Scene::DeltaTime();
@@ -96,27 +93,26 @@ void Game::update() {
 				//自機ショットと敵の衝突処理
 				if (en.Col.intersects(sh.Col)) {
 					sh.cla(&en);
-					en.sh_cla(sh.Typ, sh.Dam);
+					en.cla(&sh);
 				}
 			}
 			for (auto& sh : en_shot) {
 				//敵ショットと自機の衝突処理
 				if (pl.Col.intersects(sh.Col)) {
-					sh.cla(&pl);
-					pl.sh_cla(sh.Typ, sh.Dam);
+					pl.cla(&sh);
 				}
 			}
 			//敵と自機の衝突判定
 			if (en.Col.intersects(pl.Col)) {
-				en.en_cla(pl.Typ);
-				pl.en_cla(en.Typ);
+				en.cla(&pl);
+				pl.cla(&en);
 			}
 		}
 		//自機とアイテムの衝突判定
 		for (auto& it : item) {
 			if (it.Col.intersects(pl.Col)) {
-				pl.it_cla(it.Typ);
-				it.en_cla(pl.Typ,&pl);
+				pl.cla(&it);
+				it.cla(&pl);
 			}
 		}
 
@@ -176,7 +172,7 @@ void Game::update() {
 		}
 	}
 
-	if (Score >= 10) {
+	if (Kill >= 10) {
 		win = true;
 		Score = 0;
 		stopwatch.start();
@@ -193,7 +189,8 @@ void Game::update() {
 	pl_shot.remove_if([](const Shot& sh) { return sh.Del == true; });
 	item.remove_if([](const Item& it) { return it.Del == true; });
 
-
+	//エフェクトの更新
+	//effect.update();
 
 }
 

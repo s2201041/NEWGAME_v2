@@ -49,7 +49,7 @@ void Item::sh_cla(int typ, int dma) {
 	Hp -= dma;
 }
 
-void Item::en_cla(int typ,Player* pl) {
+void Item::cla(Player* pl) {
 	switch (Typ) {
 	case 1:
 		Del = true;

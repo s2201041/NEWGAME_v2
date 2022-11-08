@@ -21,7 +21,10 @@ public:
 
 	//諸突処理関数
 	void sh_cla(int typ,int dma) ;
-	void en_cla(int typ,Player* pl);
+	//void en_cla(int typ,Player* pl);
+
+	void cla(Player *pl);
+
 
 private:
 	double t;

@@ -48,7 +48,7 @@ void Entity::update()
 		Pos = Pos.lerp(GoPos, 0.1);
 		if (Timer > 0.5) {
 			//*shot << Shot{ Pos ,{0,1} ,900 ,1 ,Are };
-			game->en_shot << Shot{ Pos ,{0,1} ,900 ,1 ,Are };
+			game->en_shot << Shot{ this,Pos ,{0,1} ,900 ,1 ,Are };
 			GoPos = { NearPos.x,Random(20,280) };
 			Timer = 0;
 		}
@@ -63,7 +63,7 @@ void Entity::update()
 
 		if (Timer > 0.5) {
 			//*shot << Shot{ Pos ,{0,1} ,900 ,2 ,Are };
-			game->en_shot << Shot{ Pos ,{0,1} ,900 ,2 ,Are };
+			game->en_shot << Shot{ this,Pos ,{0,1} ,900 ,2 ,Are };
 			GoPos = { NearPos.x,Random(20,280) };
 			Timer = 0;
 		}
@@ -115,11 +115,11 @@ void Entity::draw() const
 	//effect.update();
 }
 
-//void Entity::sh_cla(int typ,int dma) {
-//	Hp -= dma;
-//	//game->Score += dma;
-//
-//}
+void Entity::cla(Shot* en) {
+	game->Score += Random(10,20);
+	//game->effect.add<ScoreEffect>(Pos, Random(0, 100),font);
 
-void Entity::en_cla(int typ) {
+}
+
+void Entity::cla(Base* en) {
 }

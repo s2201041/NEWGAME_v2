@@ -47,9 +47,9 @@ void Player::update()
 
 	if (inputShot.down()) {
 		if (KeyShift.pressed())
-			game->pl_shot << Shot{ Pos, { 0, -1 }, 1000, 2, Are };
+			game->pl_shot << Shot{this, Pos, { 0, -1 }, 1000, 2, Are };
 		else
-			game->pl_shot << Shot{ Pos ,{ 0, -1 } ,500 ,1 ,Are};
+			game->pl_shot << Shot{this, Pos ,{ 0, -1 } ,500 ,1 ,Are};
 	}
 
 	//Hp0以下の処理
@@ -85,13 +85,12 @@ void Player::draw() const
 //		Hp -= 5;
 //}
 
-void Player::en_cla(int typ) {
-	switch (typ) {
-	case 1:
-		Hp -= Scene::DeltaTime() * 1;
-		break;
-	}
-}
+//void Player::en_cla(int typ) {
+//	switch (typ) {
+//	case 1:
+//		Hp -= Scene::DeltaTime() * 1;
+//		break;
+//	}
+//}
 
-void Player::it_cla(int typ) {
-}
+

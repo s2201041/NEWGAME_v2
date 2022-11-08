@@ -23,8 +23,8 @@ public:
 	void draw() const ;
 
 	//諸突処理関数
-	//void sh_cla(int typ,int dma) ;
-	void en_cla(int typ);
+	void cla(Shot* en);
+	void cla(Base* en);
 
 	//ショットの定義
 	Array<Shot>* shot;
@@ -32,6 +32,9 @@ public:
 	Effect effect;
 
 	Game* game;
+
+	const Font font{ 50, Typeface::Heavy };
+
 };
 
 #endif

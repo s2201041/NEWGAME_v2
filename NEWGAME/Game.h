@@ -31,11 +31,13 @@ public:
 	Array<Shot> en_shot;
 	Array<Shot>	pl_shot;
 
-
 	//動作範囲
 	Rect Are;
 
 	int Score,Kill;
+
+	Effect effect;
+
 private:
 
 	Texture winner;
