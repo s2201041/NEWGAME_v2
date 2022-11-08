@@ -28,8 +28,6 @@ Game::Game(const InitData& init)
 
 	entity << Entity{ this, { 100 , 100 },2 ,Are};
 	player << Player{ this, { 0 , 0 } ,1 ,Are};
-	entity << Entity{ { 100 , 100 },1 ,Are};
-	player << Player{ { 0 , 0 } ,1 ,Are};
 
 	hit = 1;
 
@@ -43,10 +41,10 @@ void Game::update() {
 	Time += Scene::DeltaTime();
 	Time_2 += Scene::DeltaTime();
 
-	//敵の出現
-	if (time >= 5) {
-		entity << Entity{ { 600 , 50 },Random(1,2) ,Are};
-		time = 0;
+	//敵の出現s
+	if (Time >= 5) {
+		entity << Entity{this, { 600 , 50 },Random(1,2) ,Are};
+		Time = 0;
 	}
 	//アイテムの出現
 	if (Time_2 >= 5) {
@@ -101,6 +99,8 @@ void Game::update() {
 				//敵ショットと自機の衝突処理
 				if (pl.Col.intersects(sh.Col)) {
 					pl.cla(&sh);
+					sh.cla(&pl);
+;					hit = 0;
 				}
 			}
 			//敵と自機の衝突判定
@@ -206,15 +206,18 @@ void Game::draw() const
 	Line{ 605, 80, 800, 80 }.draw(3, Palette::Black);
 	Line{ 605, 160, 800, 160 }.draw(3, Palette::Black);
 	Line{ 605, 500, 800, 500 }.draw(3, Palette::Black);
-	font(U"ステージ"+stage).draw(620, 13, Palette::Black);
-	font(U"残り時間"+Format(Time_Left)).draw(620, 93, Palette::Black);
-	font(U"スコア:"+Format(Score)).draw(620, 160, Palette::Black);
-	font(U"キル数："+Format(Kill)).draw(620, 190, Palette::Black);
+	font32(U"残り時間"+Format(Time_Left)).draw(615, 93, Palette::Black);
+    font32(U"スコア:").draw(616, 160, Palette::Black);
+	if (Score > 9999) {
+		font20(Format(Score)).draw(730, 176, Palette::Black);
+	}else {
+		font32(Format(Score)).draw(725, 160, Palette::Black);
+	}
+	font32(U"キル数："+Format(Kill)).draw(616, 190, Palette::Black);
+	font32(U"ステージ"+stage).draw(618, 13, Palette::Black);
+	font20(U"残り体力").draw(680, 513, Palette::Black);
 
-	font32(U"ステージ"+stage).draw(620, 13, Palette::Black);
-	font32(U"残り時間").draw(620, 93, Palette::Black);
-	font18(U"残り体力").draw(680, 513, Palette::Black);
-	
+	//被弾時に画面が赤くなる
 	if (0.1 > hit) {
 		Rect{ 0, 0, 800, 600 }.draw(HSV(Palette::Red, 0.3));
 	}
@@ -254,8 +257,6 @@ void Game::draw() const
 	if(win){
 		winner.scaled(0.75).drawAt(400,300);
 	}
-	effect.update();
-
 
 	effect.update();
 }

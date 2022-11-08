@@ -47,9 +47,9 @@ private:
 	bool win;
 
 	double Time,Time_2;
-	Effect effect;
+	//Effect effect;
 
-	const Font hp_font{ FontMethod::MSDF, 20, Typeface::Bold };
+	//const Font hp_font{ FontMethod::MSDF, 20, Typeface::Bold };
 	double time;
     double hit;
 	const Font hp_font{ FontMethod::MSDF, 10, Typeface::Bold };
@@ -57,6 +57,6 @@ private:
 	Stopwatch stopwatch{ StartImmediately::Yes};
 
 	const Font font32{ 32, U"example/font/DotGothic16/DotGothic16-Regular.ttf", FontStyle::Bitmap };
-	const Font font18{ 18, U"example/font/DotGothic16/DotGothic16-Regular.ttf", FontStyle::Bitmap };
+	const Font font20{ 18, U"example/font/DotGothic16/DotGothic16-Regular.ttf", FontStyle::Bitmap };
 	const String stage = Format(getData().stage);
 };
