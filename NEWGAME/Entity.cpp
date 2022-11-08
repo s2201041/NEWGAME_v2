@@ -79,8 +79,10 @@ void Entity::update()
 	Pos.clamp(Are);
 
 	//Hp0以下の敵の消去
-	if (0 >= Hp)
+	if (0 >= Hp) {
 		Del = !Del;
+		
+	}
 
 	//コライダーの更新
 	Col = Circle{ Pos, size };
@@ -107,10 +109,6 @@ void Entity::draw() const
 
 	//コライダー確認用
 	Col.draw(ColorF{ 0.0, 0.5, 1.0, 0.4 });
-
-	//HPゲージの描画
-	//RectF{ 50 , 50, 300, 10 }.draw(Palette::Orange);;
-	//RectF{ 50 , 50, Hp * 3, 10 }.draw(Palette::Red);;
 
 	//effect.update();
 }

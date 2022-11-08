@@ -15,8 +15,6 @@ Player::Player(Game* gm, Vec2 pos,int typ,Rect are) : Base(pos, typ, are)
 	//コライダーの初期化
 	Col = Circle{ Pos, 30 };
 
-	//shot = sh;
-
 }
 
 void Player::update() 
@@ -53,8 +51,9 @@ void Player::update()
 	}
 
 	//Hp0以下の処理
-	if (0 >= Hp)
+	if (0 >= Hp) 
 		Del = true;
+
 
 	//コライダーの更新
 	Col = Circle{ Pos, 30 };
@@ -80,17 +79,12 @@ void Player::draw() const
 
 }
 
-//void Player::sh_cla(int typ) {
-//	if(!(Hp <= 0))
-//		Hp -= 5;
-//}
+void Player::cla(Item* it) {
+	item << *it;
+}
 
-//void Player::en_cla(int typ) {
-//	switch (typ) {
-//	case 1:
-//		Hp -= Scene::DeltaTime() * 1;
-//		break;
-//	}
-//}
+void Player::cla(Base* en) {
+}
+
 
 
