@@ -42,7 +42,7 @@ struct Speed_Up : IEffect
 	bool update(double t) override
 	{
 
-		FontAsset(U"TitleFont")(U"加速:"+Format(m_time-t)).drawAt(400, 100);
+		//FontAsset(U"TitleFont")(U"加速:"+Format(m_time-t)).drawAt(400, 100);
 
 		// 1 秒未満なら継続
 		return (t < m_time );

@@ -45,9 +45,6 @@ void Item::draw() const
 	}
 }
 
-void Item::sh_cla(int typ, int dma) {
-	Hp -= dma;
-}
 
 void Item::cla(Player* pl) {
 	switch (Typ) {

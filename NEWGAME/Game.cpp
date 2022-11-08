@@ -190,7 +190,6 @@ void Game::update() {
 	item.remove_if([](const Item& it) { return it.Del == true; });
 
 	//エフェクトの更新
-	effect.update();
 
 }
 
@@ -244,5 +243,7 @@ void Game::draw() const
 	if(win){
 		winner.scaled(0.75).drawAt(400,300);
 	}
+
+	effect.update();
 }
 

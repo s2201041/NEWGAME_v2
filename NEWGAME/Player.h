@@ -26,10 +26,6 @@ public:
 
 	//諸突処理関数
 
-
-	//ショットの定義
-	Array<Shot>* shot;
-
 	//Keyconfigの定義
 	InputGroup inputLeft;
 	InputGroup inputRight;

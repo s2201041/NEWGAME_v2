@@ -25,14 +25,8 @@ public:
 	//諸突処理関数
 	void cla(Shot* en);
 	void cla(Base* en);
-
-	//ショットの定義
-	Array<Shot>* shot;
-
-	Effect effect;
-
+	
 	Game* game;
-
 
 };
 
