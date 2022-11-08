@@ -129,7 +129,6 @@ void Game::draw() const
 	if (0.1 > hit) {
 		Rect{ 0, 0, 800, 600 }.draw(HSV(Palette::Red, 0.3));
 	}
-	//Rect{ 0, 0, 800, 600 }.draw(HSV(Palette::Red, 0.3));
 
 	//プレイヤーの描画
 	for (auto& pl : player) {
