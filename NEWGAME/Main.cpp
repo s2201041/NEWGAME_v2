@@ -2,6 +2,8 @@
 # include "Title.h"
 # include "Select.h"
 # include "Game.h"
+# include <Siv3D.hpp>
+
 
 //開発ベース ver0.0
 
@@ -22,7 +24,7 @@ void Main()
 	TextureAsset::Register(U"player_1_right", U"texture/player/player_1_right.png", TextureDesc::Mipped);
 
 
-
+	
 	//sceneの追加
 	App manager;
 	manager.add<Title>(State::Title);

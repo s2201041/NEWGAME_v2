@@ -15,6 +15,12 @@ Game::Game(const InitData& init)
 
 	entity << Entity{ { 100 , 100 },1 ,Are};
 	player << Player{ { 0 , 0 } ,1 ,Are};
+
+	// ストリーミング再生になるかを取得
+	Print << audio.isStreaming();
+
+	// オーディオを再生
+	audio.play();
 }
 
 void Game::update() {

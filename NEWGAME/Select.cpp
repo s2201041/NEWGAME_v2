@@ -3,6 +3,11 @@
 Select::Select(const InitData& init)
 	: IScene{ init }
 {
+	// ストリーミング再生になるかを取得
+	Print << audio.isStreaming();
+
+	// オーディオを再生
+	audio.play();
 }
 
 void Select::update()

@@ -31,6 +31,8 @@ private:
 
 	const Font hp_font{ FontMethod::MSDF, 10, Typeface::Bold };
 
+	// 音声ファイルを読み込んで Audio を作成（ストリーミング再生をリクエスト）
+	const Audio audio{ Audio::Stream, U"C:/Users/a0tg3/Downloads/魔王魂  8bit18.mp3" };
 
 
 };

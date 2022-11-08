@@ -7,6 +7,11 @@ Title::Title(const InitData& init)
 	//getData().Keyconfig[0] = { KeyLeft, KeyRight, KeyUp, KeyDown, KeySpace, };
 	//getData().Keyconfig[1] = { KeyLeft, KeyRight, KeyUp, KeyDown, KeySpace, };
 
+	// ストリーミング再生になるかを取得
+	Print << audio.isStreaming();
+
+	// オーディオを再生
+	audio.play();
 }
 
 void Title::update()
