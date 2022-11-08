@@ -4,14 +4,24 @@
 #ifndef SHOT_H
 #define SHOT_H
 
-#include "common.h"
+#include "Base.h"
 
-class Shot {
+//#include "Effect.cpp"
+
+class Entity;
+
+class Player;
+
+class Shot : public Base {
 
 public:
 
 	//コンストラクタ
-	Shot( Vec2 pos, Vec2 dir, int vel,int typ,Rect are);
+	Shot( Entity* ent,Vec2 pos, Vec2 dir, int vel,int typ ,Rect are);
+
+	Shot( Player* pla,Vec2 pos, Vec2 dir, int vel,int typ ,Rect are);
+
+	Shot( Vec2 pos, Vec2 dir, int vel,int typ ,Rect are);
 
 	//１フレーム毎の処理
 	void update();
@@ -20,34 +30,34 @@ public:
 	void draw() const;
 
 	//衝突処理関数
-	void cla();
+	//void cla(Player* pl);
 
-	//座標と向きの定義
-	Vec2 Pos, Dir;
+	void cla(Base* en);
 
 	//コライダー
 	Circle Col;
 
-	//消去判定
-	bool Del;
-
+	//目的座標
 	Vec2 GoPos;
+
+	//呼び出し元の定義
+	int Par;
+
+	//ダメージの定義
+	int Dam;
+
+
 
 private:
 
 	Texture m_texture;
-
-	//速度の定義
-	int Vel;
-
-	//球の種類の定義
-	int Typ;
-
 	//タイマー変数の定義
-	double Time;
 
-	//動作範囲
-	Rect Are;
+	//エフェクト
+	//Effect effect;
+
+	Base* entity;
+
 };
 
 #endif

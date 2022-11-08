@@ -1,20 +1,12 @@
 ﻿#include "Entity.h"
+#include "Game.h"
 
-Entity::Entity(Vec2 pos, int typ,Rect are)
+Entity::Entity(Game* gm, Vec2 pos, int typ, Rect are) : Base(pos, typ, are)
+
 {
-	Pos = pos;
-	Typ = typ;
-	Are = are;
-	Del = false;
+	game = gm;
 
-	//タイマーの初期化
-	Timer = 0;
-
-	//コライダーの初期化
-	Col = Circle{ Pos, size };
-
-	//デバッグ用
-	//Print << Typ;
+	//shot = sh;
 
 	Dir = { 0,1 };
 	Vel = 1100;
@@ -25,16 +17,21 @@ Entity::Entity(Vec2 pos, int typ,Rect are)
 	//タイプ別の初期値の初期化
 	switch (Typ) {
 	case 1:
-		m_texture = Texture{ U"texture/entity/enemy.png"  };
 		Nam = U"敵_A";
 
 		break;
 
 	case 2:
-		m_texture = Texture{ U"texture/entity/enemys.png" };
 		Nam = U"敵_B";
 
 		break;
+
+	case 100:
+		Nam = U"加速";
+
+		break;
+
+
 
 	}
 
@@ -49,10 +46,10 @@ void Entity::update()
 	case 1:
 
 		Pos = Pos.lerp(GoPos, 0.1);
-
 		if (Timer > 0.5) {
-			shot << Shot{ Pos ,{0,1} ,900 ,1 ,Are};
-			GoPos = { PlPos.x,Random(20,280) };
+			//*shot << Shot{ Pos ,{0,1} ,900 ,1 ,Are };
+			game->en_shot << Shot{ this,Pos ,{0,1} ,900 ,1 ,Are };
+			GoPos = { NearPos.x,Random(20,280) };
 			Timer = 0;
 		}
 		//タイマーの加算
@@ -65,8 +62,9 @@ void Entity::update()
 		Pos = Pos.lerp(GoPos, 0.2);
 
 		if (Timer > 0.5) {
-			shot << Shot{ Pos ,{0,1} ,1200 ,2 ,Are };
-			GoPos = { PlPos.x,Random(20,280) };
+			//*shot << Shot{ Pos ,{0,1} ,900 ,2 ,Are };
+			game->en_shot << Shot{ this,Pos ,{0,1} ,900 ,2 ,Are };
+			GoPos = { NearPos.x,Random(20,280) };
 			Timer = 0;
 		}
 		//タイマーの加算
@@ -80,15 +78,6 @@ void Entity::update()
 	//すり抜け防止
 	Pos.clamp(Are);
 
-	//ショットの処理
-	for (auto& sh : shot) {
-		sh.GoPos = PlPos;
-		sh.update();
-	}
-
-	//ショットの消滅処理
-	shot.remove_if([](const Shot& sh) { return sh.Del == true;  });
-
 	//Hp0以下の敵の消去
 	if (0 >= Hp)
 		Del = !Del;
@@ -100,20 +89,21 @@ void Entity::update()
 
 void Entity::draw() const
 {
+
 	switch (Typ) {
 	case 1:
-		m_texture.scaled(2.0).drawAt(Pos);
+		TextureAsset(U"enemy_1").scaled(2.0).drawAt(Pos);
 		break;
 
 	case 2:
-		m_texture.scaled(2.0).drawAt(Pos);
+		TextureAsset(U"enemy_2").scaled(2.0).drawAt(Pos);
+		break;
+
+	case 100:
+		TextureAsset(U"item_1").scaled(2.0).drawAt(Pos);
 		break;
 
 	}
-
-	//ショットの描画
-	for (auto& sh : shot) 
-		sh.draw();
 
 	//コライダー確認用
 	Col.draw(ColorF{ 0.0, 0.5, 1.0, 0.4 });
@@ -121,21 +111,15 @@ void Entity::draw() const
 	//HPゲージの描画
 	//RectF{ 50 , 50, 300, 10 }.draw(Palette::Orange);;
 	//RectF{ 50 , 50, Hp * 3, 10 }.draw(Palette::Red);;
+
+	//effect.update();
 }
 
-void Entity::sh_cla() {
-	Hp -= 10;
+void Entity::cla(Shot* en) {
+	const int dma = Random(10, 20);
+	game->Score += dma;
+	game->effect.add<ScoreEffect>(Pos, dma);
 }
 
-void Entity::pl_cla() {
-	switch(Typ){
-		case 1:
-
-			break;
-
-		case 2:
-
-
-			break;
-	}
+void Entity::cla(Base* en) {
 }
