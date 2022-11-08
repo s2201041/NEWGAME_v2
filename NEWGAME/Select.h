@@ -21,6 +21,6 @@ private:
 	const Font hp_font{ FontMethod::MSDF, 10, Typeface::Bold };
 
 	// 音声ファイルを読み込んで Audio を作成（ストリーミング再生をリクエスト）
-	const Audio audio{ Audio::Stream, U"C:/Users/a0tg3/Downloads/bgm_classic_etc_scarboroughfair.wav" };
+	const Audio audio{ Audio::Stream, U"sound/bgm_classic_etc_scarboroughfair.wav" };
 
 };
