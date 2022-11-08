@@ -81,7 +81,7 @@ void Entity::update()
 	//Hp0以下の敵の消去
 	if (0 >= Hp) {
 		Del = !Del;
-		
+		game->effect.add<BubbleEffect>(Pos, Random(0.0, 360.0));
 	}
 
 	//コライダーの更新

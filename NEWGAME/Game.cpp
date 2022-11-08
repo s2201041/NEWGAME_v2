@@ -100,6 +100,7 @@ void Game::update() {
 				//敵ショットと自機の衝突処理
 				if (pl.Col.intersects(sh.Col)) {
 					pl.cla(&sh);
+					sh.cla(&pl);
 				}
 			}
 			//敵と自機の衝突判定
