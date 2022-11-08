@@ -117,7 +117,7 @@ void Entity::draw() const
 
 void Entity::cla(Shot* en) {
 	game->Score += Random(10,20);
-	//game->effect.add<ScoreEffect>(Pos, Random(0, 100),font);
+	game->effect.add<ScoreEffect>(Pos, Random(0, 100));
 
 }
 

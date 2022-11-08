@@ -33,7 +33,6 @@ public:
 
 	Game* game;
 
-	const Font font{ 50, Typeface::Heavy };
 
 };
 

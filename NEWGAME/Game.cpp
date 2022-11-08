@@ -190,7 +190,7 @@ void Game::update() {
 	item.remove_if([](const Item& it) { return it.Del == true; });
 
 	//エフェクトの更新
-	//effect.update();
+	effect.update();
 
 }
 

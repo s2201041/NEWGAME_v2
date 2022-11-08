@@ -56,12 +56,11 @@ struct ScoreEffect : IEffect
 
 	int32 m_score;
 
-	Font m_font;
+	Font m_font = Font{ 50, Typeface::Heavy };
 
-	ScoreEffect(const Vec2& start, int32 score, const Font& font)
+	ScoreEffect(const Vec2& start, int32 score)
 		: m_start{ start }
-		, m_score{ score }
-		, m_font{ font } {}
+		, m_score{ score } {}
 
 	bool update(double t) override
 	{
