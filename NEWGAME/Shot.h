@@ -5,13 +5,22 @@
 #define SHOT_H
 
 #include "Base.h"
+
 //#include "Effect.cpp"
+
+class Entity;
+
+class Player;
 
 class Shot : public Base {
 
 public:
 
 	//コンストラクタ
+	//Shot( Entity* ent,Vec2 pos, Vec2 dir, int vel,int typ ,Rect are);
+
+	//Shot( Player* pla,Vec2 pos, Vec2 dir, int vel,int typ ,Rect are);
+
 	Shot( Vec2 pos, Vec2 dir, int vel,int typ ,Rect are);
 
 	//１フレーム毎の処理
@@ -21,7 +30,8 @@ public:
 	void draw() const;
 
 	//衝突処理関数
-	void cla();
+	void cla(Player* pl);
+	void cla(Entity* en);
 
 	//座標と向きの定義
 	Vec2 Pos, Dir;
@@ -61,6 +71,8 @@ private:
 
 	//エフェクト
 	//Effect effect;
+
+	Base* entity;
 };
 
 #endif

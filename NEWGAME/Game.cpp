@@ -95,14 +95,14 @@ void Game::update() {
 			for (auto& sh : pl_shot) {
 				//自機ショットと敵の衝突処理
 				if (en.Col.intersects(sh.Col)) {
-					sh.cla();
+					sh.cla(&en);
 					en.sh_cla(sh.Typ, sh.Dam);
 				}
 			}
 			for (auto& sh : en_shot) {
 				//敵ショットと自機の衝突処理
 				if (pl.Col.intersects(sh.Col)) {
-					sh.cla();
+					sh.cla(&pl);
 					pl.sh_cla(sh.Typ, sh.Dam);
 				}
 			}

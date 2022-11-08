@@ -55,6 +55,10 @@ void Item::en_cla(int typ,Player* pl) {
 		Del = true;
 		pl->effect.add<Speed_Up>(&Vel,10);
 		return;
+	case 2:
+		Del = true;
+		pl->Hp += 10;
+		return;
 	}
 }
 

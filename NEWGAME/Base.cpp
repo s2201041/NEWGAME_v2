@@ -21,7 +21,7 @@ void Base::draw() const
 }
 
 void Base::sh_cla(int typ,int dam) {
-	Hp -= dam;
+//	Hp -= dam;
 }
 
 void Base::en_cla(int typ) {

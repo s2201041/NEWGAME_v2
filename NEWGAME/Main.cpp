@@ -24,7 +24,6 @@ void Main()
 	TextureAsset::Register(U"enemy_1", U"texture/entity/enemy_1.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"enemy_2", U"texture/entity/enemy_2.png", TextureDesc::Mipped);
 
-	TextureAsset::Register(U"item_1", U"texture/entity/item_1.png", TextureDesc::Mipped);
 
 	//Playerアセット
 	TextureAsset::Register(U"player_1_up", U"texture/player/player_1_up.png", TextureDesc::Mipped);

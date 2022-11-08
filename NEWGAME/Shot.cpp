@@ -1,16 +1,13 @@
 ﻿#include "Shot.h"
 
+#include "Entity.h"
+#include "Player.h"
+
+
 Shot::Shot( Vec2 pos, Vec2 dir, int vel,int typ ,Rect are):Base(pos, dir , vel,typ, are)
 {
-	Pos = pos;
-	Dir = dir;
-	Vel = vel;
-	Typ = typ;
-	Are = are;
-	
 	NearPos = { 300,300 };
 
-	Del = false;
 
 	//ストップウォッチの初期化
 	Time = 0;
@@ -34,6 +31,14 @@ Shot::Shot( Vec2 pos, Vec2 dir, int vel,int typ ,Rect are):Base(pos, dir , vel,t
 		m_texture = Texture{ U"texture/shot/shot_2.png" };
 	}
 }
+
+//Shot::Shot(Entity* ent, Vec2 pos, Vec2 dir, int vel, int typ, Rect are):Shot(pos,dir,vel,typ,are){
+//	entity = ent;
+//};
+
+//Shot::Shot(Player* pla, Vec2 pos, Vec2 dir, int vel, int typ, Rect are):Shot(pos,dir,vel,typ,are){
+//	entity = pla;
+//};
 
 void Shot::update()
 {
@@ -104,6 +109,12 @@ void Shot::draw() const
 
 }
 
-void Shot::cla() {
+void Shot::cla(Player* pl) {
 	Del = true;
+	pl->Hp -= 10;
+}
+
+void Shot::cla(Entity* en) {
+	Del = true;
+	en->Hp -= 10;
 }
