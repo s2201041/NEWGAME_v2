@@ -33,6 +33,10 @@ void Item::update() {
 	t += Scene::DeltaTime();
 }
 
+void Item::update(int n) {
+	Pos = {600+n*10,400};
+}
+
 void Item::draw() const
 {
 	switch (Typ) {
@@ -45,6 +49,9 @@ void Item::draw() const
 	}
 }
 
+void Item::draw(int n) const {
+		TextureAsset(U"item_1").scaled(4.0).drawAt(Pos);
+}
 
 void Item::cla(Player* pl) {
 	switch (Typ) {
@@ -54,6 +61,7 @@ void Item::cla(Player* pl) {
 		return;
 	case 2:
 		Del = true;
+		//game->effect.add<Speed_Up>(&Vel, 10);
 		pl->Hp += 10;
 		return;
 	}

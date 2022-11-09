@@ -28,6 +28,7 @@ Game::Game(const InitData& init)
 
 	entity << Entity{ this, { 100 , 100 },2 ,Are};
 	player << Player{ this, { 0 , 0 } ,1 ,Are};
+
 }
 
 void Game::update() {
@@ -53,6 +54,8 @@ void Game::update() {
 		item << Item{ { Random(0,600) , Random(0,600)},Random(1,2) ,Are};
 		Time_2 = 0;
 	}
+
+
 
 	//敵の動作処理
 	for (auto& en : entity) {
@@ -83,6 +86,8 @@ void Game::update() {
 	for (auto& it : item) {
 		it.update();
 	}
+
+
 
 
 

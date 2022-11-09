@@ -57,6 +57,9 @@ void Player::update()
 
 	//コライダーの更新
 	Col = Circle{ Pos, 30 };
+
+	for (int i = 0; i < item.size(); i++)
+		item[i].update(i);
 }
 
 void Player::draw() const
@@ -74,8 +77,13 @@ void Player::draw() const
 
 	//コライダー確認用
 	Col.draw(ColorF{ 0.0, 0.5, 1.0, 0.8 });
+	
+	for (int i = 0; i < item.size(); i++)
+		item[i].draw(i);
 
 	effect.update();
+
+	Print << item.size();
 
 }
 

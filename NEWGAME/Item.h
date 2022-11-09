@@ -7,7 +7,7 @@
 
 #include "Player.h"
 
-class Item :  public Base
+class Item : public Base
 {
 public:
 	//コンストラクタ
@@ -16,9 +16,12 @@ public:
 	//１フレーム毎の処理
 	void update();
 
-	//描画
-	void draw() const ;
+	void update(int n);
 
+	//描画
+	void draw() const;
+
+	void draw(int n) const;
 	//諸突処理関数
 	void cla(Player *pl);
 
