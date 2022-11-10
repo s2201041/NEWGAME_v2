@@ -22,12 +22,21 @@ public:
 	void draw() const;
 
 	void draw(int n) const;
+	
 	//諸突処理関数
 	void cla(Player *pl);
+
+	//使用時の動作
+	void use(Player *pl);
+
+	RectF Rec;
 
 
 private:
 	double t;
+
+	Player* whose;
+
 };
 
 #endif ITEM_H

@@ -54,12 +54,13 @@ void Player::update()
 	if (0 >= Hp) 
 		Del = true;
 
-
 	//コライダーの更新
 	Col = Circle{ Pos, 30 };
 
 	for (int i = 0; i < item.size(); i++)
 		item[i].update(i);
+
+	item.remove_if([](const Item& it) { return it.Del == true; });
 }
 
 void Player::draw() const
@@ -82,8 +83,6 @@ void Player::draw() const
 		item[i].draw(i);
 
 	effect.update();
-
-	Print << item.size();
 
 }
 

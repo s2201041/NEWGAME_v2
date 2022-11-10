@@ -27,6 +27,7 @@ public:
 	//アイテム
 	Array<Item> item;
 
+
 	//諸突処理関数
 	void cla(Item* it);
 	void cla(Base* en);

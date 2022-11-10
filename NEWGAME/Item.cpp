@@ -34,7 +34,15 @@ void Item::update() {
 }
 
 void Item::update(int n) {
-	Pos = {600+n*10,400};
+
+	Pos = {630 + n % 3 * 50,350 + n / 3 * 50};
+	
+	Rec = RectF{ Arg::center(Pos), 64, 64};
+
+	if (Rec.leftClicked()) {
+		use(whose);
+		Del = true;
+	}
 }
 
 void Item::draw() const
@@ -50,21 +58,29 @@ void Item::draw() const
 }
 
 void Item::draw(int n) const {
-		TextureAsset(U"item_1").scaled(4.0).drawAt(Pos);
+		TextureAsset(U"item_1").scaled(2.0).drawAt(Pos);
+		Rec.draw();
 }
 
 void Item::cla(Player* pl) {
+	Print << U"Cla"+Format(this);
+	Del = true;
+}
+
+void Item::use(Player* pl) {
+	Print << pl;
 	switch (Typ) {
 	case 1:
 		Del = true;
-		pl->effect.add<Speed_Up>(&Vel,10);
+		//player->effect.add<Speed_Up>(&Vel,10);
 		return;
 	case 2:
 		Del = true;
 		//game->effect.add<Speed_Up>(&Vel, 10);
-		pl->Hp += 10;
+		//player->Hp += 10;
 		return;
 	}
 }
+
 
 

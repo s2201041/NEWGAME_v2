@@ -31,6 +31,9 @@ void Main()
 	TextureAsset::Register(U"player_1_left", U"texture/player/player_1_left.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"player_1_right", U"texture/player/player_1_right.png", TextureDesc::Mipped);
 
+	//Itemasset
+	TextureAsset::Register(U"item_1",U"texture/item/item_1.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"item_2",U"texture/item/item_2.png", TextureDesc::Mipped);
 
 	//sceneの追加
 	App manager;

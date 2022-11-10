@@ -60,21 +60,20 @@ void Game::update() {
 	//敵の動作処理
 	for (auto& en : entity) {
 		en.update();
-		if (en.Del == true)
+		if (en.Del)
 			Kill++;
 	}
 
 	//プレイヤーの動作処理
 	for (auto& pl : player) {
 		pl.update();
-		if (pl.Del == true)
+		if (pl.Del)
 			changeScene(State::Title);
 	}
 
 	//敵ショットの動作処理
 	for (auto& sh : en_shot) {
 		sh.update();
-		if (sh.Del == true) {}
 	}
 
 	//自機ショットの動作処理
