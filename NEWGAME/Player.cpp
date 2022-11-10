@@ -3,6 +3,7 @@
 
 Player::Player(Game* gm, Vec2 pos,int typ,Rect are) : Base(pos, typ, are)
 {
+	Are = Rect{(0,150),600,550};
 
 	game = gm;
 
@@ -45,9 +46,9 @@ void Player::update()
 
 	if (inputShot.down()) {
 		if (KeyShift.pressed())
-			game->pl_shot << Shot{this, Pos, { 0, -1 }, 1000, 2, Are };
+			game->pl_shot << Shot{this, Pos, { 0, -1 }, 1000, 2, game->Are};
 		else
-			game->pl_shot << Shot{this, Pos ,{ 0, -1 } ,500 ,1 ,Are};
+			game->pl_shot << Shot{this, Pos ,{ 0, -1 } ,500 ,1 , game->Are};
 	}
 
 	//Hp0以下の処理

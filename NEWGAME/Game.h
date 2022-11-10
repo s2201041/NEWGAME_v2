@@ -3,7 +3,6 @@
 #include "Entity.h"
 #include "Player.h"
 #include "Item.h"
-#include <vector>
 
 class Game : public App::Scene
 {
@@ -19,7 +18,7 @@ public:
 	void draw() const override;
 
 	//プレイヤー格納配列
-	Array<Player> player;
+	Array<Base> player;
 
 	//エンティティ格納配列
 	Array<Entity> entity;
@@ -42,8 +41,10 @@ private:
 
 	Texture winner;
 
+	//制限時間
 	double Time_Left;
 
+	//クリア判定
 	bool win;
 
 	double Time,Time_2;
@@ -55,3 +56,4 @@ private:
 	const Font font{ 32, U"example/font/DotGothic16/DotGothic16-Regular.ttf", FontStyle::Bitmap };
 	const String stage = Format(getData().stage);
 };
+

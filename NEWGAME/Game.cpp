@@ -4,7 +4,6 @@
 Game::Game(const InitData& init)
 	: IScene{ init }
 {
-
 	winner = Texture{ U"texture/winner.png" };
 
 	Kill = 0;
@@ -23,17 +22,23 @@ Game::Game(const InitData& init)
 	//動作範囲
 	Are = Rect{ 0, 0, 600, 600 };
 
-	//ステージ表示
-	//Print << getData().stage;
-
 	entity << Entity{ this, { 100 , 100 },2 ,Are};
+
 	player << Player{ this, { 0 , 0 } ,1 ,Are};
 
 }
 
 void Game::update() {
 
-	//Print << size(pl_shot);
+	//クリア処理
+	if (Kill >= 10) {
+		win = true;
+		Score = 0;
+		stopwatch.start();
+	}
+
+	if (win)
+		changeScene(State::Title);
 
 	//経過時間
 	Time += Scene::DeltaTime();
@@ -51,11 +56,9 @@ void Game::update() {
 	//アイテムの出現
 	if (Time_2 >= 5) {
 
-		item << Item{ { Random(0,600) , Random(0,600)},Random(1,2) ,Are};
+		item << Item{ { Random(0,600) , Random(0,600)},Random(1,2) ,Are };
 		Time_2 = 0;
 	}
-
-
 
 	//敵の動作処理
 	for (auto& en : entity) {
@@ -86,10 +89,6 @@ void Game::update() {
 		it.update();
 	}
 
-
-
-
-
 	//衝突判定
 	for (auto& pl : player) {
 		for (auto& en : entity) {
@@ -104,12 +103,12 @@ void Game::update() {
 				//敵ショットと自機の衝突処理
 				if (pl.Col.intersects(sh.Col)) {
 					pl.cla(&sh);
-					sh.cla(&pl);
+					//sh.cla(&pl);
 				}
 			}
 			//敵と自機の衝突判定
 			if (en.Col.intersects(pl.Col)) {
-				en.cla(&pl);
+				//en.cla(&pl);
 				pl.cla(&en);
 			}
 		}
@@ -117,11 +116,11 @@ void Game::update() {
 		for (auto& it : item) {
 			if (it.Col.intersects(pl.Col)) {
 				pl.cla(&it);
-				it.cla(&pl);
+				//it.cla(&pl);
 			}
 		}
-
 	}
+
 	//敵から最も近い自機の座標
 	if (player.size() != 0)
 		for (auto& en : entity) {
@@ -133,7 +132,7 @@ void Game::update() {
 					imin = i;
 				}
 			}
-			en.Set_NearPos(player[imin].Pos);
+			en.NearPos = player[imin].Pos;
 		}
 
 	//自機から最も近い敵の座標
@@ -147,7 +146,7 @@ void Game::update() {
 					imin = i;
 				}
 			}
-			pl.Set_NearPos(entity[imin].Pos);
+			pl.NearPos = entity[imin].Pos;
 		}
 
 	//ショットからエンティティの直近座標
@@ -177,24 +176,12 @@ void Game::update() {
 		}
 	}
 
-	if (Kill >= 10) {
-		win = true;
-		Score = 0;
-		stopwatch.start();
-
-	if(win)
-
-		changeScene(State::Title);
-
-	}
 	//消去判定
 	entity.remove_if([](const Entity& en) { return en.Del == true; });
-	player.remove_if([](const Player& pl) { return pl.Del == true; });
+	player.remove_if([](const Base& pl) { return pl.Del == true; });
 	en_shot.remove_if([](const Shot& sh) { return sh.Del == true; });
 	pl_shot.remove_if([](const Shot& sh) { return sh.Del == true; });
 	item.remove_if([](const Item& it) { return it.Del == true; });
-
-	//エフェクトの更新
 
 }
 
@@ -243,12 +230,12 @@ void Game::draw() const
 	for (auto& it : item) {
 		it.draw();
 	}
-
-
+	
 	if(win){
 		winner.scaled(0.75).drawAt(400,300);
 	}
 
+	//エフェクトの更新
 	effect.update();
 }
 

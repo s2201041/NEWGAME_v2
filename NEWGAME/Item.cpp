@@ -63,12 +63,10 @@ void Item::draw(int n) const {
 }
 
 void Item::cla(Player* pl) {
-	Print << U"Cla"+Format(this);
 	Del = true;
 }
 
 void Item::use(Player* pl) {
-	Print << pl;
 	switch (Typ) {
 	case 1:
 		Del = true;

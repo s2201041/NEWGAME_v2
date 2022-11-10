@@ -122,3 +122,27 @@ struct BubbleEffect : IEffect
 		return (t < 1.3);
 	}
 };
+
+struct Item_use : IEffect
+{
+	String m_name;
+
+	ColorF m_color;
+
+	Font m_font = Font{ 50, Typeface::Heavy };
+
+	// このコンストラクタ引数が、Effect::add<RingEffect>() の引数になる
+	explicit Item_use(const String name,ColorF color)
+		: m_name(name)
+		, m_color{ color } {}
+
+	bool update(double t) override
+	{
+		// 時間に応じて大きくなる輪
+		m_font(m_name).drawAt({ 0,0 }, m_color);
+
+		// 1 秒未満なら継続
+		return (t < 2.0);
+	}
+};
+

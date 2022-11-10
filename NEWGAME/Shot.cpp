@@ -4,8 +4,10 @@
 #include "Player.h"
 
 
-Shot::Shot( Vec2 pos, Vec2 dir, int vel,int typ ,Rect are):Base(pos, dir , vel,typ, are)
+Shot::Shot( Base* ent, Vec2 pos, Vec2 dir, int vel,int typ ,Rect are):Base(pos, dir , vel,typ, are)
 {
+	entity = ent;
+
 	NearPos = { 300,300 };
 
 	//コライダーの初期化
@@ -28,14 +30,6 @@ Shot::Shot( Vec2 pos, Vec2 dir, int vel,int typ ,Rect are):Base(pos, dir , vel,t
 	}
 
 }
-
-Shot::Shot(Entity* ent, Vec2 pos, Vec2 dir, int vel, int typ, Rect are) :Shot(pos, dir, vel, typ, are) {
-	entity = ent;
-};
-
-Shot::Shot(Player* pla, Vec2 pos, Vec2 dir, int vel, int typ, Rect are):Shot(pos,dir,vel,typ,are){
-	entity = pla;
-};
 
 void Shot::update()
 {
@@ -100,16 +94,7 @@ void Shot::draw() const
 		m_texture.scaled(2.0).drawAt(Pos);
 		break;
 	}
-	//effect.update();
 }
-
-//void Shot::cla(Player* pl) {
-//	if(pl!=entity) {
-//		Del = true;
-//		pl->Hp -= 10;
-//	}
-//
-//}
 
 void Shot::cla(Base* en) {
 	if(en!=entity) {

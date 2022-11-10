@@ -5,8 +5,6 @@
 
 #include "Base.h"
 
-#include "Player.h"
-
 class Item : public Base
 {
 public:
@@ -31,12 +29,10 @@ public:
 
 	RectF Rec;
 
-
 private:
 	double t;
 
 	Player* whose;
-
 };
 
 #endif ITEM_H

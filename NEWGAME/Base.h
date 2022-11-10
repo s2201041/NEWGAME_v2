@@ -10,6 +10,7 @@ class Player;
 class Entity;
 class Item;
 class Shot;
+class Game;
 
 
 class Base {
@@ -19,12 +20,10 @@ public:
 	//コンストラクタ
 	Base(Vec2 pos,int typ,Rect are);
 
-	//コンストラクタ
-	//Base(Array<Base*> base ,Vec2 pos,int typ,Rect are);
-
 	//ショット用コンストラクタのoverroad
 	Base(Vec2 pos, Vec2 dir, int vel, int typ, Rect are);
 
+	Base(Game* gam, Vec2 pos,int typ,Rect are);
 
 	//１フレーム毎の処理
 	virtual void update();
@@ -34,9 +33,6 @@ public:
 
 	//諸突処理関数
 	void cla(Base* en);
-
-	//直近座標の取得関数
-	void Set_NearPos(Vec2 np);
 
 	//コライダー
 	Circle Col;
@@ -79,6 +75,8 @@ protected:
 	//動作範囲
 	Rect Are;
 
+	//ゲームシーンのポインタ
+	Game* game;
 };
 
 #endif

@@ -6,8 +6,6 @@ Entity::Entity(Game* gm, Vec2 pos, int typ, Rect are) : Base(pos, typ, are)
 {
 	game = gm;
 
-	//shot = sh;
-
 	Dir = { 0,1 };
 	Vel = 1100;
 	Hp = 100;

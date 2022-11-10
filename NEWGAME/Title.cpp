@@ -3,10 +3,6 @@
 Title::Title(const InitData& init)
 	: IScene{ init }
 {
-	//Keyconfigの初期化
-	//getData().Keyconfig[0] = { KeyLeft, KeyRight, KeyUp, KeyDown, KeySpace, };
-	//getData().Keyconfig[1] = { KeyLeft, KeyRight, KeyUp, KeyDown, KeySpace, };
-
 }
 
 void Title::update()
@@ -23,5 +19,5 @@ void Title::draw() const
 {
 	TextureAsset(U"haikei").scaled(4.0).draw();
 
-	FontAsset(U"TitleFont")(U"new Game").drawAt(400, 100);
+	FontAsset(U"TitleFont")(U"タイトル").drawAt(400, 100);
 }
