@@ -20,6 +20,7 @@ Player::Player(Game* gm, Vec2 pos,int typ,Rect are) : Base(pos, typ, are)
 
 void Player::update() 
 {
+
 	//キー操作
 		switch (Typ){
 		case 1:
@@ -66,6 +67,7 @@ void Player::update()
 
 void Player::draw() const
 {
+
 	TextureAsset(U"player_1_up").scaled(2.0).drawAt(Pos);
 
 	if (inputRight.pressed())

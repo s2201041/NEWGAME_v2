@@ -45,13 +45,11 @@ protected:
 
 	Texture winner;
 
-	//制限時間
-	double Time_Left;
-
 	//クリア判定
 	bool win;
 
-	double Time,Time_2;
+	//制限時間
+	double Time_Left;
 
 	const Font hp_font{ FontMethod::MSDF, 20, Typeface::Bold };
 

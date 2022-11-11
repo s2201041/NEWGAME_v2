@@ -4,7 +4,6 @@
 Game::Game(const InitData& init)
 	: IScene{ init }
 {
-	winner = Texture{ U"texture/winner.png" };
 
 	Kill = 0;
 
@@ -12,52 +11,12 @@ Game::Game(const InitData& init)
 
 	win = false;
 
-	//経過時間の初期化
-	Time = 0;
-
-	Time_2 = 0;
-
-	Time_Left = 100;
-
-	//動作範囲
-	Are = Rect{ 0, 0, 600, 600 };
-
-
 	player << Player{ this, { 0 , 0 } ,1 ,Are};
 
+	Are = { 600,600 };
 }
 
 void Game::update() {
-
-	//クリア処理
-	if (Kill >= 10) {
-		win = true;
-		Score = 0;
-		stopwatch.start();
-	}
-
-	if (win)
-		changeScene(State::Title);
-
-	//経過時間
-	Time += Scene::DeltaTime();
-	Time_2 += Scene::DeltaTime();
-
-	Time_Left -= Scene::DeltaTime();
-
-	if (Time_Left <= 0) win = true;
-
-	//敵の出現
-	if (Time >= 5) {
-		entity << Entity{ this, { 600 , 50 },Random(1,2) ,Are };
-		Time = 0;
-	}
-	//アイテムの出現
-	if (Time_2 >= 5) {
-
-		item << Item{ { Random(0,600) , Random(0,600)},Random(1,2) ,Are };
-		Time_2 = 0;
-	}
 
 	//敵の動作処理
 	for (auto& en : entity) {

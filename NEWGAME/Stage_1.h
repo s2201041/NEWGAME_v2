@@ -11,5 +11,8 @@ public:
 	// 描画関数（オプション）
 	void sub_draw() const override;
 
+private:
+	double Time,Time_2;
+	
 };
 
