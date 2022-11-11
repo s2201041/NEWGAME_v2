@@ -12,7 +12,6 @@ class Item;
 class Shot;
 class Game;
 
-
 class Base {
 
 public:

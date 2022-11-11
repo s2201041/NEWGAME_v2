@@ -24,13 +24,6 @@ Entity::Entity(Game* gm, Vec2 pos, int typ, Rect are) : Base(pos, typ, are)
 
 		break;
 
-	case 100:
-		Nam = U"加速";
-
-		break;
-
-
-
 	}
 
 
@@ -97,10 +90,6 @@ void Entity::draw() const
 
 	case 2:
 		TextureAsset(U"enemy_2").scaled(2.0).drawAt(Pos);
-		break;
-
-	case 100:
-		TextureAsset(U"item_1").scaled(2.0).drawAt(Pos);
 		break;
 
 	}

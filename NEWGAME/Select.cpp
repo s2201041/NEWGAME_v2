@@ -12,7 +12,7 @@ void Select::update()
 	if (SimpleGUI::Button(U"Stage1", Vec2{ 350, 250 }))
 	{
 		// ゲームシーンに遷移
-		changeScene(State::Game);
+		changeScene(State::Stage_1);
 
 		//ステージ1を選択
 		getData().stage = 1;

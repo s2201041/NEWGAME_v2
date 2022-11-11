@@ -3,7 +3,7 @@
 
 Player::Player(Game* gm, Vec2 pos,int typ,Rect are) : Base(pos, typ, are)
 {
-	Are = Rect{(0,150),600,550};
+	//Are = Rect{(0,150),600,550};
 
 	game = gm;
 

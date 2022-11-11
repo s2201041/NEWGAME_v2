@@ -22,7 +22,6 @@ Game::Game(const InitData& init)
 	//動作範囲
 	Are = Rect{ 0, 0, 600, 600 };
 
-	entity << Entity{ this, { 100 , 100 },2 ,Are};
 
 	player << Player{ this, { 0 , 0 } ,1 ,Are};
 
@@ -103,12 +102,12 @@ void Game::update() {
 				//敵ショットと自機の衝突処理
 				if (pl.Col.intersects(sh.Col)) {
 					pl.cla(&sh);
-					//sh.cla(&pl);
+					sh.cla(&pl);
 				}
 			}
 			//敵と自機の衝突判定
 			if (en.Col.intersects(pl.Col)) {
-				//en.cla(&pl);
+				en.cla(&pl);
 				pl.cla(&en);
 			}
 		}
@@ -116,7 +115,7 @@ void Game::update() {
 		for (auto& it : item) {
 			if (it.Col.intersects(pl.Col)) {
 				pl.cla(&it);
-				//it.cla(&pl);
+				it.cla(&pl);
 			}
 		}
 	}
@@ -178,11 +177,13 @@ void Game::update() {
 
 	//消去判定
 	entity.remove_if([](const Entity& en) { return en.Del == true; });
-	player.remove_if([](const Base& pl) { return pl.Del == true; });
+	player.remove_if([](const Player& pl) { return pl.Del == true; });
 	en_shot.remove_if([](const Shot& sh) { return sh.Del == true; });
 	pl_shot.remove_if([](const Shot& sh) { return sh.Del == true; });
 	item.remove_if([](const Item& it) { return it.Del == true; });
 
+	//派生シーンの更新処理
+	sub_update();
 }
 
 void Game::draw() const
@@ -237,5 +238,8 @@ void Game::draw() const
 
 	//エフェクトの更新
 	effect.update();
+
+	//派生シーンの描画処理
+	sub_draw();
 }
 

@@ -11,14 +11,18 @@ public:
 	// コンストラクタ（必ず実装）
 	Game(const InitData& init);
 
-	// 更新関数（オプションb）
+	// 基底シーンの更新関数
 	void update() override;
 
-	// 描画関数（オプション）
+	virtual void sub_update() = 0;
+
+	// 基底シーンの描画関数
 	void draw() const override;
 
+	virtual void sub_draw() const = 0;
+
 	//プレイヤー格納配列
-	Array<Base> player;
+	Array<Player> player;
 
 	//エンティティ格納配列
 	Array<Entity> entity;
@@ -37,7 +41,7 @@ public:
 
 	Effect effect;
 
-private:
+protected:
 
 	Texture winner;
 

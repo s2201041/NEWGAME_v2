@@ -7,6 +7,7 @@ enum class State
 	Title,
 	Select,
 	Game,
+	Stage_1	
 };
 
 //シーン間で共有するデータ

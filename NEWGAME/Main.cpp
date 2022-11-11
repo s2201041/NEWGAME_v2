@@ -2,6 +2,7 @@
 # include "Title.h"
 # include "Select.h"
 # include "Game.h"
+# include "Stage_1.h"
 
 //開発ベース ver0.0
 
@@ -39,7 +40,7 @@ void Main()
 	App manager;
 	manager.add<Title>(State::Title);
 	manager.add<Select>(State::Select);
-	manager.add<Game>(State::Game);
+	manager.add<Stage_1>(State::Stage_1);
 
 
 	// ゲームシーンから開始したい場合はこのコメントを外す
