@@ -13,10 +13,14 @@ Game::Game(const InitData& init)
 
 	player << Player{ this, { 0 , 0 } ,1 ,Are};
 
-	Are = { 600,600 };
+	//動作範囲
+	Are = Rect{ 0, 0, 600, 600 };
 }
 
 void Game::update() {
+
+	//制限時間の更新
+	Time_Left -= Scene::DeltaTime();
 
 	//敵の動作処理
 	for (auto& en : entity) {
@@ -150,17 +154,7 @@ void Game::draw() const
 	//背景の描画
 	TextureAsset(U"haikei").scaled(2.5).draw();
 
-	//システムウィンドウの描画
-	Rect{ 600, 0, 200, 600 }.draw(Arg::top = Palette::White, Arg::bottom =Palette::Silver).drawFrame(5, 0, Palette::Black);
-	Line{ 605, 80, 800, 80 }.draw(3, Palette::Black);
-	Line{ 605, 160, 800, 160 }.draw(3, Palette::Black);
-	Line{ 605, 500, 800, 500 }.draw(3, Palette::Black);
-	font(U"ステージ"+stage).draw(620, 13, Palette::Black);
-	font(U"残り時間"+Format(Time_Left)).draw(620, 93, Palette::Black);
-	font(U"スコア:"+Format(Score)).draw(620, 160, Palette::Black);
-	font(U"キル数："+Format(Kill)).draw(620, 190, Palette::Black);
-
-	//プレイヤーの描画
+		//プレイヤーの描画
 	for (auto& pl : player) {
 		pl.draw();
 		RectF{ 610 , 550, 180, 20 }.draw(Palette::Orange);;
@@ -194,6 +188,16 @@ void Game::draw() const
 	if(win){
 		winner.scaled(0.75).drawAt(400,300);
 	}
+
+	//システムウィンドウの描画
+	Rect{ 600, 0, 200, 600 }.draw(Arg::top = Palette::White, Arg::bottom =Palette::Silver).drawFrame(5, 0, Palette::Black);
+	Line{ 605, 80, 800, 80 }.draw(3, Palette::Black);
+	Line{ 605, 160, 800, 160 }.draw(3, Palette::Black);
+	Line{ 605, 500, 800, 500 }.draw(3, Palette::Black);
+	font(U"ステージ"+stage).draw(620, 13, Palette::Black);
+	font(U"残り時間"+Format(Time_Left)).draw(620, 93, Palette::Black);
+	font(U"スコア:"+Format(Score)).draw(620, 160, Palette::Black);
+	font(U"キル数："+Format(Kill)).draw(620, 190, Palette::Black);
 
 	//エフェクトの更新
 	effect.update();

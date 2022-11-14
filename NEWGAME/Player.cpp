@@ -3,7 +3,7 @@
 
 Player::Player(Game* gm, Vec2 pos,int typ,Rect are) : Base(pos, typ, are)
 {
-	//Are = Rect{(0,150),600,550};
+	Are = Rect{0,150,600,550};
 
 	game = gm;
 
@@ -43,7 +43,9 @@ void Player::update()
 	const Vec2 move = Vec2{ (inputRight.pressed() - inputLeft.pressed()), (inputDown.pressed() - inputUp.pressed()) }
 	.setLength(Scene::DeltaTime() * Vel * (KeyShift.pressed() ? 0.5 : 1.0));
 
-	Pos.moveBy(move).clamp(Scene::Rect()).clamp(Are);
+	Pos.moveBy(move);
+
+	Pos.clamp(Are);
 
 	if (inputShot.down()) {
 		if (KeyShift.pressed())
@@ -81,7 +83,7 @@ void Player::draw() const
 
 	//コライダー確認用
 	Col.draw(ColorF{ 0.0, 0.5, 1.0, 0.8 });
-	
+
 	for (int i = 0; i < item.size(); i++)
 		item[i].draw(i);
 

@@ -29,7 +29,6 @@ void Stage_1::sub_update() {
 	Time += Scene::DeltaTime();
 	Time_2 += Scene::DeltaTime();
 
-	Time_Left -= Scene::DeltaTime();
 
 	if (Time_Left <= 0) win = true;
 
@@ -50,5 +49,4 @@ void Stage_1::sub_update() {
 }
 
 void Stage_1::sub_draw() const{
-
 }
