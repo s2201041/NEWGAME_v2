@@ -6,6 +6,7 @@
 
 #include "Base.h"
 
+class Game;
 class Entity;
 class Player;
 
@@ -14,13 +15,13 @@ class Shot : public Base {
 public:
 
 	//コンストラクタ
-	Shot( Base* ent,Vec2 pos, Vec2 dir, int vel,int typ ,Rect are);
+	Shot(Game* gm, Base* ent, Vec2 pos, Vec2 dir, int vel, int typ, Rect are);
 
 	//１フレーム毎の処理
-	void update();
+	void sub_update() override;
 
 	//描画
-	void draw() const;
+	void sub_draw() const override;
 
 	//衝突関数
 	void cla(Base* en);

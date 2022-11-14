@@ -1,6 +1,7 @@
 ﻿#include "Item.h"
+#include "Game.h"
 
-Item::Item(Vec2 pos, int typ, Rect are):Base(pos,typ,are)
+Item::Item(Game* gm, Vec2 pos, int typ, Rect are):Base(gm,pos,typ,are)
 {
 	t = 0;
 
@@ -14,7 +15,7 @@ Item::Item(Vec2 pos, int typ, Rect are):Base(pos,typ,are)
 	}
 }
 
-void Item::update() {
+void Item::sub_update() {
 
 	switch (Typ) {
 	case 1:
@@ -28,12 +29,12 @@ void Item::update() {
 	}
 	Pos.clamp(Are);
 
-	Col = Circle{ Pos,size };
+	Col = Circle{ Pos,8 };
 
 	t += Scene::DeltaTime();
 }
 
-void Item::update(int n) {
+void Item::has_update(int n) {
 
 	Pos = {630 + n % 3 * 50,350 + n / 3 * 50};
 	
@@ -45,7 +46,7 @@ void Item::update(int n) {
 	}
 }
 
-void Item::draw() const
+void Item::sub_draw() const
 {
 	switch (Typ) {
 	case 1:
@@ -57,7 +58,7 @@ void Item::draw() const
 	}
 }
 
-void Item::draw(int n) const {
+void Item::has_draw(int n) const {
 		TextureAsset(U"item_1").scaled(2.0).drawAt(Pos);
 		Rec.draw();
 }

@@ -17,10 +17,10 @@ public:
 	Entity(Game* gm,Vec2 pos,int typ,Rect are);
 
 	//１フレーム毎の処理
-	void update();
+	void sub_update() override;
 
 	//描画
-	void draw() const ;
+	void sub_draw() const override;
 
 	//諸突処理関数
 	void cla(Shot* en);

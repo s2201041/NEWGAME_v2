@@ -16,19 +16,22 @@ class Base {
 
 public:
 
-	//コンストラクタ
-	Base(Vec2 pos,int typ,Rect are);
 
 	//ショット用コンストラクタのoverroad
-	Base(Vec2 pos, Vec2 dir, int vel, int typ, Rect are);
+	Base(Game* gam, Base* ent, Vec2 pos, Vec2 dir, int vel, int typ, Rect are);
 
+	//
 	Base(Game* gam, Vec2 pos,int typ,Rect are);
 
 	//１フレーム毎の処理
-	virtual void update();
+	void update();
 
+	virtual void sub_update() = 0;
+	
 	//描画
-	virtual void draw() const ;
+	void draw() const ;
+
+	virtual void sub_draw() const = 0;
 
 	//諸突処理関数
 	void cla(Base* en);

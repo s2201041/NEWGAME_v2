@@ -2,9 +2,9 @@
 
 #include "Entity.h"
 #include "Player.h"
+#include "Game.h"
 
-
-Shot::Shot( Base* ent, Vec2 pos, Vec2 dir, int vel,int typ ,Rect are):Base(pos, dir , vel,typ, are)
+Shot::Shot(Game* gm, Base* ent, Vec2 pos, Vec2 dir, int vel,int typ ,Rect are):Base(gm, ent, pos, dir , vel,typ, are)
 {
 	entity = ent;
 
@@ -31,7 +31,7 @@ Shot::Shot( Base* ent, Vec2 pos, Vec2 dir, int vel,int typ ,Rect are):Base(pos, 
 
 }
 
-void Shot::update()
+void Shot::sub_update()
 {
 	switch (Typ) {
 	case 1:
@@ -76,7 +76,7 @@ void Shot::update()
 
 }
 
-void Shot::draw() const
+void Shot::sub_draw() const
 {
 
 	switch (Typ) {

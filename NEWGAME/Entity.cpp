@@ -1,7 +1,7 @@
 ﻿#include "Entity.h"
 #include "Game.h"
 
-Entity::Entity(Game* gm, Vec2 pos, int typ, Rect are) : Base(pos, typ, are)
+Entity::Entity(Game* gm, Vec2 pos, int typ, Rect are) : Base(gm, pos, typ, are)
 
 {
 	game = gm;
@@ -29,7 +29,7 @@ Entity::Entity(Game* gm, Vec2 pos, int typ, Rect are) : Base(pos, typ, are)
 
 }
 
-void Entity::update()
+void Entity::sub_update()
 {
 
 	//タイプ別の動作処理の分岐
@@ -39,7 +39,7 @@ void Entity::update()
 		Pos = Pos.lerp(GoPos, 0.1);
 		if (Timer > 0.5) {
 			//*shot << Shot{ Pos ,{0,1} ,900 ,1 ,Are };
-			game->en_shot << Shot{ this,Pos ,{0,1} ,900 ,1 ,Are };
+			game->en_shot << Shot{game, this,Pos ,{0,1} ,900 ,1 ,Are };
 			GoPos = { NearPos.x,Random(20,280) };
 			Timer = 0;
 		}
@@ -54,7 +54,7 @@ void Entity::update()
 
 		if (Timer > 0.5) {
 			//*shot << Shot{ Pos ,{0,1} ,900 ,2 ,Are };
-			game->en_shot << Shot{ this,Pos ,{0,1} ,900 ,2 ,Are };
+			game->en_shot << Shot{game, this,Pos ,{0,1} ,900 ,2 ,Are };
 			GoPos = { NearPos.x,Random(20,280) };
 			Timer = 0;
 		}
@@ -80,7 +80,7 @@ void Entity::update()
 
 }
 
-void Entity::draw() const
+void Entity::sub_draw() const
 {
 
 	switch (Typ) {

@@ -1,7 +1,7 @@
 ﻿#include "Player.h"
 #include "Game.h"
 
-Player::Player(Game* gm, Vec2 pos,int typ,Rect are) : Base(pos, typ, are)
+Player::Player(Game* gm, Vec2 pos,int typ,Rect are) : Base(gm, pos, typ, are)
 {
 	Are = Rect{0,150,600,550};
 
@@ -18,7 +18,7 @@ Player::Player(Game* gm, Vec2 pos,int typ,Rect are) : Base(pos, typ, are)
 
 }
 
-void Player::update() 
+void Player::sub_update() 
 {
 
 	//キー操作
@@ -49,9 +49,9 @@ void Player::update()
 
 	if (inputShot.down()) {
 		if (KeyShift.pressed())
-			game->pl_shot << Shot{this, Pos, { 0, -1 }, 1000, 2, game->Are};
+			game->pl_shot << Shot{game, this, Pos, { 0, -1 }, 1000, 2, game->Are};
 		else
-			game->pl_shot << Shot{this, Pos ,{ 0, -1 } ,500 ,1 , game->Are};
+			game->pl_shot << Shot{game, this, Pos ,{ 0, -1 } ,500 ,1 , game->Are};
 	}
 
 	//Hp0以下の処理
@@ -62,12 +62,12 @@ void Player::update()
 	Col = Circle{ Pos, 30 };
 
 	for (int i = 0; i < item.size(); i++)
-		item[i].update(i);
+		item[i].has_update(i);
 
 	item.remove_if([](const Item& it) { return it.Del == true; });
 }
 
-void Player::draw() const
+void Player::sub_draw() const
 {
 
 	TextureAsset(U"player_1_up").scaled(2.0).drawAt(Pos);
@@ -85,7 +85,7 @@ void Player::draw() const
 	Col.draw(ColorF{ 0.0, 0.5, 1.0, 0.8 });
 
 	for (int i = 0; i < item.size(); i++)
-		item[i].draw(i);
+		item[i].has_draw(i);
 
 	effect.update();
 
