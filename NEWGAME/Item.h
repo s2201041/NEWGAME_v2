@@ -4,6 +4,7 @@
 #define ITEM_H
 
 #include "Base.h"
+#include "Player.h"
 
 class Game;
 
@@ -12,6 +13,8 @@ class Item : public Base
 public:
 	//コンストラクタ
 	Item(Game* gm, Vec2 pos, int typ, Rect are);
+
+	Item(Player* ent,int typ);
 
 	//１フレーム毎の処理
 	void sub_update() override;

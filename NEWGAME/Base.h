@@ -16,6 +16,7 @@ class Base {
 
 public:
 
+	Base();
 
 	//ショット用コンストラクタのoverroad
 	Base(Game* gam, Base* ent, Vec2 pos, Vec2 dir, int vel, int typ, Rect are);
@@ -60,13 +61,14 @@ public:
 	//名前の定義
 	String Nam;
 
+	//速度の定義
+	int Vel;
+
 protected:
 
 	//座標と向きの定義
 	Vec2 Dir, GoPos;
 
-	//速度の定義
-	int Vel;
 
 	//コライダーサイズの定義
 	double size;

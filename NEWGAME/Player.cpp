@@ -16,11 +16,6 @@ Player::Player(Game* gm, Vec2 pos,int typ,Rect are) : Base(gm, pos, typ, are)
 	//コライダーの初期化
 	Col = Circle{ Pos, 30 };
 
-}
-
-void Player::sub_update() 
-{
-
 	//キー操作
 		switch (Typ){
 		case 1:
@@ -39,7 +34,10 @@ void Player::sub_update()
 			break;
 		}
 
+}
 
+void Player::sub_update() 
+{
 	const Vec2 move = Vec2{ (inputRight.pressed() - inputLeft.pressed()), (inputDown.pressed() - inputUp.pressed()) }
 	.setLength(Scene::DeltaTime() * Vel * (KeyShift.pressed() ? 0.5 : 1.0));
 
@@ -92,7 +90,7 @@ void Player::sub_draw() const
 }
 
 void Player::cla(Item* it) {
-	item << *it;
+	item << Item{this,it->Typ};
 }
 
 void Player::cla(Base* en) {

@@ -15,6 +15,11 @@ Item::Item(Game* gm, Vec2 pos, int typ, Rect are):Base(gm,pos,typ,are)
 	}
 }
 
+Item::Item(Player* ent, int typ) {
+	Typ = typ;
+	whose = ent;
+};
+
 void Item::sub_update() {
 
 	switch (Typ) {
@@ -36,11 +41,11 @@ void Item::sub_update() {
 
 void Item::has_update(int n) {
 
-	Pos = {630 + n % 3 * 50,350 + n / 3 * 50};
+	Pos = {650 + n % 3 * 50,350 + n / 3 * 50};
 	
 	Rec = RectF{ Arg::center(Pos), 64, 64};
 
-	if (Rec.leftClicked()) {
+	if (Rec.leftClicked()){
 		use(whose);
 		Del = true;
 	}
@@ -53,30 +58,38 @@ void Item::sub_draw() const
 		TextureAsset(U"item_1").scaled(2.0).drawAt(Pos);
 		break;
 	case 2:
-		TextureAsset(U"item_1").scaled(2.0).drawAt(Pos);
+		TextureAsset(U"item_2").scaled(2.0).drawAt(Pos);
 		break;
 	}
 }
 
 void Item::has_draw(int n) const {
+	
+	switch (Typ) {
+	case 1:
 		TextureAsset(U"item_1").scaled(2.0).drawAt(Pos);
-		Rec.draw();
+		break;
+	case 2:
+		TextureAsset(U"item_2").scaled(2.0).drawAt(Pos);
+		break;
+	}
 }
 
 void Item::cla(Player* pl) {
 	Del = true;
+	whose = pl;
 }
 
 void Item::use(Player* pl) {
 	switch (Typ) {
 	case 1:
 		Del = true;
-		//player->effect.add<Speed_Up>(&Vel,10);
+		whose->effect.add<Speed_Up>(&whose->Vel,10);
 		return;
 	case 2:
 		Del = true;
 		//game->effect.add<Speed_Up>(&Vel, 10);
-		//player->Hp += 10;
+		whose->Hp += 10;
 		return;
 	}
 }
