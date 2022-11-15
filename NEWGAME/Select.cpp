@@ -49,7 +49,7 @@ void Select::update()
 
 void Select::draw() const
 {
-	//TextureAsset(U"haikei").scaled(4.0).draw();
+	TextureAsset(U"Select").draw();
 
-	FontAsset(U"TitleFont")(U"Stage Select").drawAt(400, 100);
+	//FontAsset(U"TitleFont")(U"Stage Select").drawAt(400, 100);
 }

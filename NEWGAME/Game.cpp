@@ -213,7 +213,7 @@ void Game::draw() const
 	}else {
 		font32(Format(Score)).draw(725, 160, Palette::Black);
 	}
-	font32(U"キル数："+Format(Kill)).draw(616, 190, Palette::Black);
+	font32(U"キル数："+Format(Kill)).draw(616, 195, Palette::Black);
 	font32(U"ステージ"+stage).draw(618, 13, Palette::Black);
 	font20(U"残り体力").draw(680, 513, Palette::Black);
 

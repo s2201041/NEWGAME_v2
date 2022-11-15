@@ -14,8 +14,9 @@ void Main()
 
 	//アセットの定義.
 	FontAsset::Register(U"TitleFont", 60, Typeface::Heavy, FontStyle::Bitmap);
+	TextureAsset::Register(U"Title", U"example/Title.jpg", TextureDesc::Mipped);
+	TextureAsset::Register(U"Select", U"example/Select.jpg", TextureDesc::Mipped);
 	TextureAsset::Register(U"haikei", U"texture/haikei.png", TextureDesc::Mipped);
-
 	//Shotアセット
 	TextureAsset::Register(U"shot_1", U"texture/shot/shot_1.png" , TextureDesc::Mipped);
 	TextureAsset::Register(U"shot_2", U"texture/shot/shot_2.png" , TextureDesc::Mipped);

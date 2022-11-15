@@ -21,7 +21,7 @@ void Title::update()
 
 void Title::draw() const
 {
-	TextureAsset(U"haikei").scaled(4.0).draw();
+	TextureAsset(U"Title").draw();
 
-	FontAsset(U"TitleFont")(U"new Game").drawAt(400, 100);
+	//FontAsset(U"TitleFont")(U"new Game").drawAt(400, 100);
 }
