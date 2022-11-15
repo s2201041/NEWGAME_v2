@@ -51,6 +51,10 @@ protected:
 	//制限時間
 	double Time_Left;
 
+	// 音声ファイルを読み込んで Audio を作成（ストリーミング再生をリクエスト）
+	const Audio audio{ Audio::Stream, U"sound/bgm_1.mp3" };
+	
+	
 	const Font hp_font{ FontMethod::MSDF, 20, Typeface::Bold };
 
 	Stopwatch stopwatch{ StartImmediately::Yes };
