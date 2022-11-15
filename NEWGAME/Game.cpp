@@ -66,6 +66,8 @@ void Game::update() {
 				if (pl.Col.intersects(sh.Col)) {
 					pl.cla(&sh);
 					sh.cla(&pl);
+					sh.cla(&pl);
+;					hit = 0;
 				}
 			}
 			//敵と自機の衝突判定
@@ -82,6 +84,9 @@ void Game::update() {
 			}
 		}
 	}
+
+	}
+	hit+= Scene::DeltaTime();
 
 	//敵から最も近い自機の座標
 	if (player.size() != 0)
@@ -159,10 +164,21 @@ void Game::draw() const
 	Line{ 605, 80, 800, 80 }.draw(3, Palette::Black);
 	Line{ 605, 160, 800, 160 }.draw(3, Palette::Black);
 	Line{ 605, 500, 800, 500 }.draw(3, Palette::Black);
-	font(U"ステージ"+stage).draw(620, 13, Palette::Black);
-	font(U"残り時間"+Format(Time_Left)).draw(620, 93, Palette::Black);
-	font(U"スコア:"+Format(Score)).draw(620, 160, Palette::Black);
-	font(U"キル数："+Format(Kill)).draw(620, 190, Palette::Black);
+	font32(U"残り時間"+Format(Time_Left)).draw(615, 93, Palette::Black);
+    font32(U"スコア:").draw(616, 160, Palette::Black);
+	if (Score > 9999) {
+		font20(Format(Score)).draw(730, 176, Palette::Black);
+	}else {
+		font32(Format(Score)).draw(725, 160, Palette::Black);
+	}
+	font32(U"キル数："+Format(Kill)).draw(616, 195, Palette::Black);
+	font32(U"ステージ"+stage).draw(618, 13, Palette::Black);
+	font20(U"残り体力").draw(680, 513, Palette::Black);
+
+	//被弾時に画面が赤くなる
+	if (0.1 > hit) {
+		Rect{ 0, 0, 800, 600 }.draw(HSV(Palette::Red, 0.3));
+	}
 
 		//プレイヤーの描画
 	for (auto& pl : player) {
