@@ -37,7 +37,7 @@ public:
 	//動作範囲
 	Rect Are;
 
-	int Score,Kill;
+	int Score, Kill;
 
 	Effect effect;
 
@@ -45,17 +45,16 @@ protected:
 
 	Texture winner;
 
-
 	//クリア判定
 	bool win;
 
-	double Time_Left = 0;
+	//制限時間
+	double Time_Left;
 
 	const Font hp_font{ FontMethod::MSDF, 20, Typeface::Bold };
 
-	Stopwatch stopwatch{ StartImmediately::Yes};
+	Stopwatch stopwatch{ StartImmediately::Yes };
 
 	const Font font{ 32, U"example/font/DotGothic16/DotGothic16-Regular.ttf", FontStyle::Bitmap };
 	const String stage = Format(getData().stage);
 };
-

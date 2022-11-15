@@ -26,8 +26,8 @@ struct Speed_Up : IEffect
 	int m_time;
 
 	int* m_speed;
-	
-	explicit Speed_Up(int* s,int time)
+
+	explicit Speed_Up(int* s, int time)
 		: m_time{ time }
 		, m_speed{ s }
 	{
@@ -38,14 +38,14 @@ struct Speed_Up : IEffect
 	~Speed_Up() {
 		*m_speed -= 200;
 	}
-	
+
 	bool update(double t) override
 	{
 
-		//FontAsset(U"TitleFont")(U"加速:"+Format(m_time-t)).drawAt(400, 100);
+		FontAsset(U"TitleFont")(U"加速:" + Format(m_time - t)).drawAt(400, 100);
 
 		// 1 秒未満なら継続
-		return (t < m_time );
+		return (t < m_time);
 
 	}
 };
@@ -56,11 +56,12 @@ struct ScoreEffect : IEffect
 
 	int32 m_score;
 
-	Font m_font = Font{ 50, Typeface::Heavy };
+	Font m_font;
 
-	ScoreEffect(const Vec2& start, int32 score)
+	ScoreEffect(const Vec2& start, int32 score, const Font& font)
 		: m_start{ start }
-		, m_score{ score } {}
+		, m_score{ score }
+		, m_font{ font } {}
 
 	bool update(double t) override
 	{

@@ -13,4 +13,7 @@ public:
 
 	// 描画関数（オプション）
 	void draw() const override;
+
+	//const Texture textureWindmill{ U"example/Title.jpg" };
+
 };
