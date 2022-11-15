@@ -42,7 +42,7 @@ void Player::update()
 
 
 	const Vec2 move = Vec2{ (inputRight.pressed() - inputLeft.pressed()), (inputDown.pressed() - inputUp.pressed()) }
-	.setLength(Scene::DeltaTime() * 550 * (KeyShift.pressed() ? 0.5 : 1.0));
+	.setLength(Scene::DeltaTime() * 750 * (KeyShift.pressed() ? 0.5 : 1.0));
 
 	Pos.moveBy(move).clamp(Scene::Rect()).clamp(Are);
 
