@@ -11,7 +11,7 @@ Game::Game(const InitData& init)
 
 	win = false;
 
-	player << Player{ this, { 300 , 300 } ,1 ,Are};
+	player << Player{ this, { 300 , 300 } ,1 ,Are };
 
 	//動作範囲
 	Are = Rect{ 0, 0, 600, 600 };
@@ -66,8 +66,6 @@ void Game::update() {
 				if (pl.Col.intersects(sh.Col)) {
 					pl.cla(&sh);
 					sh.cla(&pl);
-					sh.cla(&pl);
-;					hit = 0;
 				}
 			}
 			//敵と自機の衝突判定
@@ -84,9 +82,6 @@ void Game::update() {
 			}
 		}
 	}
-
-	}
-	hit+= Scene::DeltaTime();
 
 	//敵から最も近い自機の座標
 	if (player.size() != 0)
@@ -160,40 +155,29 @@ void Game::draw() const
 	TextureAsset(U"haikei").scaled(2.5).draw();
 
 	//システムウィンドウの描画
-	Rect{ 600, 0, 200, 600 }.draw(Arg::top = Palette::White, Arg::bottom =Palette::Silver).drawFrame(5, 0, Palette::Black);
+	Rect{ 600, 0, 200, 600 }.draw(Arg::top = Palette::White, Arg::bottom = Palette::Silver).drawFrame(5, 0, Palette::Black);
 	Line{ 605, 80, 800, 80 }.draw(3, Palette::Black);
 	Line{ 605, 160, 800, 160 }.draw(3, Palette::Black);
 	Line{ 605, 500, 800, 500 }.draw(3, Palette::Black);
-	font32(U"残り時間"+Format(Time_Left)).draw(615, 93, Palette::Black);
-    font32(U"スコア:").draw(616, 160, Palette::Black);
-	if (Score > 9999) {
-		font20(Format(Score)).draw(730, 176, Palette::Black);
-	}else {
-		font32(Format(Score)).draw(725, 160, Palette::Black);
-	}
-	font32(U"キル数："+Format(Kill)).draw(616, 195, Palette::Black);
-	font32(U"ステージ"+stage).draw(618, 13, Palette::Black);
-	font20(U"残り体力").draw(680, 513, Palette::Black);
+	font(U"ステージ" + stage).draw(620, 13, Palette::Black);
+	font(U"残り時間" + Format(Time_Left)).draw(620, 93, Palette::Black);
+	font(U"スコア:" + Format(Score)).draw(620, 160, Palette::Black);
+	font(U"キル数：" + Format(Kill)).draw(620, 190, Palette::Black);
 
-	//被弾時に画面が赤くなる
-	if (0.1 > hit) {
-		Rect{ 0, 0, 800, 600 }.draw(HSV(Palette::Red, 0.3));
-	}
-
-		//プレイヤーの描画
+	//プレイヤーの描画
 	for (auto& pl : player) {
 		pl.draw();
 		RectF{ 610 , 550, 180, 20 }.draw(Palette::Orange);;
 		RectF{ 610 , 550, pl.Hp * 180 / pl.Max_Hp , 20 }.draw(Palette::Red);;
 	}
-	
+
 	//敵の描画
 	for (int i = 0; i < entity.size(); i++) {
 		entity[i].draw();
 		RectF{ 25 , 25 + i * 30 , 550, 15 }.draw(Palette::Orange);;
 		RectF{ 25 , 25 + i * 30 , entity[i].Hp * 550 / entity[i].Max_Hp, 15 }.draw(Palette::Red);;
-		hp_font(entity[i].Hp).drawAt( 300, 30 + i * 30);
-		hp_font(entity[i].Nam).drawAt( 300, 45 + i * 30);
+		hp_font(entity[i].Hp).drawAt(300, 30 + i * 30);
+		hp_font(entity[i].Nam).drawAt(300, 45 + i * 30);
 	}
 
 	//敵ショットの描画
@@ -210,11 +194,10 @@ void Game::draw() const
 	for (auto& it : item) {
 		it.draw();
 	}
-	
+
 	//エフェクトの更新
 	effect.update();
 
 	//派生シーンの描画処理
 	sub_draw();
 }
-
