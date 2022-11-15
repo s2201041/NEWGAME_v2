@@ -45,7 +45,7 @@ void Item::has_update(int n) {
 	
 	Rec = RectF{ Arg::center(Pos), 64, 64};
 
-	if (Rec.leftClicked()){
+	if (Rec.leftClicked()||(KeyZ.down()&&n == 0)){
 		use(whose);
 		Del = true;
 	}

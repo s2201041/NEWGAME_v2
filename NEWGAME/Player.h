@@ -42,6 +42,9 @@ public:
 	Effect effect;
 
 	Game* game;
+
+	Vec2 N;
+	double M, O;
 };
 
 #endif

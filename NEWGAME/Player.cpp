@@ -1,7 +1,7 @@
 ﻿#include "Player.h"
 #include "Game.h"
 
-Player::Player(Game* gm, Vec2 pos,int typ,Rect are) : Base(gm, pos, typ, are)
+Player::Player(Game* gm, Vec2 n,int typ,Rect are) : Base(gm, Pos, typ, are)
 {
 	Are = Rect{0,150,600,550};
 
@@ -9,7 +9,8 @@ Player::Player(Game* gm, Vec2 pos,int typ,Rect are) : Base(gm, pos, typ, are)
 
 	Dir = { 0,0 };
 	Hp = 100;
-	Vel = 550;
+	Max_Hp = 100;
+	Vel = 350;
 
 	NearPos = { 0,0 };
 
@@ -45,11 +46,21 @@ void Player::sub_update()
 
 	Pos.clamp(Are);
 
+	N = Cursor::Pos() - Pos;
+
+	M = sqrt(N.x * N.x + N.y * N.y);
+
+	O = 1 / M;
+
+	Dir = { N.x * O,N.y * O };
+
+	Print << Dir;
+
 	if (inputShot.down()) {
 		if (KeyShift.pressed())
-			game->pl_shot << Shot{game, this, Pos, { 0, -1 }, 1000, 2, game->Are};
+			game->pl_shot << Shot{game, this, Pos,{0,-1}, 1000, 4, game->Are};
 		else
-			game->pl_shot << Shot{game, this, Pos ,{ 0, -1 } ,500 ,1 , game->Are};
+			game->pl_shot << Shot{game, this, Pos ,Dir,500 ,1 , game->Are};
 	}
 
 	//Hp0以下の処理

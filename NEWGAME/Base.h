@@ -19,10 +19,10 @@ public:
 	Base();
 
 	//ショット用コンストラクタのoverroad
-	Base(Game* gam, Base* ent, Vec2 pos, Vec2 dir, int vel, int typ, Rect are);
+	Base(Game* gm, Base* ent, Vec2 pos, Vec2 dir, int vel, int typ, Rect are);
 
 	//
-	Base(Game* gam, Vec2 pos,int typ,Rect are);
+	Base(Game* gm, Vec2 pos,int typ,Rect are);
 
 	//１フレーム毎の処理
 	void update();
@@ -58,6 +58,9 @@ public:
 	//HPの定義
 	int Hp;
 
+	//HPの最大値の定義
+	int Max_Hp;
+
 	//名前の定義
 	String Nam;
 
@@ -68,7 +71,6 @@ protected:
 
 	//座標と向きの定義
 	Vec2 Dir, GoPos;
-
 
 	//コライダーサイズの定義
 	double size;

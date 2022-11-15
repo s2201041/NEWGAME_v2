@@ -8,6 +8,8 @@ Shot::Shot(Game* gm, Base* ent, Vec2 pos, Vec2 dir, int vel,int typ ,Rect are):B
 {
 	entity = ent;
 
+
+
 	NearPos = { 300,300 };
 
 	//コライダーの初期化
@@ -15,7 +17,7 @@ Shot::Shot(Game* gm, Base* ent, Vec2 pos, Vec2 dir, int vel,int typ ,Rect are):B
 
 	switch (Typ) {
 	case 1:
-		Dam = 10;
+		Dam = 4;
 		m_texture = Texture{ U"texture/shot/shot_1.png" };
 		break;
 
@@ -25,8 +27,16 @@ Shot::Shot(Game* gm, Base* ent, Vec2 pos, Vec2 dir, int vel,int typ ,Rect are):B
 		break;
 
 	case 3:
-		Dam = 1145141919810;
+		Dam = 10;
+		m_texture = Texture{ U"texture/shot/shot_1.png" };
+		break;
+
+	case 4:
+		Dam = 100;
 		m_texture = Texture{ U"texture/shot/shot_2.png" };
+		break;
+
+
 	}
 
 }
@@ -48,23 +58,22 @@ void Shot::sub_update()
 
 		Pos += Dir * (Scene::DeltaTime() * Vel);
 
-		Col = Circle{ Pos, 8 };
+		//Col = Circle{ Pos, 8 };
 
 		break;
 
 	case 3:
 
-		Print << NearPos;
-
-		Print << U"Sho" + Format( &NearPos);
-
-		Pos = Pos.lerp(NearPos, 0.05);
-
 		Pos += Dir * (Scene::DeltaTime() * Vel);
 
-		Col = Circle{ Pos, 8 };
+		Dir.rotate(Scene::DeltaTime()*5);
+
+		Timer += Scene::DeltaTime();
 
 		break;
+
+	case 4:
+		Pos = Pos.lerp(NearPos, 0.05);
 	}
 
 	//範囲外のショットの消去
@@ -93,12 +102,19 @@ void Shot::sub_draw() const
 	case 3:
 		m_texture.scaled(2.0).drawAt(Pos);
 		break;
+
+	case 4:
+
+		m_texture.scaled(2.0).drawAt(Pos);
+		//Line{ Pos, NearPos }.draw(4, Palette::Yellow);
+		break;
 	}
 }
+
 
 void Shot::cla(Base* en) {
 	if(en!=entity) {
 		Del = true;
-		en->Hp -= 10;
+		en->Hp -= Dam;
 	}
 }

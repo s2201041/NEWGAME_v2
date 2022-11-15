@@ -11,7 +11,7 @@ Game::Game(const InitData& init)
 
 	win = false;
 
-	player << Player{ this, { 0 , 0 } ,1 ,Are};
+	player << Player{ this, { 300 , 300 } ,1 ,Are};
 
 	//動作範囲
 	Are = Rect{ 0, 0, 600, 600 };
@@ -164,19 +164,18 @@ void Game::draw() const
 	font(U"スコア:"+Format(Score)).draw(620, 160, Palette::Black);
 	font(U"キル数："+Format(Kill)).draw(620, 190, Palette::Black);
 
-
 		//プレイヤーの描画
 	for (auto& pl : player) {
 		pl.draw();
 		RectF{ 610 , 550, 180, 20 }.draw(Palette::Orange);;
-		RectF{ 610 , 550, pl.Hp * 1.8, 20 }.draw(Palette::Red);;
+		RectF{ 610 , 550, pl.Hp * 180 / pl.Max_Hp , 20 }.draw(Palette::Red);;
 	}
 	
 	//敵の描画
 	for (int i = 0; i < entity.size(); i++) {
 		entity[i].draw();
 		RectF{ 25 , 25 + i * 30 , 550, 15 }.draw(Palette::Orange);;
-		RectF{ 25 , 25 + i * 30 , entity[i].Hp * 5.5, 15}.draw(Palette::Red);;
+		RectF{ 25 , 25 + i * 30 , entity[i].Hp * 550 / entity[i].Max_Hp, 15 }.draw(Palette::Red);;
 		hp_font(entity[i].Hp).drawAt( 300, 30 + i * 30);
 		hp_font(entity[i].Nam).drawAt( 300, 45 + i * 30);
 	}
@@ -196,10 +195,6 @@ void Game::draw() const
 		it.draw();
 	}
 	
-	if(win){
-		winner.scaled(0.75).drawAt(400,300);
-	}
-
 	//エフェクトの更新
 	effect.update();
 
