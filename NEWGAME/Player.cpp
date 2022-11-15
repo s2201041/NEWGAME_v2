@@ -54,13 +54,11 @@ void Player::sub_update()
 
 	Dir = { N.x * O,N.y * O };
 
-	Print << Dir;
-
 	if (inputShot.down()) {
 		if (KeyShift.pressed())
 			game->pl_shot << Shot{game, this, Pos,{0,-1}, 1000, 4, game->Are};
 		else
-			game->pl_shot << Shot{game, this, Pos ,Dir,500 ,1 , game->Are};
+			game->pl_shot << Shot{game, this, Pos ,{0,-1},500 ,1 , game->Are};
 	}
 
 	//Hp0以下の処理
