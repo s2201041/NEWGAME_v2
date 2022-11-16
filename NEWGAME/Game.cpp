@@ -9,15 +9,6 @@ Game::Game(const InitData& init)
 
 	Score = 0;
 
-	entity << Entity{ { 100 , 100 },1 ,Are};
-	player << Player{ { 0 , 0 } ,1 ,Are};
-
-	// ストリーミング再生になるかを取得
-	Print << audio.isStreaming();
-
-	// オーディオを再生
-	audio.play();
-}
 	win = false;
 
 	player << Player{ this, { 300 , 300 } ,1 ,Are };

@@ -11,6 +11,11 @@ Stage_1::Stage_1(const InitData& init)
 	Time_Left = 100;
 	
 	winner = Texture{ U"texture/winner.png" };
+
+	// オーディオを再生
+	audio.play();
+
+
 }
 
 void Stage_1::sub_update() {
