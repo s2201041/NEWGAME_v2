@@ -38,3 +38,11 @@ void Base::draw() const
 void Base::cla(Base* en) {
 }
 
+Vec2 Base::dir(Vec2 PosA,Vec2 PosB)
+{
+	Vec2 N = PosA - PosB;
+
+	int M = 1 / sqrt(N.x * N.x + N.y * N.y);
+
+	return { N.x * M,N.y * M };
+}

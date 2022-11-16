@@ -19,8 +19,10 @@ void Main()
 	TextureAsset::Register(U"Select", U"example/Select.jpg", TextureDesc::Mipped);
 	TextureAsset::Register(U"haikei", U"texture/haikei.png", TextureDesc::Mipped);
 	//Shotアセット
-	TextureAsset::Register(U"shot_1", U"texture/shot/shot_1.png" , TextureDesc::Mipped);
-	TextureAsset::Register(U"shot_2", U"texture/shot/shot_2.png" , TextureDesc::Mipped);
+	TextureAsset::Register(U"hinotama", U"texture/shot/hinotama.png" , TextureDesc::Mipped);
+	TextureAsset::Register(U"blue_hinotama", U"texture/shot/blue_hinotama.png" , TextureDesc::Mipped);
+	TextureAsset::Register(U"kaminari", U"texture/shot/kaminari.png" , TextureDesc::Mipped);
+	TextureAsset::Register(U"juudan", U"texture/shot/juudan.png" , TextureDesc::Mipped);
 	
 	//Entityアセット
 	TextureAsset::Register(U"enemy_1", U"texture/entity/enemy_1.png", TextureDesc::Mipped);
@@ -34,7 +36,7 @@ void Main()
 	TextureAsset::Register(U"player_1_right", U"texture/player/player_1_right.png", TextureDesc::Mipped);
 
 	//Itemasset
-	TextureAsset::Register(U"item_1",U"texture/item/item_1.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"item_1",U"texture/item/mazai.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"item_2",U"texture/item/item_2.png", TextureDesc::Mipped);
 
 	//sceneの追加

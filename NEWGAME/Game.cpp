@@ -175,7 +175,7 @@ void Game::draw() const
 	for (int i = 0; i < entity.size(); i++) {
 		entity[i].draw();
 		RectF{ 25 , 25 + i * 30 , 550, 15 }.draw(Palette::Orange);;
-		RectF{ 25 , 25 + i * 30 , entity[i].Hp * 550 / entity[i].Max_Hp, 15 }.draw(Palette::Red);;
+	RectF{ 25 , 25 + i * 30 , entity[i].Hp * 550 / entity[i].Max_Hp, 15 }.draw(Palette::Red);;
 		hp_font(entity[i].Hp).drawAt(300, 30 + i * 30);
 		hp_font(entity[i].Nam).drawAt(300, 45 + i * 30);
 	}

@@ -47,7 +47,7 @@ void Entity::sub_update()
 		Pos = Pos.lerp(GoPos, 0.1);
 		if (Timer > 0.5) {
 			//*shot << Shot{ Pos ,{0,1} ,900 ,1 ,Are };
-			game->en_shot << Shot{game, this,Pos ,{0,1} ,900 ,1 ,Are };
+			game->en_shot << Shot{game, this,Pos ,{0,1} ,900 ,5 ,Are};
 			GoPos = { NearPos.x,Random(20,280) };
 			Timer = 0;
 		}
@@ -61,7 +61,7 @@ void Entity::sub_update()
 		Pos = Pos.lerp(GoPos, 0.2);
 
 		if (Timer > 0.5) {
-			game->en_shot << Shot{game, this,Pos ,{0,1} ,900 ,2 ,Are };
+			game->en_shot << Shot{game, this,Pos ,dir(Pos,NearPos) ,900 ,2 ,Are};
 			GoPos = { NearPos.x,Random(20,280) };
 			Timer = 0;
 		}
