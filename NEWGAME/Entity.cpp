@@ -93,8 +93,8 @@ void Entity::sub_update()
 	case 4:
 
 		Pos = Pos.lerp(GoPos, 0.1);
-		if (Timer > 0.5) {
-			game->en_shot << Shot{game, this,Pos ,dir(NearPos,Pos) ,900 ,1 ,Are};
+		if (Timer > 1.5) {
+			game->en_shot << Shot{game, this,Pos ,dir(NearPos,Pos) ,900 ,4 ,Are};
 			GoPos = { NearPos.x,Random(20,280) };
 			Timer = 0;
 		}
@@ -146,7 +146,7 @@ void Entity::sub_draw() const
 void Entity::cla(Shot* en) {
 	const int dma = Random(10, 20);
 	game->Score += dma;
-	//game->effect.add<ScoreEffect>(Pos, dma);
+	game->effect.add<ScoreEffect>(Pos, dma);
 }
 
 void Entity::cla(Base* en) {

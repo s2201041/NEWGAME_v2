@@ -60,7 +60,6 @@ struct Mazai: IEffect
 		: m_time{ time }
 		, m_speed{ s }
 	{
-		Print << *m_speed;
 		m_base_speed = *m_speed;
 
 		*m_speed = m_base_speed + 200;
@@ -73,12 +72,10 @@ struct Mazai: IEffect
 
 	bool update(double t) override
 	{
-		if (t > m_time)
-			Print << U"Speed_down";
-			*m_speed = m_base_speed - 200;
+		//m_font(m_score).drawAt(m_start.movedBy(0, t * -120), color);
 
 		// 1 秒未満なら継続
-		return (t < m_time*2);
+		return (t < m_time);
 
 	}
 };
@@ -89,12 +86,12 @@ struct ScoreEffect : IEffect
 
 	int32 m_score;
 
-	Font m_font;
+	Font m_font = Font{ 50, Typeface::Heavy };
 
-	ScoreEffect(const Vec2& start, int32 score, const Font& font)
+	ScoreEffect(const Vec2& start, int32 score )
 		: m_start{ start }
 		, m_score{ score }
-		, m_font{ font } {}
+		{}
 
 	bool update(double t) override
 	{

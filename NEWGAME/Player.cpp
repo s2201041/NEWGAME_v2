@@ -74,6 +74,7 @@ void Player::sub_update()
 		item[i].has_update(i);
 
 	item.remove_if([](const Item& it) { return it.Del == true; });
+
 }
 
 void Player::sub_draw() const

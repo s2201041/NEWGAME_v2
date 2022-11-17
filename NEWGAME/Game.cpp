@@ -137,6 +137,9 @@ void Game::update() {
 			sh.NearPos = player[imin].Pos;
 		}
 	}
+	else
+		for (auto& sh : pl_shot)
+			sh.NearPos = { 300,0 };
 
 	//消去判定
 	entity.remove_if([](const Entity& en) { return en.Del == true; });

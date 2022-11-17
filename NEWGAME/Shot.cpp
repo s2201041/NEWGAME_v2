@@ -17,7 +17,7 @@ Shot::Shot(Game* gm, Base* ent, Vec2 pos, Vec2 dir, int vel,int typ ,Rect are):B
 
 	switch (Typ) {
 	case 1:
-		Dam = 4;
+		Dam = 10;
 		break;
 
 	case 2:
@@ -29,7 +29,7 @@ Shot::Shot(Game* gm, Base* ent, Vec2 pos, Vec2 dir, int vel,int typ ,Rect are):B
 		break;
 
 	case 4:
-		Dam = 100;
+		Dam = 10;
 		break;
 
 	case 5:
@@ -73,6 +73,9 @@ void Shot::sub_update()
 		break;
 
 	case 4:
+		if (Time > 2.0)
+			Del = true;
+
 		Pos = Pos.lerp(NearPos, 0.05);
 
 		break;
@@ -99,7 +102,9 @@ void Shot::sub_draw() const
 	switch (Typ) {
 
 	case 1:
+		//TextureAsset(U"hinotama").scaled(2.0).drawAt(Pos.x+Sin(Time*50)*10, Pos.y);
 		TextureAsset(U"hinotama").scaled(2.0).drawAt(Pos);
+
 		break;
 
 	case 2:
@@ -113,7 +118,7 @@ void Shot::sub_draw() const
 
 	case 4:
 
-		TextureAsset(U"blue_hinotama").scaled(2.0).drawAt(Pos);
+		TextureAsset(U"blue_hinotama").scaled(2.0).drawAt(Pos,ColorF{ 1.0, 1/Time });
 		break;
 
 	case 5:

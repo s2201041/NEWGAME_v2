@@ -39,7 +39,7 @@ void Stage_1::sub_update() {
 
 	//敵の出現
 	if (Time >= 5) {
-		entity << Entity{ this, { 600 , 50 },Random(1,3) ,Are };
+		entity << Entity{ this, { 600 , 50 },Random(1,4) ,Are };
 		Time = 0;
 	}
 	//アイテムの出現
