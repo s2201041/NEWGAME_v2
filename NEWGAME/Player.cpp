@@ -48,8 +48,8 @@ void Player::update()
 	if (inputShot.down()) {
 		if (KeyShift.pressed())
 			game->pl_shot << Shot{this, Pos, { 0, -1 }, 1000, 2, Are };
-		else
-			game->pl_shot << Shot{this, Pos ,{ 0, -1 } ,500 ,1 ,Are};
+		else 
+			game->pl_shot << Shot{ this, Pos ,{ 0, -1 } ,500 ,4 ,Are };
 	}
 
 	//Hp0以下の処理

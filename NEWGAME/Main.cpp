@@ -15,6 +15,7 @@ void Main()
 	//アセットの定義.
 	FontAsset::Register(U"TitleFont", 60, Typeface::Heavy, FontStyle::Bitmap);
 	TextureAsset::Register(U"haikei", U"texture/haikei.png", TextureDesc::Mipped);
+	
 
 	//Shotアセット
 	TextureAsset::Register(U"shot_1", U"texture/shot/shot_1.png" , TextureDesc::Mipped);
@@ -23,7 +24,7 @@ void Main()
 	//Entityアセット
 	TextureAsset::Register(U"enemy_1", U"texture/entity/enemy_1.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"enemy_2", U"texture/entity/enemy_2.png", TextureDesc::Mipped);
-
+	
 
 	//Playerアセット
 	TextureAsset::Register(U"player_1_up", U"texture/player/player_1_up.png", TextureDesc::Mipped);

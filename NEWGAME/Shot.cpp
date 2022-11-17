@@ -24,6 +24,10 @@ Shot::Shot( Vec2 pos, Vec2 dir, int vel,int typ ,Rect are):Base(pos, dir , vel,t
 	case 3:
 		Dam = 1145141919810;
 		m_texture = Texture{ U"texture/shot/shot_2.png" };
+
+	case 4:
+		Dam = 20;
+		m_texture = Texture{ U"texture/shot/shot_2.png" };
 	}
 
 }
@@ -41,7 +45,7 @@ void Shot::update()
 	switch (Typ) {
 	case 1:
 
-		Pos += Dir * (Scene::DeltaTime() * Vel );
+		Pos += Dir * (Scene::DeltaTime() * Vel  );
 
 		Col = Circle{ Pos, 8 };
 
@@ -51,7 +55,7 @@ void Shot::update()
 
 		Pos = Pos.lerp(NearPos, 0.05);
 
-		Pos += Dir * (Scene::DeltaTime() * Vel);
+		Pos += Dir * (Scene::DeltaTime() * Vel );
 
 		Col = Circle{ Pos, 8 };
 
@@ -65,11 +69,21 @@ void Shot::update()
 
 		Pos = Pos.lerp(NearPos, 0.05);
 
-		Pos += Dir * (Scene::DeltaTime() * Vel);
+		Pos += Dir * (Scene::DeltaTime() * Vel );
 
 		Col = Circle{ Pos, 8 };
 
 		break;
+
+	case 4:
+
+		Pos += Dir *( Scene::DeltaTime() * Vel  );
+
+		Col = Circle{ Pos, 10 };
+
+		break;
+
+
 	}
 
 	//範囲外のショットの消去
@@ -98,6 +112,12 @@ void Shot::draw() const
 	case 3:
 		m_texture.scaled(2.0).drawAt(Pos);
 		break;
+
+	case 4:
+		m_texture.scaled(3.0).drawAt(Pos);
+		break;
+
+	
 	}
 	//effect.update();
 }

@@ -96,13 +96,15 @@ void Entity::draw() const
 		break;
 
 	case 2:
-		TextureAsset(U"enemy_2").scaled(2.0).drawAt(Pos);
+		TextureAsset(U"enemy_1").scaled(2.0).drawAt(Pos);
 		break;
 
 	case 100:
 		TextureAsset(U"item_1").scaled(2.0).drawAt(Pos);
 		break;
-
+	case 4:
+		TextureAsset(U"enemy_1").scaled(2.0).drawAt(Pos);
+		break;
 	}
 
 	//コライダー確認用
