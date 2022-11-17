@@ -129,8 +129,12 @@ void Shot::sub_draw() const
 
 
 void Shot::cla(Base* en) {
+	AudioAsset(U"cla_sound").playOneShot();
+
 	if(en!=entity) {
 		Del = true;
 		en->Hp -= Dam;
 	}
 }
+
+
