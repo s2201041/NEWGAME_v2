@@ -45,7 +45,7 @@ void Stage_1::sub_update() {
 	//アイテムの出現
 	if (Time_2 >= 5) {
 
-		item << Item{this, { Random(0,600) , Random(0,600)},Random(1,2) ,Are };
+		item << Item{this, { Random(0,600) , Random(150,600)},Random(1,2) ,Are };
 		Time_2 = 0;
 	}
 

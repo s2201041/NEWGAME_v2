@@ -48,6 +48,41 @@ struct Speed_Up : IEffect
 	}
 };
 
+struct Mazai: IEffect
+{
+	int m_time;
+
+	int m_base_speed = 0;
+
+	int* m_speed;
+
+	explicit Mazai(int* s, int time)
+		: m_time{ time }
+		, m_speed{ s }
+	{
+		Print << *m_speed;
+		m_base_speed = *m_speed;
+
+		*m_speed = m_base_speed + 200;
+	
+	}
+
+	~Mazai() {
+		*m_speed = m_base_speed ;
+	}
+
+	bool update(double t) override
+	{
+		if (t > m_time)
+			Print << U"Speed_down";
+			*m_speed = m_base_speed - 200;
+
+		// 1 秒未満なら継続
+		return (t < m_time*2);
+
+	}
+};
+
 struct ScoreEffect : IEffect
 {
 	Vec2 m_start;

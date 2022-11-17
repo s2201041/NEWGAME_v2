@@ -29,12 +29,17 @@ Entity::Entity(Game* gm, Vec2 pos, int typ, Rect are) : Base(gm, pos, typ, are)
 
 	case 3:
 		Nam = U"敵_C";
-		Hp = 200;
-		Max_Hp =1000;
+		Hp = 100;
+		Max_Hp =100;
 		break;
+
+	case 4:
+		Nam = U"敵_D";
+		Hp = 100;
+		Max_Hp =100;
+		break;
+
 	}
-
-
 }
 
 void Entity::sub_update()
@@ -61,7 +66,7 @@ void Entity::sub_update()
 		Pos = Pos.lerp(GoPos, 0.2);
 
 		if (Timer > 0.5) {
-			game->en_shot << Shot{game, this,Pos ,dir(Pos,NearPos) ,900 ,2 ,Are};
+			game->en_shot << Shot{game, this,Pos ,dir(NearPos,Pos) ,900 ,1 ,Are};
 			GoPos = { NearPos.x,Random(20,280) };
 			Timer = 0;
 		}
@@ -72,7 +77,7 @@ void Entity::sub_update()
 
 	case 3:
 
-		Pos.x = 300 + Sin(Scene::Time())*300;
+		Pos.x = 300 + Sin(Time/2)*300;
 
 		if (Timer > 0.1) {
 
@@ -83,6 +88,18 @@ void Entity::sub_update()
 		Timer += Scene::DeltaTime();
 
 		Dir.rotate(Scene::DeltaTime()*3);
+
+		break;
+	case 4:
+
+		Pos = Pos.lerp(GoPos, 0.1);
+		if (Timer > 0.5) {
+			game->en_shot << Shot{game, this,Pos ,dir(NearPos,Pos) ,900 ,1 ,Are};
+			GoPos = { NearPos.x,Random(20,280) };
+			Timer = 0;
+		}
+		//タイマーの加算
+		Timer += Scene::DeltaTime();
 
 		break;
 
@@ -117,11 +134,12 @@ void Entity::sub_draw() const
 
 	case 3:
 		TextureAsset(U"enemy_2").scaled(2.0).drawAt(Pos);
+		break;
+
+	case 4:
+		TextureAsset(U"enemy_2").scaled(2.0).drawAt(Pos);
+		break;
 	}
-
-	//コライダー確認用
-	Col.draw(ColorF{ 0.0, 0.5, 1.0, 0.4 });
-
 	//effect.update();
 }
 

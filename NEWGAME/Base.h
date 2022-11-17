@@ -78,6 +78,9 @@ protected:
 	//コライダーサイズの定義
 	double size;
 
+	//インスタンス化からの時間
+	double Time;
+
 	//タイマー変数の定義
 	double Timer;
 

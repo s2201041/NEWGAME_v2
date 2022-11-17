@@ -33,7 +33,7 @@ Shot::Shot(Game* gm, Base* ent, Vec2 pos, Vec2 dir, int vel,int typ ,Rect are):B
 		break;
 
 	case 5:
-		Dam = 100;
+		Dam = 15;
 		break;
 
 	}
@@ -54,6 +54,11 @@ void Shot::sub_update()
 		Pos = Pos.lerp(NearPos, 0.05);
 
 		Pos += Dir * (Scene::DeltaTime() * Vel);
+
+		Timer += Scene::DeltaTime();
+
+		if (Timer > 2)
+			Del = true;
 
 		break;
 
