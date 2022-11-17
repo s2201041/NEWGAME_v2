@@ -20,16 +20,11 @@ Stage_1::Stage_1(const InitData& init)
 
 void Stage_1::sub_update() {
 
-	//クリア処理
-	if (Kill >= 10) {
-		win = true;
-		Score = 0;
-		stopwatch.start();
-	}
 
-	if (win)
+	if (win) {
+		AudioAsset(U"clear_sound").playOneShot();
 		changeScene(State::Title);
-
+	}
 	//経過時間
 	Time += Scene::DeltaTime();
 	Time_2 += Scene::DeltaTime();
