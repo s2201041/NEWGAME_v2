@@ -42,9 +42,6 @@ private:
 
 	Base* entity;
 
-
-
-
 };
 
 #endif

@@ -15,7 +15,6 @@ Stage_1::Stage_1(const InitData& init)
 	// オーディオを再生
 	audio.play();
 
-
 }
 
 void Stage_1::sub_update() {
@@ -25,12 +24,14 @@ void Stage_1::sub_update() {
 		AudioAsset(U"clear_sound").playOneShot();
 		changeScene(State::Title);
 	}
+
 	//経過時間
 	Time += Scene::DeltaTime();
 	Time_2 += Scene::DeltaTime();
 
-
 	if (Time_Left <= 0) win = true;
+
+	if (Kill >= 10) win = true;
 
 	//敵の出現
 	if (Time >= 5) {

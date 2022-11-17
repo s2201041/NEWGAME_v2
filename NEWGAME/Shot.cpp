@@ -73,7 +73,7 @@ void Shot::sub_update()
 		break;
 
 	case 4:
-		if (Time > 2.0)
+		if (Time > 1.0)
 			Del = true;
 
 		Pos = Pos.lerp(NearPos, 0.05);
