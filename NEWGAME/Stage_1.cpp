@@ -11,6 +11,11 @@ Stage_1::Stage_1(const InitData& init)
 	Time_Left = 100;
 	
 	winner = Texture{ U"texture/winner.png" };
+
+	// オーディオを再生
+	audio.play();
+
+
 }
 
 void Stage_1::sub_update() {
@@ -34,13 +39,13 @@ void Stage_1::sub_update() {
 
 	//敵の出現
 	if (Time >= 5) {
-		entity << Entity{ this, { 600 , 50 },Random(1,3) ,Are };
+		entity << Entity{ this, { 600 , 50 },Random(1,4) ,Are };
 		Time = 0;
 	}
 	//アイテムの出現
 	if (Time_2 >= 5) {
 
-		item << Item{this, { Random(0,600) , Random(0,600)},Random(1,2) ,Are };
+		item << Item{this, { Random(0,600) , Random(150,600)},Random(1,2) ,Are };
 		Time_2 = 0;
 	}
 

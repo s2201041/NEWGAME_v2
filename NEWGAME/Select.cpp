@@ -10,6 +10,7 @@ Select::Select(const InitData& init)
 
 void Select::update()
 {
+	TextureAsset(U"Select").draw();
 
 	// ボタン処理
 	if (SimpleGUI::Button(U"Stage1", Vec2{ 350, 250 }))
@@ -52,7 +53,6 @@ void Select::update()
 
 void Select::draw() const
 {
-	TextureAsset(U"Select").draw();
 
 	//FontAsset(U"TitleFont")(U"Stage Select").drawAt(400, 100);
 }

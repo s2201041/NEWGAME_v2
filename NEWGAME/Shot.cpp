@@ -17,25 +17,24 @@ Shot::Shot(Game* gm, Base* ent, Vec2 pos, Vec2 dir, int vel,int typ ,Rect are):B
 
 	switch (Typ) {
 	case 1:
-		Dam = 4;
-		m_texture = Texture{ U"texture/shot/shot_1.png" };
+		Dam = 10;
 		break;
 
 	case 2:
 		Dam = 10;
-		m_texture = Texture{ U"texture/shot/shot_2.png" };
 		break;
 
 	case 3:
 		Dam = 10;
-		m_texture = Texture{ U"texture/shot/shot_1.png" };
 		break;
 
 	case 4:
-		Dam = 100;
-		m_texture = Texture{ U"texture/shot/shot_2.png" };
+		Dam = 10;
 		break;
 
+	case 5:
+		Dam = 15;
+		break;
 
 	}
 
@@ -48,8 +47,6 @@ void Shot::sub_update()
 
 		Pos += Dir * (Scene::DeltaTime() * Vel );
 
-		Col = Circle{ Pos, 8 };
-
 		break;
 
 	case 2:
@@ -58,7 +55,10 @@ void Shot::sub_update()
 
 		Pos += Dir * (Scene::DeltaTime() * Vel);
 
-		//Col = Circle{ Pos, 8 };
+		Timer += Scene::DeltaTime();
+
+		if (Timer > 2)
+			Del = true;
 
 		break;
 
@@ -73,7 +73,18 @@ void Shot::sub_update()
 		break;
 
 	case 4:
+		if (Time > 2.0)
+			Del = true;
+
 		Pos = Pos.lerp(NearPos, 0.05);
+
+		break;
+
+	case 5:
+
+		Pos += Dir * (Scene::DeltaTime() * Vel * 2 );
+
+		break;
 	}
 
 	//範囲外のショットの消去
@@ -91,22 +102,27 @@ void Shot::sub_draw() const
 	switch (Typ) {
 
 	case 1:
-		m_texture.scaled(2.0).drawAt(Pos);
+		//TextureAsset(U"hinotama").scaled(2.0).drawAt(Pos.x+Sin(Time*50)*10, Pos.y);
+		TextureAsset(U"hinotama").scaled(2.0).drawAt(Pos);
+
 		break;
 
 	case 2:
-		m_texture.scaled(2.0).drawAt(Pos);
+		TextureAsset(U"blue_hinotama").scaled(2.0).drawAt(Pos);
 		//Line{ Pos, NearPos }.draw(4, Palette::Yellow);
 		break;
 
 	case 3:
-		m_texture.scaled(2.0).drawAt(Pos);
+		TextureAsset(U"blue_hinotama").scaled(2.0).drawAt(Pos);
 		break;
 
 	case 4:
 
-		m_texture.scaled(2.0).drawAt(Pos);
-		//Line{ Pos, NearPos }.draw(4, Palette::Yellow);
+		TextureAsset(U"blue_hinotama").scaled(2.0).drawAt(Pos,ColorF{ 1.0, 1/Time });
+		break;
+
+	case 5:
+		TextureAsset(U"kaminari").scaled(2.0).drawAt(Pos);
 		break;
 	}
 }

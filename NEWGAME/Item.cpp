@@ -84,11 +84,10 @@ void Item::use(Player* pl) {
 	switch (Typ) {
 	case 1:
 		Del = true;
-		whose->effect.add<Speed_Up>(&whose->Vel,10);
+		whose->effect.add<Mazai>(&whose->Vel,10);
 		return;
 	case 2:
 		Del = true;
-		//game->effect.add<Speed_Up>(&Vel, 10);
 		whose->Hp += 10;
 		return;
 	}

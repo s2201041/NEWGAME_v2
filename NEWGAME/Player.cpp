@@ -3,7 +3,7 @@
 
 Player::Player(Game* gm, Vec2 n,int typ,Rect are) : Base(gm, Pos, typ, are)
 {
-	Are = Rect{0,150,600,550};
+	Are = Rect{0,150,600,450};
 
 	game = gm;
 
@@ -55,8 +55,10 @@ void Player::sub_update()
 	Dir = { N.x * O,N.y * O };
 
 	if (inputShot.down()) {
-		if (KeyShift.pressed())
-			game->pl_shot << Shot{game, this, Pos,{0,-1}, 1000, 4, game->Are};
+		if (KeyShift.pressed()) {
+			//game->pl_shot << Shot{game, this, Pos ,{0,-1},500 ,2 , game->Are};
+			game->pl_shot << Shot{ game, this, Pos,dir(NearPos,Pos),1000, 1, game->Are };
+		}
 		else
 			game->pl_shot << Shot{game, this, Pos ,{0,-1},500 ,1 , game->Are};
 	}
@@ -72,6 +74,7 @@ void Player::sub_update()
 		item[i].has_update(i);
 
 	item.remove_if([](const Item& it) { return it.Del == true; });
+
 }
 
 void Player::sub_draw() const
@@ -87,9 +90,6 @@ void Player::sub_draw() const
 		TextureAsset(U"player_1_down").scaled(2.0).drawAt(Pos);
 	else 
 		TextureAsset(U"player_1_up").scaled(2.0).drawAt(Pos);
-
-	//コライダー確認用
-	Col.draw(ColorF{ 0.0, 0.5, 1.0, 0.8 });
 
 	for (int i = 0; i < item.size(); i++)
 		item[i].has_draw(i);

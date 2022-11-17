@@ -36,6 +36,9 @@ public:
 
 	//諸突処理関数
 	void cla(Base* en);
+	
+	//二点の座標の角度計算
+	Vec2 dir(Vec2 posA, Vec2 posB);
 
 	//コライダー
 	Circle Col;
@@ -74,6 +77,9 @@ protected:
 
 	//コライダーサイズの定義
 	double size;
+
+	//インスタンス化からの時間
+	double Time;
 
 	//タイマー変数の定義
 	double Timer;
