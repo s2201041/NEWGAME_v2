@@ -42,6 +42,7 @@ void Main()
 	//サウンドアセット
 	AudioAsset::Register(U"cla_sound", U"sound/cla.mp3");
 	AudioAsset::Register(U"clear_sound", U"sound/clear.mp3");
+	AudioAsset::Register(U"mazai_sound", U"sound/mazai.mp3");
 	//sceneの追加
 	App manager;
 	manager.add<Title>(State::Title);

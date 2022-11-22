@@ -5,7 +5,7 @@ Game::Game(const InitData& init)
 	: IScene{ init }
 {
 
-	Kill = 0;
+	Kill = 10;
 
 	Score = 0;
 
@@ -37,28 +37,28 @@ void Game::update() {
 		pl.update();
 		if (pl.Del)
 			changeScene(State::Title);
-	}
-
-	//敵ショットの動作処理
-	for (auto& sh : en_shot) {
+	}	for (auto& sh : en_shot) {
 		sh.update();
 	}
 
 	//自機ショットの動作処理
 	for (auto& sh : pl_shot) {
 		sh.update();
-	}
 
-	//アイテムの動作処理
-	for (auto& it : item) {
-		it.update();
-	}
+
+	//敵ショットの動作処理
 
 	//衝突判定
 	for (auto& pl : player) {
 		for (auto& en : entity) {
 			for (auto& sh : pl_shot) {
-				//自機ショットと敵の衝突処理
+				//自機ショットと
+	}
+
+	//アイテムの動作処理
+	for (auto& it : item) {
+		it.update();
+	}//敵の衝突処理
 				if (en.Col.intersects(sh.Col)) {
 					sh.cla(&en);
 					en.cla(&sh);
@@ -82,6 +82,7 @@ void Game::update() {
 			if (it.Col.intersects(pl.Col)) {
 				pl.cla(&it);
 				it.cla(&pl);
+				
 			}
 		}
 	}
@@ -199,6 +200,7 @@ void Game::draw() const
 	//アイテムの描画
 	for (auto& it : item) {
 		it.draw();
+		
 	}
 
 	if (win) {

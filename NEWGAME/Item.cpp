@@ -76,6 +76,8 @@ void Item::has_draw(int n) const {
 }
 
 void Item::cla(Player* pl) {
+
+	AudioAsset(U"cla_sound").playOneShot();
 	Del = true;
 	whose = pl;
 }
@@ -83,9 +85,12 @@ void Item::cla(Player* pl) {
 void Item::use(Player* pl) {
 	switch (Typ) {
 	case 1:
+		Print << U"Hello, Siv3D!";
 		Del = true;
+
 		whose->effect.add<Mazai>(&whose->Vel,10);
 		return;
+		
 	case 2:
 		Del = true;
 		whose->Hp += 10;

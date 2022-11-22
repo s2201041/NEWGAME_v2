@@ -17,7 +17,7 @@ Shot::Shot(Game* gm, Base* ent, Vec2 pos, Vec2 dir, int vel,int typ ,Rect are):B
 
 	switch (Typ) {
 	case 1:
-		Dam = 10;
+		Dam = 15;
 		break;
 
 	case 2:

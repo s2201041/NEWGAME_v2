@@ -60,6 +60,7 @@ struct Mazai: IEffect
 		: m_time{ time }
 		, m_speed{ s }
 	{
+
 		m_base_speed = *m_speed;
 
 		*m_speed = m_base_speed + 200;
