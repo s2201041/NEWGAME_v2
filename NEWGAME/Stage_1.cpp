@@ -23,7 +23,7 @@ void Stage_1::sub_update() {
 
 	if (win) {
 		AudioAsset(U"clear_sound").playOneShot();
-		//Game_Over();
+		Game_Over();
 		changeScene(State::Result);
 	}
 
@@ -33,7 +33,7 @@ void Stage_1::sub_update() {
 
 	if (Time_Left <= 0) win = true;
 
-	if (Kill >= 1) win = true;
+	if (Kill >= 10) win = true;
 
 	//敵の出現
 	if (Time >= 10) {

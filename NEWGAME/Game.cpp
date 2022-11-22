@@ -175,6 +175,8 @@ void Game::draw() const
 		pl.draw();
 		RectF{ 610 , 550, 180, 20 }.draw(Palette::Orange);;
 		RectF{ 610 , 550, pl.Hp * 1.8, 20 }.draw(Palette::Red);;
+		hp_font(pl.Nam).drawAt(700, 530, Palette::Black);
+		hp_font(pl.Hp).drawAt(700, 560);
 	}
 
 	//敵の描画
@@ -182,8 +184,8 @@ void Game::draw() const
 		entity[i].draw();
 		RectF{ 25 , 25 + i * 30 , 550, 15 }.draw(Palette::Orange);;
 		RectF{ 25 , 25 + i * 30 , entity[i].Hp * 550 / entity[i].Max_Hp, 15 }.draw(Palette::Red);;
-		hp_font(entity[i].Hp).drawAt(300, 30 + i * 30);
-		hp_font(entity[i].Nam).drawAt(300, 45 + i * 30);
+		hp_font(entity[i].Nam).drawAt(300, 45 + i * 30, Palette::Black);
+		hp_font(entity[i].Hp).drawAt(300, 32 + i * 30);
 	}
 
 	//敵ショットの描画

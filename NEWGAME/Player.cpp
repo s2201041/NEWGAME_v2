@@ -7,6 +7,8 @@ Player::Player(Game* gm, Vec2 pos,int typ,Rect are) : Base(gm, pos, typ, are)
 
 	game = gm;
 
+	Nam = U"プレイヤー1";
+
 	Dir.clear();
 	Hp = 100;
 	Max_Hp = 100;

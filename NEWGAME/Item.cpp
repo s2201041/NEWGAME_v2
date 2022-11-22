@@ -113,7 +113,7 @@ void Item::use(Player* pl) {
 		return;
 	case 2:
 		Del = true;
-		whose->Hp += 10;
+		whose->Hp = 100;
 		return;
 	case 3:
 		Del = true;
