@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include "Game.h"
-class Stage_1 : public Game
-{
+
+class Stage_1 : public Game {
 public:
 	Stage_1(const InitData& init);
 
@@ -16,5 +16,5 @@ private:
 
 	// 音声ファイルを読み込んで Audio を作成（ストリーミング再生をリクエスト）
 	const Audio audio{ Audio::Stream, U"sound/bgm_1.mp3" };
-};
 
+};

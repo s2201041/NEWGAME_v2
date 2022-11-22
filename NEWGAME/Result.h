@@ -13,4 +13,13 @@ public:
 
 	// 描画関数（オプション）
 	void draw() const override;
-}
+
+private:
+
+	const Font font{ 32, U"example/font/DotGothic16/DotGothic16-Regular.ttf", FontStyle::Bitmap };
+
+	const String stage = Format(getData().stage);
+	const String score = Format(getData().score);
+	const String kill = Format(getData().kill);
+};
+

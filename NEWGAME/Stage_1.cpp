@@ -15,6 +15,7 @@ Stage_1::Stage_1(const InitData& init)
 	// オーディオを再生
 	audio.play();
 
+	entity << Entity{ this, { 600 , 50 },Random(1,4) ,Are };
 }
 
 void Stage_1::sub_update() {
@@ -22,7 +23,8 @@ void Stage_1::sub_update() {
 
 	if (win) {
 		AudioAsset(U"clear_sound").playOneShot();
-		changeScene(State::Title);
+		//Game_Over();
+		changeScene(State::Result);
 	}
 
 	//経過時間
@@ -31,17 +33,17 @@ void Stage_1::sub_update() {
 
 	if (Time_Left <= 0) win = true;
 
-	if (Kill >= 10) win = true;
+	if (Kill >= 1) win = true;
 
 	//敵の出現
-	if (Time >= 5) {
+	if (Time >= 10) {
 		entity << Entity{ this, { 600 , 50 },Random(1,4) ,Are };
 		Time = 0;
 	}
 	//アイテムの出現
 	if (Time_2 >= 5) {
 
-		item << Item{this, { Random(0,600) , Random(150,600)},Random(1,2) ,Are };
+		item << Item{this, { Random(0,600) , Random(150,600)},Random(1,4) ,Are };
 		Time_2 = 0;
 	}
 

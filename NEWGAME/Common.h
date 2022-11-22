@@ -8,7 +8,7 @@ enum class State
 	Select,
 	Result,
 	Game,
-	Stage_1,	
+	Stage_1,
 	Stage_2,
 	Stage_3,	
 	Stage_4,	

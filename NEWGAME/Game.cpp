@@ -213,5 +213,7 @@ void Game::draw() const
 	sub_draw();
 }
 
-void Game_Over() {
+void Game::Game_Over() {
+	getData().score = Score;
+	getData().kill = Kill;
 }
