@@ -137,4 +137,14 @@ void Shot::cla(Base* en) {
 	}
 }
 
+void Shot::cla(Player* en) {
+	AudioAsset(U"cla_sound").playOneShot();
+
+	game->effect.add<HitEffect>(Pos, Random(0.0, 360.0));
+
+	if (en != entity) {
+		Del = true;
+		en->Hp -= Dam;
+	}
+}
 

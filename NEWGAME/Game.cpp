@@ -69,6 +69,7 @@ void Game::update() {
 				if (pl.Col.intersects(sh.Col)) {
 					pl.cla(&sh);
 					sh.cla(&pl);
+
 				}
 			}
 			//敵と自機の衝突判定
