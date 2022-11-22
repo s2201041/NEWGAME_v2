@@ -17,26 +17,26 @@ Entity::Entity(Game* gm, Vec2 pos, int typ, Rect are) : Base(gm, pos, typ, are)
 	switch (Typ) {
 	case 1:
 		Nam = U"敵_A";
-		Hp = 100;
-		Max_Hp = 100;
+		Hp = 200;
+		Max_Hp = 200;
 		break;
 
 	case 2:
 		Nam = U"敵_B";
-		Hp = 50;
-		Max_Hp =50;
+		Hp = 100;
+		Max_Hp =100;
 		break;
 
 	case 3:
 		Nam = U"敵_C";
-		Hp = 100;
-		Max_Hp =100;
+		Hp = 200;
+		Max_Hp =200;
 		break;
 
 	case 4:
 		Nam = U"敵_D";
-		Hp = 100;
-		Max_Hp =100;
+		Hp = 200;
+		Max_Hp =200;
 		break;
 
 	}
@@ -94,7 +94,7 @@ void Entity::sub_update()
 
 		Pos = Pos.lerp(GoPos, 0.1);
 		if (Timer > 1.5) {
-			game->en_shot << Shot{game, this,Pos ,dir(NearPos,Pos) ,900 ,4 ,Are};
+			game->en_shot << Shot{game, this,Pos ,dir(NearPos,Pos) ,310 ,4 ,Are};
 			GoPos = { NearPos.x,Random(20,280) };
 			Timer = 0;
 		}

@@ -212,3 +212,6 @@ void Game::draw() const
 	//派生シーンの描画処理
 	sub_draw();
 }
+
+void Game_Over() {
+}

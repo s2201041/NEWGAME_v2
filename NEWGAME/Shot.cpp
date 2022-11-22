@@ -17,6 +17,7 @@ Shot::Shot(Game* gm, Base* ent, Vec2 pos, Vec2 dir, int vel,int typ ,Rect are):B
 
 	switch (Typ) {
 	case 1:
+		//直線
 		Dam = 10;
 		break;
 
@@ -29,10 +30,12 @@ Shot::Shot(Game* gm, Base* ent, Vec2 pos, Vec2 dir, int vel,int typ ,Rect are):B
 		break;
 
 	case 4:
+		//追跡 自動消滅
 		Dam = 10;
 		break;
 
 	case 5:
+		//直線 速度二倍
 		Dam = 15;
 		break;
 
@@ -63,18 +66,26 @@ void Shot::sub_update()
 		break;
 
 	case 3:
+		
+		Pos += Dir * (Scene::DeltaTime()*100);
 
-		Pos += Dir * (Scene::DeltaTime() * Vel);
+		Pos.y -= Scene::DeltaTime() * Vel;
 
-		Dir.rotate(Scene::DeltaTime()*5);
+		Dir.rotate(Scene::DeltaTime()*50);
 
 		Timer += Scene::DeltaTime();
 
 		break;
 
 	case 4:
-		if (Time > 1.0)
+		if (Time > 2.0)
 			Del = true;
+
+		/*
+		const Vec2 pPos = Pos.lerp(NearPos, 0.05);
+
+		Pos.moveBy((pPos - Pos).setLength( Scene::DeltaTime() * Vel ));
+		*/
 
 		Pos = Pos.lerp(NearPos, 0.05);
 

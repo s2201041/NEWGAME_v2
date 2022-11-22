@@ -32,7 +32,6 @@ struct Speed_Up : IEffect
 		, m_speed{ s }
 	{
 		*m_speed += 200;
-
 	}
 
 	~Speed_Up() {
@@ -41,10 +40,32 @@ struct Speed_Up : IEffect
 
 	bool update(double t) override
 	{
-
 		// 1 秒未満なら継続
 		return (t < m_time);
+	}
+};
 
+struct Speed_Down : IEffect
+{
+	int m_time;
+
+	int* m_speed;
+
+	explicit Speed_Down(int* s, int time)
+		: m_time{ time }
+		, m_speed{ s }
+	{
+		*m_speed -= 200;
+	}
+
+	~Speed_Down() {
+		*m_speed += 200;
+	}
+
+	bool update(double t) override
+	{
+		// 1 秒未満なら継続
+		return (t < m_time);
 	}
 };
 
@@ -56,23 +77,28 @@ struct Mazai: IEffect
 
 	int* m_speed;
 
+	bool one = true;
+
 	explicit Mazai(int* s, int time)
 		: m_time{ time }
 		, m_speed{ s }
 	{
 		m_base_speed = *m_speed;
 
-		*m_speed = m_base_speed + 200;
+		*m_speed += 200;
 	
 	}
 
 	~Mazai() {
-		*m_speed = m_base_speed ;
+		*m_speed += 200;
 	}
 
 	bool update(double t) override
 	{
-		//m_font(m_score).drawAt(m_start.movedBy(0, t * -120), color);
+		if (t > m_time / 2 && one == true) {
+			*m_speed -= 400;
+			one = false;
+		}
 
 		// 1 秒未満なら継続
 		return (t < m_time);

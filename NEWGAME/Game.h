@@ -21,6 +21,9 @@ public:
 
 	virtual void sub_draw() const = 0;
 
+	//ゲームオーバー関数
+	void Game_Over();
+
 	//プレイヤー格納配列
 	Array<Player> player;
 

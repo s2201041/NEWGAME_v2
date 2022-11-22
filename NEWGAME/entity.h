@@ -26,8 +26,6 @@ public:
 	void cla(Shot* en);
 	void cla(Base* en);
 	
-	Game* game;
-
 };
 
 #endif

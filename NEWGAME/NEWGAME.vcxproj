@@ -116,12 +116,17 @@
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Result.cpp" />
     <ClCompile Include="Stage_1.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Select.cpp" />
     <ClCompile Include="Shot.cpp" />
+    <ClCompile Include="Stage_2.cpp" />
+    <ClCompile Include="Stage_3.cpp" />
+    <ClCompile Include="Stage_4.cpp" />
+    <ClCompile Include="Stage_5.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -326,11 +331,16 @@
     <ClInclude Include="Common.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Result.h" />
     <ClInclude Include="Stage_1.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Select.h" />
     <ClInclude Include="Shot.h" />
+    <ClInclude Include="Stage_2.h" />
+    <ClInclude Include="Stage_3.h" />
+    <ClInclude Include="Stage_4.h" />
+    <ClInclude Include="Stage_5.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Title.h" />
   </ItemGroup>

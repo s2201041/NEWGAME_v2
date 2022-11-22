@@ -24,9 +24,11 @@ public:
 	//描画
 	void sub_draw() const override;
 
+	//0以下の切捨て関数
+	int zero(int i);
+
 	//アイテム
 	Array<Item> item;
-
 
 	//諸突処理関数
 	void cla(Item* it);
@@ -38,13 +40,12 @@ public:
 	InputGroup inputUp;
 	InputGroup inputDown;
 	InputGroup inputShot;
+	InputGroup inputItem;
 
 	Effect effect;
 
-	Game* game;
-
-	Vec2 N;
-	double M, O;
+private:
+	Vec2 Vel2;
 };
 
 #endif

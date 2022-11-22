@@ -2,7 +2,12 @@
 # include "Title.h"
 # include "Select.h"
 # include "Game.h"
+# include "Result.h"
 # include "Stage_1.h"
+# include "Stage_2.h"
+# include "Stage_3.h"
+# include "Stage_4.h"
+# include "Stage_5.h"
 
 //開発ベース ver0.0
 
@@ -36,7 +41,9 @@ void Main()
 	TextureAsset::Register(U"player_1_right", U"texture/player/player_1_right.png", TextureDesc::Mipped);
 
 	//Itemasset
-	TextureAsset::Register(U"item_1",U"texture/item/mazai.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"mazai",U"texture/item/mazai.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"kakomon",U"texture/item/kakomon.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"report",U"texture/item/report.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"item_2",U"texture/item/item_2.png", TextureDesc::Mipped);
 
 	//サウンドアセット
@@ -46,7 +53,12 @@ void Main()
 	App manager;
 	manager.add<Title>(State::Title);
 	manager.add<Select>(State::Select);
+	manager.add<Result>(State::Result);
 	manager.add<Stage_1>(State::Stage_1);
+	manager.add<Stage_2>(State::Stage_2);
+	manager.add<Stage_3>(State::Stage_3);
+	manager.add<Stage_4>(State::Stage_4);
+	manager.add<Stage_5>(State::Stage_5);
 
 
 	// ゲームシーンから開始したい場合はこのコメントを外す
