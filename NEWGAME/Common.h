@@ -27,6 +27,9 @@ struct GameData
 	//キル数
 	int kill = 0;
 
+	//単位数
+	int tanni = 0;
+
 	//キーコンフィグの定義
 	//struct keyconfig{
 	//	InputGroup inputLeft;

@@ -65,7 +65,5 @@ protected:
 	const Font font{ 32, U"example/font/DotGothic16/DotGothic16-Regular.ttf", FontStyle::Bitmap };
 	const String stage = Format(getData().stage);
 
-
-	
 	
 };
