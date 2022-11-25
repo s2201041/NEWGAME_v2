@@ -151,3 +151,25 @@ void Entity::cla(Shot* en) {
 
 void Entity::cla(Base* en) {
 }
+
+class Test_Enemy : public Entity {
+	Test_Enemy(Game* gm, Vec2 pos, int typ, Rect are):Entity(gm,pos,typ,are) {
+		Nam = U"敵_A";
+		Hp = 200;
+		Max_Hp = 200;
+	}
+	void update() {
+		Pos = Pos.lerp(GoPos, 0.1);
+		if (Timer > 0.5) {
+			//*shot << Shot{ Pos ,{0,1} ,900 ,1 ,Are };
+			game->en_shot << Shot{game, this,Pos ,{0,1} ,900 ,5 ,Are};
+			GoPos = { NearPos.x,Random(20,280) };
+			Timer = 0;
+		}
+		//タイマーの加算
+		Timer += Scene::DeltaTime();
+	}
+	void draw() {
+		TextureAsset(U"enemy_2").scaled(2.0).drawAt(Pos);
+	}
+};
