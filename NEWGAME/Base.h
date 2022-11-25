@@ -70,6 +70,9 @@ public:
 	//速度の定義
 	int Vel;
 
+	//無敵状態の定義
+	int p_Dam;
+
 protected:
 
 	//座標と向きの定義

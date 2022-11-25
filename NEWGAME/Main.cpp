@@ -3,6 +3,7 @@
 # include "Select.h"
 # include "Game.h"
 # include "Result.h"
+# include "Setting.h"
 # include "Stage_1.h"
 # include "Stage_2.h"
 # include "Stage_3.h"
@@ -55,6 +56,7 @@ void Main()
 	manager.add<Title>(State::Title);
 	manager.add<Select>(State::Select);
 	manager.add<Result>(State::Result);
+	manager.add<Setting>(State::Setting);
 	manager.add<Stage_1>(State::Stage_1);
 	manager.add<Stage_2>(State::Stage_2);
 	manager.add<Stage_3>(State::Stage_3);

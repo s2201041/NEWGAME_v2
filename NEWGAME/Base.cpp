@@ -8,9 +8,9 @@
 Base::Base() {};
 
 Base::Base(Game* gm, Base* ent, Vec2 pos, Vec2 dir, int vel, int typ, Rect are)
-	:Pos(pos),Dir(dir),Vel(vel),Typ(typ),Are(are),Del(false)
+	:game(gm),Pos(pos),Dir(dir),Vel(vel),Typ(typ),Are(are),Del(false)
 {
-	game = gm;
+	p_Dam = 100;
 	Time = 0;
 	Timer = 0;
 	NearPos = { 300,300 };
@@ -19,7 +19,7 @@ Base::Base(Game* gm, Base* ent, Vec2 pos, Vec2 dir, int vel, int typ, Rect are)
 Base::Base(Game* gm, Vec2 pos, int typ, Rect are)
 	:game(gm),Pos(pos),Typ(typ),Are(are),Del(false)
 {
-	game = gm;
+	p_Dam = 100;
 	Time = 0;
 	Timer = 0;
 	NearPos = { 300,300 };
