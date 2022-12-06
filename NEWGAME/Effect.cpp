@@ -6,6 +6,8 @@ struct Speed_Up : IEffect
 
 	int* m_speed;
 
+	Font m_font = Font{ 50, Typeface::Heavy };
+
 	explicit Speed_Up(int* s, int time)
 		: m_time{ time }
 		, m_speed{ s }
@@ -129,6 +131,27 @@ struct ScoreEffect : IEffect
 		m_font(m_score).drawAt(m_start.movedBy(0, t * -120), color);
 
 		return (t < 0.5);
+	}
+};
+
+struct Effect_Name : IEffect
+{
+	int m_num;
+
+	String m_name;
+
+	Font m_font = Font{ 25, Typeface::Heavy };
+
+	Effect_Name(const int num, String name)
+		: m_num{ num }
+		, m_name{ name }
+		{}
+
+	bool update(double t) override
+	{
+		m_font(m_name).drawAt(10, 10 + 30 * m_num );
+
+		return (t < 1.5);
 	}
 };
 
