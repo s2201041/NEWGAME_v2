@@ -26,6 +26,8 @@ public:
 	//衝突関数
 	void cla(Base* en);
 
+	void cla(Player* en);
+
 	//コライダー
 	Circle Col;
 

@@ -229,6 +229,23 @@ struct Item_use : IEffect
 	}
 };
 
+
+
+struct HitEffect : IEffect
+{
+	int score;
+
+	HitEffect(const int score)
+		: score{ score }{}
+
+	bool update(double t) override
+	{
+		//画面を赤くする
+		Rect{ 0, 0, 800, 600 }.draw(HSV(Palette::Red, 0.3));
+		// 0.1 秒未満なら継続
+		return (t < 0.1);
+	}
+};
 struct RingEffect : IEffect
 {
 	Vec2 m_pos;
