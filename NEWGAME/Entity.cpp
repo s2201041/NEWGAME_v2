@@ -18,25 +18,25 @@ Entity::Entity(Game* gm, Vec2 pos, int typ, Rect are) : Base(gm, pos, typ, are)
 	case 1:
 		Nam = U"敵_A";
 		Hp = 200;
-		Max_Hp = 200;
+		Max_Hp = 2000;
 		break;
 
 	case 2:
 		Nam = U"敵_B";
 		Hp = 100;
-		Max_Hp =100;
+		Max_Hp =1000;
 		break;
 
 	case 3:
 		Nam = U"敵_C";
 		Hp = 200;
-		Max_Hp =200;
+		Max_Hp =2000;
 		break;
 
 	case 4:
 		Nam = U"敵_D";
 		Hp = 200;
-		Max_Hp =200;
+		Max_Hp =2000;
 		break;
 
 	}
@@ -51,13 +51,20 @@ void Entity::sub_update()
 
 		Pos = Pos.lerp(GoPos, 0.1);
 		if (Timer > 0.5) {
-			//*shot << Shot{ Pos ,{0,1} ,900 ,1 ,Are };
-			game->en_shot << Shot{game, this,Pos ,{0,1} ,900 ,5 ,Are};
+			if(Time > 5)
+				game->en_shot << Shot{game, this,Pos ,{0,1} ,1900 ,5 ,Are};
+
+			else 
+				game->en_shot << Shot{game, this,Pos ,{0,1} ,900 ,5 ,Are};
+
 			GoPos = { NearPos.x,Random(20,280) };
 			Timer = 0;
 		}
 		//タイマーの加算
 		Timer += Scene::DeltaTime();
+
+		if (Time > 10)
+			Typ = 2;
 
 		break;
 
@@ -112,6 +119,7 @@ void Entity::sub_update()
 	//Hp0以下の敵の消去
 	if (0 >= Hp) {
 		Del = !Del;
+		game->Kill++;
 		game->effect.add<BubbleEffect>(Pos, Random(0.0, 360.0));
 	}
 
@@ -140,7 +148,6 @@ void Entity::sub_draw() const
 		TextureAsset(U"enemy_2").scaled(2.0).drawAt(Pos);
 		break;
 	}
-	//effect.update();
 }
 
 void Entity::cla(Shot* en) {
@@ -151,25 +158,3 @@ void Entity::cla(Shot* en) {
 
 void Entity::cla(Base* en) {
 }
-
-class Test_Enemy : public Entity {
-	Test_Enemy(Game* gm, Vec2 pos, int typ, Rect are):Entity(gm,pos,typ,are) {
-		Nam = U"敵_A";
-		Hp = 200;
-		Max_Hp = 200;
-	}
-	void update() {
-		Pos = Pos.lerp(GoPos, 0.1);
-		if (Timer > 0.5) {
-			//*shot << Shot{ Pos ,{0,1} ,900 ,1 ,Are };
-			game->en_shot << Shot{game, this,Pos ,{0,1} ,900 ,5 ,Are};
-			GoPos = { NearPos.x,Random(20,280) };
-			Timer = 0;
-		}
-		//タイマーの加算
-		Timer += Scene::DeltaTime();
-	}
-	void draw() {
-		TextureAsset(U"enemy_2").scaled(2.0).drawAt(Pos);
-	}
-};

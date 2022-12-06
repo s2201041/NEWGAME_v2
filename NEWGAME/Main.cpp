@@ -45,6 +45,7 @@ void Main()
 	TextureAsset::Register(U"mazai",U"texture/item/mazai.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"kakomon",U"texture/item/kakomon.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"report",U"texture/item/report.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"item_1",U"texture/item/item_1.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"item_2",U"texture/item/item_2.png", TextureDesc::Mipped);
 
 	//サウンドアセット

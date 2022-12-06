@@ -31,6 +31,7 @@ Item::Item(Player* ent, int typ):Item(game,Pos,Typ,Are) {
 
 void Item::sub_update() {
 
+	/*
 	switch (Typ) {
 	case 1:
 		if (t > 5)
@@ -41,6 +42,10 @@ void Item::sub_update() {
 			Del = true;
 		break;
 	}
+	*/
+
+	if (t > 5)
+		Del = true;
 
 	Pos.clamp(Are);
 
@@ -55,7 +60,7 @@ void Item::has_update(int n) {
 	
 	Rec = RectF{ Arg::center(Pos), 64, 64};
 
-	if (Rec.leftClicked()||(KeyZ.down()&&n == 0)){
+	if (Rec.leftClicked()){
 		//use(whose);
 	}
 }
@@ -85,12 +90,13 @@ void Item::sub_draw() const
 void Item::cla(Player* pl) {
 	Del = true;
 	whose = pl;
+
 	switch (Typ) {
 	case 4:
 		use(pl);
 		return;
-		break;
 	}
+	
 	if(pl->item.size()<6)
 		pl->item << Item{pl,Typ};
 }

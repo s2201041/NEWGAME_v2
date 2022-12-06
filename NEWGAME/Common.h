@@ -31,6 +31,9 @@ struct GameData
 	//単位数
 	int tani = 0;
 
+	//勝利判定
+	bool win = false;
+
 	//キーコンフィグの定義
 	//struct keyconfig{
 	//	InputGroup inputLeft;
