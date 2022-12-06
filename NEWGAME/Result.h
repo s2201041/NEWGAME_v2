@@ -22,6 +22,6 @@ private:
 
 	const String stage = Format(getData().stage);
 	const String score = Format(getData().score);
-	const String kill = Format(getData().stage);
+	const String kill = Format(getData().kill);
 };
 

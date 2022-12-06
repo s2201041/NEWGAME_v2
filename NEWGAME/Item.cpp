@@ -21,6 +21,9 @@ Item::Item(Game* gm, Vec2 pos, int typ, Rect are):Base(gm,pos,typ,are)
 	case 5:
 		Nam = U"ダメージ半減";
 		break;
+	case 6:
+		Nam = U"敵ダメージ";
+		break;
 	}
 }
 
@@ -102,6 +105,7 @@ void Item::cla(Player* pl) {
 }
 
 void Item::use(Player* pl) {
+	//whose->effect.add<Effect_Name>(1,Nam);
 	switch (Typ) {
 	case 1:
 		Del = true;

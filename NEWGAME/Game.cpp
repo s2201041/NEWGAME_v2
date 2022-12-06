@@ -32,7 +32,7 @@ void Game::update() {
 	for (auto& pl : player) {
 		pl.update();
 		if (pl.Del)
-			changeScene(State::Result);
+			lose = true;
 	}
 
 	//敵ショットの動作処理

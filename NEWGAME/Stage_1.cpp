@@ -37,7 +37,7 @@ void Stage_1::sub_update() {
 	if (Kill >= 10) win = true;
 
 	//敵の出現
-	if (Time >= 30) {
+	if (Time >= 10) {
 		entity << Entity{ this, { 600 , 50 },Random(1,1) ,Are };
 		Time = 0;
 	}
