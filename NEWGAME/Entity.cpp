@@ -17,25 +17,25 @@ Entity::Entity(Game* gm, Vec2 pos, int typ, Rect are) : Base(gm, pos, typ, are)
 	switch (Typ) {
 	case 1:
 		Nam = U"敵_A";
-		Hp = 200;
+		Hp = 2000;
 		Max_Hp = 2000;
 		break;
 
 	case 2:
 		Nam = U"敵_B";
-		Hp = 100;
+		Hp = 1000;
 		Max_Hp =1000;
 		break;
 
 	case 3:
 		Nam = U"敵_C";
-		Hp = 200;
+		Hp = 2000;
 		Max_Hp =2000;
 		break;
 
 	case 4:
 		Nam = U"敵_D";
-		Hp = 200;
+		Hp = 2000;
 		Max_Hp =2000;
 		break;
 
