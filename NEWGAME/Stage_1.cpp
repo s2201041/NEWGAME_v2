@@ -9,20 +9,25 @@ Stage_1::Stage_1(const InitData& init)
 	Time_2 = 0;
 
 	Time_Left = 120;
+
+	norma_Kill = 4;
 	
 	winner = Texture{ U"texture/winner.png" };
 
 	// オーディオを再生
 	audio.play();
 
-	entity << Entity{ this, { 600 , 50 },Random(1,4) ,Are };
 }
 
 void Stage_1::sub_update() {
 
 
+	if (0 < Time) {
+		standby = false;
+	}
+
 	//ゲームオーバー時の処理
-	if (win||lose) {
+	if (game_over) {
 		AudioAsset(U"clear_sound").playOneShot();
 		Game_Over();
 		changeScene(State::Result);
@@ -32,18 +37,16 @@ void Stage_1::sub_update() {
 	Time += Scene::DeltaTime();
 	Time_2 += Scene::DeltaTime();
 
-	if (Time_Left <= 0) lose = true;
-
-	if (Kill >= 10) win = true;
+	if (Time_Left <= 0) game_over = true;
 
 	//敵の出現
 	if (Time >= 10) {
-		entity << Entity{ this, { 600 , 50 },Random(1,1) ,Are };
+		entity << Entity{ this, { 300 , 50 },Random(11,14) ,Are };
 		Time = 0;
 	}
+
 	//アイテムの出現
 	if (Time_2 >= 5) {
-
 		item << Item{this, { Random(0,600) , Random(150,600)},Random(1,5) ,Are };
 		Time_2 = 0;
 	}
@@ -53,9 +56,4 @@ void Stage_1::sub_update() {
 }
 
 void Stage_1::sub_draw() const{
-	/*
-	if(win){
-		winner.scaled(0.75).drawAt(400,300);
-	}
-	*/
 }

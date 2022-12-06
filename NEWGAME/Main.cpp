@@ -31,15 +31,18 @@ void Main()
 	TextureAsset::Register(U"juudan", U"texture/shot/juudan.png" , TextureDesc::Mipped);
 	
 	//Entityアセット
-	TextureAsset::Register(U"enemy_1", U"texture/entity/enemy_1.png", TextureDesc::Mipped);
-	TextureAsset::Register(U"enemy_2", U"texture/entity/enemy_2.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"enemy_1", U"texture/entity/enemy_1_down.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"enemy_2", U"texture/entity/enemy_2_down.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"enemy_3", U"texture/entity/enemy_3_down.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"ki", U"texture/entity/ki.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"ki2", U"texture/entity/ki2.png", TextureDesc::Mipped);
 
 
 	//Playerアセット
 	TextureAsset::Register(U"player_1_up", U"texture/player/player_1_up.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"player_1_down", U"texture/player/player_1_down.png", TextureDesc::Mipped);
-	TextureAsset::Register(U"player_1_left", U"texture/player/player_1_left.png", TextureDesc::Mipped);
-	TextureAsset::Register(U"player_1_right", U"texture/player/player_1_right.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"player_1_left", U"texture/player/player_1_up.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"player_1_right", U"texture/player/player_1_up.png", TextureDesc::Mipped);
 
 	//Itemasset
 	TextureAsset::Register(U"mazai",U"texture/item/mazai.png", TextureDesc::Mipped);

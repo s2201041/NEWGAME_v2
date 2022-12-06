@@ -15,25 +15,25 @@ Entity::Entity(Game* gm, Vec2 pos, int typ, Rect are) : Base(gm, pos, typ, are)
 
 	//タイプ別の初期値の初期化
 	switch (Typ) {
-	case 1:
+	case 11:
 		Nam = U"敵_A";
 		Hp = 400;
 		Max_Hp = 400;
 		break;
 
-	case 2:
+	case 12:
 		Nam = U"敵_B";
 		Hp = 200;
 		Max_Hp =200;
 		break;
 
-	case 3:
+	case 13:
 		Nam = U"敵_C";
 		Hp = 400;
 		Max_Hp =400;
 		break;
 
-	case 4:
+	case 14:
 		Nam = U"敵_D";
 		Hp = 400;
 		Max_Hp =400;
@@ -47,28 +47,21 @@ void Entity::sub_update()
 
 	//タイプ別の動作処理の分岐
 	switch (Typ) {
-	case 1:
+	case 11:
 
 		Pos = Pos.lerp(GoPos, 0.1);
+
 		if (Timer > 0.5) {
-			if(Time > 5)
-				game->en_shot << Shot{game, this,Pos ,{0,1} ,1900 ,5 ,Are};
-
-			else 
-				game->en_shot << Shot{game, this,Pos ,{0,1} ,900 ,5 ,Are};
-
+			game->en_shot << Shot{game, this,Pos ,{0,1} ,900 ,5 ,Are};
 			GoPos = { NearPos.x,Random(20,280) };
 			Timer = 0;
 		}
 		//タイマーの加算
 		Timer += Scene::DeltaTime();
 
-		if (Time > 10)
-			Typ = 2;
-
 		break;
 
-	case 2:
+	case 12:
 
 		Pos = Pos.lerp(GoPos, 0.2);
 
@@ -82,7 +75,7 @@ void Entity::sub_update()
 
 		break;
 
-	case 3:
+	case 13:
 
 		Pos.x = 300 + Sin(Time/2)*300;
 
@@ -97,7 +90,8 @@ void Entity::sub_update()
 		Dir.rotate(Scene::DeltaTime()*3);
 
 		break;
-	case 4:
+
+	case 14:
 
 		Pos = Pos.lerp(GoPos, 0.1);
 		if (Timer > 1.5) {
@@ -112,7 +106,9 @@ void Entity::sub_update()
 
 	}
 
-	
+	if (Time > 15)
+		Del = true;
+
 	//すり抜け防止
 	Pos.clamp(Are);
 
@@ -132,20 +128,20 @@ void Entity::sub_draw() const
 {
 
 	switch (Typ) {
-	case 1:
+	case 11:
 		TextureAsset(U"enemy_1").scaled(2.0).drawAt(Pos);
 		break;
 
-	case 2:
+	case 12:
 		TextureAsset(U"enemy_2").scaled(2.0).drawAt(Pos);
 		break;
 
-	case 3:
-		TextureAsset(U"enemy_2").scaled(2.0).drawAt(Pos);
+	case 13:
+		TextureAsset(U"enemy_3").scaled(2.0).drawAt(Pos);
 		break;
 
-	case 4:
-		TextureAsset(U"enemy_2").scaled(2.0).drawAt(Pos);
+	case 14:
+		TextureAsset(U"ki").scaled(2.0).drawAt(Pos);
 		break;
 	}
 }

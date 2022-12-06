@@ -16,6 +16,8 @@ public:
 
 private:
 
+	bool win;
+
 	const Font font{ 32, U"example/font/DotGothic16/DotGothic16-Regular.ttf", FontStyle::Bitmap };
 
 	const Font t_font{ 64, U"example/font/DotGothic16/DotGothic16-Regular.ttf", FontStyle::Bitmap };
@@ -23,5 +25,6 @@ private:
 	const String stage = Format(getData().stage);
 	const String score = Format(getData().score);
 	const String kill = Format(getData().kill);
+	const String norma_kill = Format(getData().norma_kill);
 };
 

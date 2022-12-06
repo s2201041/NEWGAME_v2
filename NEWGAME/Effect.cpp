@@ -128,7 +128,7 @@ struct ScoreEffect : IEffect
 	{
 		const HSV color{ (180 - m_score * 1.8), 1.0 - (t * 2.0) };
 
-		m_font(m_score).drawAt(m_start.movedBy(0, t * -120), color);
+		m_font(m_score).drawAt(m_start.movedBy(0, t * -120), Palette::Red);
 
 		return (t < 0.5);
 	}

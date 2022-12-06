@@ -43,6 +43,8 @@ public:
 
 	int Score, Kill;
 
+	int norma_Kill;
+
 	Effect effect;
 
 protected:
@@ -53,10 +55,16 @@ protected:
 	bool win;
 
 	//ゲームオーバー判定
-	bool lose;
+	bool game_over;
 
 	//制限時間
 	double Time_Left;
+
+	//経過時間
+	double Time;
+
+	//待機状態
+	bool standby;
 	
 	const Font hp_font{ FontMethod::MSDF, 20, Typeface::Bold };
 
