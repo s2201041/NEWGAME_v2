@@ -19,13 +19,12 @@ public:
 	//１フレーム毎の処理
 	void sub_update() override;
 
+	//プレイヤー所持時の処理
 	void has_update(int n);
 
 	//描画
 	void sub_draw() const override;
 
-	void has_draw(int n) const;
-	
 	//諸突処理関数
 	void cla(Player *pl);
 

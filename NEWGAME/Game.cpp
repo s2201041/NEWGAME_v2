@@ -4,20 +4,18 @@
 Game::Game(const InitData& init)
 	: IScene{ init }
 {
-
 	Kill = 0;
 
 	Score = 0;
 
 	win = false;
 
+	lose = false;
+
 	player << Player{ this, { 0 , 0 } ,1 ,Are };
 
 	//動作範囲
 	Are = Rect{ 0, 0, 600, 600 };
-
-	// オーディオを再生
-	audio.play();
 }
 
 void Game::update() {
@@ -28,15 +26,13 @@ void Game::update() {
 	//敵の動作処理
 	for (auto& en : entity) {
 		en.update();
-		if (en.Del)
-			Kill++;
 	}
 
 	//プレイヤーの動作処理
 	for (auto& pl : player) {
 		pl.update();
 		if (pl.Del)
-			changeScene(State::Title);
+			changeScene(State::Result);
 	}
 
 	//敵ショットの動作処理
@@ -166,9 +162,10 @@ void Game::draw() const
 	Line{ 605, 160, 800, 160 }.draw(3, Palette::Black);
 	Line{ 605, 500, 800, 500 }.draw(3, Palette::Black);
 	font(U"ステージ" + stage).draw(620, 13, Palette::Black);
-	font(U"残り時間" + Format(Time_Left)).draw(620, 93, Palette::Black);
+	const int Time_L = Time_Left;
+	font(U"残り時間" + Format(Time_L)).draw(620, 93, Palette::Black);
 	font(U"スコア:" + Format(Score)).draw(620, 160, Palette::Black);
-	font(U"キル数：" + Format(Kill)).draw(620, 190, Palette::Black);
+	font(U"単位数：" + Format(Kill)).draw(620, 200, Palette::Black);
 
 	//プレイヤーの描画
 	for (auto& pl : player) {
@@ -176,7 +173,7 @@ void Game::draw() const
 		RectF{ 610 , 550, 180, 20 }.draw(Palette::Orange);;
 		RectF{ 610 , 550, pl.Hp * 1.8, 20 }.draw(Palette::Red);;
 		hp_font(pl.Nam).drawAt(700, 530, Palette::Black);
-		hp_font(pl.Hp).drawAt(700, 560);
+		hp_font(Format(pl.Hp)+U"/"+Format(pl.Max_Hp)).drawAt(700, 560);
 	}
 
 	//敵の描画
@@ -185,7 +182,7 @@ void Game::draw() const
 		RectF{ 25 , 25 + i * 30 , 550, 15 }.draw(Palette::Orange);;
 		RectF{ 25 , 25 + i * 30 , entity[i].Hp * 550 / entity[i].Max_Hp, 15 }.draw(Palette::Red);;
 		hp_font(entity[i].Nam).drawAt(300, 45 + i * 30, Palette::Black);
-		hp_font(entity[i].Hp).drawAt(300, 32 + i * 30);
+		hp_font(Format(entity[i].Hp)+U"/"+Format(entity[i].Max_Hp)).drawAt(300, 33 + i * 30);
 	}
 
 	//敵ショットの描画
@@ -202,12 +199,7 @@ void Game::draw() const
 	for (auto& it : item) {
 		it.draw();
 	}
-
-	if (win) {
-		winner.scaled(0.75).drawAt(400, 300);
-	}
-
-
+	
 	//エフェクトの更新
 	effect.update();
 
@@ -218,4 +210,5 @@ void Game::draw() const
 void Game::Game_Over() {
 	getData().score = Score;
 	getData().kill = Kill;
+	getData().win = win;
 }

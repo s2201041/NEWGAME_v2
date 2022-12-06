@@ -113,7 +113,7 @@ void Player::sub_draw() const
 		TextureAsset(U"player_1_up").scaled(2.0).drawAt(Pos);
 
 	for (int i = 0; i < item.size(); i++)
-		item[i].has_draw(i);
+		item[i].sub_draw();
 
 
 }

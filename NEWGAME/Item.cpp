@@ -18,16 +18,20 @@ Item::Item(Game* gm, Vec2 pos, int typ, Rect are):Base(gm,pos,typ,are)
 	case 4:
 		Nam = U"レポート";
 		break;
+	case 5:
+		Nam = U"ダメージ半減";
+		break;
 	}
 }
 
-Item::Item(Player* ent, int typ) {
+Item::Item(Player* ent, int typ):Item(game,Pos,Typ,Are) {
 	Typ = typ;
 	whose = ent;
 };
 
 void Item::sub_update() {
 
+	/*
 	switch (Typ) {
 	case 1:
 		if (t > 5)
@@ -38,6 +42,11 @@ void Item::sub_update() {
 			Del = true;
 		break;
 	}
+	*/
+
+	if (t > 5)
+		Del = true;
+
 	Pos.clamp(Are);
 
 	Col = Circle{ Pos,8 };
@@ -51,7 +60,7 @@ void Item::has_update(int n) {
 	
 	Rec = RectF{ Arg::center(Pos), 64, 64};
 
-	if (Rec.leftClicked()||(KeyZ.down()&&n == 0)){
+	if (Rec.leftClicked()){
 		//use(whose);
 	}
 }
@@ -71,36 +80,23 @@ void Item::sub_draw() const
 	case 4:
 		TextureAsset(U"report").scaled(2.0).drawAt(Pos);
 		break;
-	}
-}
+	case 5:
+		TextureAsset(U"item_1").scaled(2.0).drawAt(Pos);
+		break;
 
-void Item::has_draw(int n) const {
-	
-	switch (Typ) {
-	case 1:
-		TextureAsset(U"mazai").scaled(2.0).drawAt(Pos);
-		break;
-	case 2:
-		TextureAsset(U"item_2").scaled(2.0).drawAt(Pos);
-		break;
-	case 3:
-		TextureAsset(U"kakomon").scaled(2.0).drawAt(Pos);
-		break;
-	case 4:
-		TextureAsset(U"report").scaled(2.0).drawAt(Pos);
-		break;
 	}
 }
 
 void Item::cla(Player* pl) {
 	Del = true;
 	whose = pl;
+
 	switch (Typ) {
 	case 4:
 		use(pl);
 		return;
-		break;
 	}
+	
 	if(pl->item.size()<6)
 		pl->item << Item{pl,Typ};
 }
@@ -119,10 +115,13 @@ void Item::use(Player* pl) {
 		Del = true;
 		whose->effect.add<Speed_Up>(&whose->Vel,5);
 		return;
-		return;
 	case 4:
 		Del = true;
 		whose->effect.add<Speed_Down>(&whose->Vel,5);
+		return;
+	case 5:
+		Del = true;
+		whose->effect.add<Damage_Down>(&whose->p_Dam,5);
 		return;
 	}
 }

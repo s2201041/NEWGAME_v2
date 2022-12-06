@@ -8,6 +8,7 @@ enum class State
 	Select,
 	Result,
 	Game,
+	Setting,
 	Stage_1,
 	Stage_2,
 	Stage_3,	
@@ -26,6 +27,12 @@ struct GameData
 
 	//キル数
 	int kill = 0;
+
+	//単位数
+	int tani = 0;
+
+	//勝利判定
+	bool win = false;
 
 	//キーコンフィグの定義
 	//struct keyconfig{

@@ -3,6 +3,7 @@
 # include "Select.h"
 # include "Game.h"
 # include "Result.h"
+# include "Setting.h"
 # include "Stage_1.h"
 # include "Stage_2.h"
 # include "Stage_3.h"
@@ -44,6 +45,7 @@ void Main()
 	TextureAsset::Register(U"mazai",U"texture/item/mazai.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"kakomon",U"texture/item/kakomon.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"report",U"texture/item/report.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"item_1",U"texture/item/item_1.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"item_2",U"texture/item/item_2.png", TextureDesc::Mipped);
 
 	//サウンドアセット
@@ -55,6 +57,7 @@ void Main()
 	manager.add<Title>(State::Title);
 	manager.add<Select>(State::Select);
 	manager.add<Result>(State::Result);
+	manager.add<Setting>(State::Setting);
 	manager.add<Stage_1>(State::Stage_1);
 	manager.add<Stage_2>(State::Stage_2);
 	manager.add<Stage_3>(State::Stage_3);

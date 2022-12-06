@@ -8,8 +8,6 @@ Shot::Shot(Game* gm, Base* ent, Vec2 pos, Vec2 dir, int vel,int typ ,Rect are):B
 {
 	entity = ent;
 
-
-
 	NearPos = { 300,300 };
 
 	//コライダーの初期化
@@ -20,25 +18,20 @@ Shot::Shot(Game* gm, Base* ent, Vec2 pos, Vec2 dir, int vel,int typ ,Rect are):B
 		//直線
 		Dam = 10;
 		break;
-
 	case 2:
 		Dam = 10;
 		break;
-
 	case 3:
 		Dam = 10;
 		break;
-
 	case 4:
 		//追跡 自動消滅
 		Dam = 10;
 		break;
-
 	case 5:
 		//直線 速度二倍
 		Dam = 15;
 		break;
-
 	}
 
 }
@@ -74,6 +67,7 @@ void Shot::sub_update()
 		Dir.rotate(Scene::DeltaTime()*50);
 
 		Timer += Scene::DeltaTime();
+
 
 		break;
 
@@ -144,7 +138,7 @@ void Shot::cla(Base* en) {
 
 	if(en!=entity) {
 		Del = true;
-		en->Hp -= Dam;
+		en->Hp -= (Dam * en->p_Dam) / 100;
 	}
 }
 
