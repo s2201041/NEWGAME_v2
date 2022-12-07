@@ -73,6 +73,9 @@ public:
 	//無敵状態の定義
 	int p_Dam;
 
+	//インスタンス化からの時間
+	double Time;
+
 protected:
 
 	//座標と向きの定義
@@ -80,9 +83,6 @@ protected:
 
 	//コライダーサイズの定義
 	double size;
-
-	//インスタンス化からの時間
-	double Time;
 
 	//タイマー変数の定義
 	double Timer;

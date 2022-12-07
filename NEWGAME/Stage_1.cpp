@@ -4,9 +4,9 @@ Stage_1::Stage_1(const InitData& init)
 	: Game{init}
 {
 	//経過時間の初期化
-	Time = 0;
+	Entity_Time = 10;
 
-	Time_2 = 0;
+	Item_Time = 5;
 
 	Time_Left = 120;
 
@@ -21,37 +21,22 @@ Stage_1::Stage_1(const InitData& init)
 
 void Stage_1::sub_update() {
 
-
-	if (0 < Time) {
+	if (0 < Time) 
 		standby = false;
-	}
-
-	//ゲームオーバー時の処理
-	if (game_over) {
-		AudioAsset(U"clear_sound").playOneShot();
-		Game_Over();
-		changeScene(State::Result);
-	}
-
-	//経過時間
-	Time += Scene::DeltaTime();
-	Time_2 += Scene::DeltaTime();
 
 	if (Time_Left <= 0) game_over = true;
 
 	//敵の出現
-	if (Time >= 10) {
+	if (Time >= Entity_Time) {
 		entity << Entity{ this, { 300 , 50 },Random(11,14) ,Are };
-		Time = 0;
+		Entity_Time += 10;
 	}
 
 	//アイテムの出現
-	if (Time_2 >= 5) {
+	if (Time >= Item_Time) {
 		item << Item{this, { Random(0,600) , Random(150,600)},Random(1,5) ,Are };
-		Time_2 = 0;
+		Item_Time += 5;
 	}
-
-
 
 }
 

@@ -155,6 +155,12 @@ void Game::update() {
 		pl_shot.remove_if([](const Shot& sh) { return sh.Del == true; });
 		item.remove_if([](const Item& it) { return it.Del == true; });
 	}
+	//ゲームオーバー時の処理
+	if (game_over) {
+		//AudioAsset(U"clear_sound").playOneShot();
+		Game_Over();
+	}
+	
 	//派生シーンの更新処理
 	sub_update();
 }
@@ -197,10 +203,15 @@ void Game::draw() const
 	//敵の描画
 	for (int i = 0; i < entity.size(); i++) {
 		entity[i].draw();
-		RectF{ 25 , 25 + i * 30 , 550, 15 }.draw(Palette::Orange);;
-		RectF{ 25 , 25 + i * 30 , entity[i].Hp * 550 / entity[i].Max_Hp, 15 }.draw(Palette::Red);;
-		hp_font(entity[i].Nam).drawAt(300, 45 + i * 30, Palette::Black);
-		hp_font(Format(entity[i].Hp)+U"/"+Format(entity[i].Max_Hp)).drawAt(300, 33 + i * 30);
+		RectF{ 25 , 25 + i * 35 , 550, 15 }.draw(Palette::Orange);;
+		RectF{ 25 , 25 + i * 35 , entity[i].Hp * 550 / entity[i].Max_Hp, 15 }.draw(Palette::Red);;
+
+		//消滅までのタイマ
+		RectF{ 25 , 40 + i * 35 , 550, 5 }.draw(Palette::White);;
+		RectF{ 25 , 40 + i * 35 , (entity[i].Time_Left - entity[i].Time) * 550 / entity[i].Time_Left, 5}.draw(Palette::Blue);;
+
+		hp_font(entity[i].Nam).drawAt(300, 50 + i * 35, Palette::Black);
+		hp_font(Format(entity[i].Hp)+U"/"+Format(entity[i].Max_Hp)).drawAt(300, 33 + i * 35);
 	}
 
 
@@ -221,4 +232,5 @@ void Game::Game_Over() {
 	getData().kill = Kill;
 	getData().norma_kill = norma_Kill;
 	getData().win = win;
+	changeScene(State::Result);
 }

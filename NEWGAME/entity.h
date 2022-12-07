@@ -22,12 +22,13 @@ public:
 	//描画
 	void sub_draw() const override;
 
+	//残り時間
+	int Time_Left;
+
 	//諸突処理関数
 	void cla(Shot* en);
 	void cla(Base* en);
 	
 };
-
-
-
+ 
 #endif

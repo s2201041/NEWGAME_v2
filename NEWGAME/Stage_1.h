@@ -12,7 +12,7 @@ public:
 	void sub_draw() const override;
 
 private:
-	double Time,Time_2;
+	double Entity_Time,Item_Time;
 
 	// 音声ファイルを読み込んで Audio を作成（ストリーミング再生をリクエスト）
 	const Audio audio{ Audio::Stream, U"sound/bgm_1.mp3" };

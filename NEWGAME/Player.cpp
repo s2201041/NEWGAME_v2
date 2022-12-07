@@ -44,6 +44,10 @@ Player::Player(Game* gm, Vec2 pos,int typ,Rect are) : Base(gm, pos, typ, are)
 
 void Player::sub_update() 
 {
+	if (Typ == 10)
+		return;
+
+
 	//移動処理
 	const Vec2 move = Vec2{ (inputRight.pressed() - inputLeft.pressed()), (inputDown.pressed() - inputUp.pressed()) }
 	.setLength(Scene::DeltaTime() * zero(Vel) * (KeyShift.pressed() ? 0.5 : 1.0));
@@ -75,7 +79,7 @@ void Player::sub_update()
 			game->pl_shot << Shot{ game, this, Pos,dir(NearPos,Pos),1000, 1, game->Are };
 		}
 		else
-			game->pl_shot << Shot{game, this, Pos ,{0,-1},500 ,3 , game->Are};
+			game->pl_shot << Shot{game, this, Pos ,{0,-1},500 ,1 , game->Are};
 	}
 
 	//アイテムの使用処理
@@ -100,6 +104,10 @@ void Player::sub_update()
 
 void Player::sub_draw() const
 {
+	if (Typ == 10) {
+		Col.draw(ColorF{ 0.0, 0.5, 1.0, 0.8 });
+		return;
+	}
 
 	TextureAsset(U"player_1_up").scaled(2.0).drawAt(Pos);
 
