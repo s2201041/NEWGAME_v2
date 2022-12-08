@@ -25,6 +25,15 @@ Base::Base(Game* gm, Vec2 pos, int typ, Rect are)
 	NearPos = { 300,300 };
 }
 
+Base::Base(Game* gm, Vec2 pos, int typ, Rect are,int vel)
+	:game(gm),Pos(pos),Typ(typ),Are(are),Del(false),Vel(vel)
+{
+	p_Dam = 100;
+	Time = 0;
+	Timer = 0;
+	NearPos = { 300,300 };
+}
+
 void Base::update()
 {
 	Time += Scene::DeltaTime();

@@ -21,8 +21,11 @@ public:
 	//ショット用コンストラクタのoverroad
 	Base(Game* gm, Base* ent, Vec2 pos, Vec2 dir, int vel, int typ, Rect are);
 
+
+	Base(Game* gm, Vec2 pos, int typ, Rect are);
+
 	//
-	Base(Game* gm, Vec2 pos,int typ,Rect are);
+	Base(Game* gm, Vec2 pos, int typ, Rect are, int vel);
 
 	//１フレーム毎の処理
 	void update();

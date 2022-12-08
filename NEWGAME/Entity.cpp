@@ -166,7 +166,7 @@ void Entity::sub_draw() const
 }
 
 void Entity::cla(Shot* en) {
-	const int dma = Random(10, 20);
+	const int dma = Random(8, 12) + ((Time_Left - Time)/Time_Left) * 20;
 	game->Score += dma;
 	game->effect.add<ScoreEffect>(Pos, dma);
 }

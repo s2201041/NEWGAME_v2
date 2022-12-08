@@ -12,6 +12,8 @@ public:
 	void sub_draw() const override;
 
 private:
+	Array<en> Entity_List;
+
 	double Entity_Time,Item_Time;
 };
 

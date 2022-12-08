@@ -1,7 +1,7 @@
 ﻿#include "Player.h"
 #include "Game.h"
 
-Player::Player(Game* gm, Vec2 pos,int typ,Rect are) : Base(gm, pos, typ, are)
+Player::Player(Game* gm, Vec2 pos,int typ,Rect are,int vel) : Base(gm, pos, typ, are, vel)
 {
 	Are = Rect{0,150,600,450};
 
@@ -12,7 +12,6 @@ Player::Player(Game* gm, Vec2 pos,int typ,Rect are) : Base(gm, pos, typ, are)
 	Dir.clear();
 	Hp = 100;
 	Max_Hp = 100;
-	Vel = 350;
 	Vel2.clear();
 
 	NearPos.clear();

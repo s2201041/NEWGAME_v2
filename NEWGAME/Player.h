@@ -15,7 +15,7 @@ class Player : public Base{
 public:
 
 	//コンストラクタ
-	Player(Game* game, Vec2 pos,int typ ,Rect are);
+	Player(Game* game, Vec2 pos, int typ, Rect are, int vel);
 
 
 	//１フレーム毎の処理

@@ -14,8 +14,6 @@ Game::Game(const InitData& init)
 
 	standby = true;
 
-	player << Player{ this, { 300 , 400 } ,1 ,Are };
-
 	Time = 0;
 
 	//動作範囲
