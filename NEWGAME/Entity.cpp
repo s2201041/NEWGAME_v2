@@ -14,6 +14,7 @@ Entity::Entity(Game* gm, Vec2 pos, int typ, Rect are) : Base(gm, pos, typ, are)
 	GoPos = { Random(1,100),Random(1,100) };
 	Time_Left = 0;
 
+		;
 	//タイプ別の初期値の初期化
 	switch (Typ) {
 	case 11:

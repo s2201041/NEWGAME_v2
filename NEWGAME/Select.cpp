@@ -3,7 +3,6 @@
 Select::Select(const InitData& init)
 	: IScene{ init }
 {
-
 	// オーディオを再生
 	audio.play();
 }
@@ -67,6 +66,4 @@ void Select::update()
 
 void Select::draw() const
 {
-
-	//FontAsset(U"TitleFont")(U"Stage Select").drawAt(400, 100);
 }

@@ -10,4 +10,7 @@ public:
 
 	// 描画関数
 	void sub_draw() const override;
+
+private:
+	double Entity_Time,Item_Time;
 };
