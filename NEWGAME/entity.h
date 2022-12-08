@@ -14,7 +14,7 @@ class Entity: public Base {
 public:
 
 	//コンストラクタ
-	Entity(Game* gm,Vec2 pos,int typ,Rect are);
+	Entity(Game* gm,Vec2 pos,int typ,Rect are,int hp,int time_left);
 
 	//１フレーム毎の処理
 	void sub_update() override;

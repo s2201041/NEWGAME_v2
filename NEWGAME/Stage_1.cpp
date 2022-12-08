@@ -3,8 +3,13 @@
 Stage_1::Stage_1(const InitData& init)
 	: Game{ init },
 	Entity_List{
-		{Entity{ this, { 300 , 50 },Random(11,14) ,Are }, 5 },
-		{Entity{ this, { 300 , 50 },Random(11,14) ,Are }, 10 }
+		{Entity{ this, { 300 , 50 },12 ,Are ,150,15}, 5 },
+		{Entity{ this, { 300 , 50 },13 ,Are ,150,15}, 15 },
+		{Entity{ this, { 300 , 50 },12 ,Are ,150,15}, 25 },
+		{Entity{ this, { 300 , 50 },13 ,Are ,150,15}, 35 },
+		{Entity{ this, { 300 , 50 },14 ,Are ,150,15}, 45 },
+		{Entity{ this, { 300 , 50 },11 ,Are ,150,10}, 50 },
+		{Entity{ this, { 300 , 50 },12 ,Are ,150,10}, 50 },
 }
 {
 	//経過時間の初期化
@@ -27,10 +32,11 @@ void Stage_1::sub_update() {
 
 	if (Time_Left <= 0) game_over = true;
 
-	if (Entity_List[0].num <= Time) {
-		entity << Entity_List[0].entity;
-		Entity_List.erase(Entity_List.begin());
+	if (Entity_List.size() != 0&&Entity_List[0].num <= Time) {
+			entity << Entity_List[0].entity;
+			Entity_List.erase(Entity_List.begin());
 	}
+
 
 	/*/敵の出現
 	if (Time >= Entity_Time) {
@@ -41,8 +47,8 @@ void Stage_1::sub_update() {
 
 	//アイテムの出現
 	if (Time >= Item_Time) {
-		item << Item{this, { Random(0,600) , Random(150,600)},Random(1,5) ,Are };
-		Item_Time += 5;
+		item << Item{this, { Random(0,600) , Random(150,600)},Random(1,4) ,Are };
+		Item_Time += 10;
 	}
 
 }

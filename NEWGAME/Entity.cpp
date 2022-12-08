@@ -1,7 +1,7 @@
 ﻿#include "Entity.h"
 #include "Game.h"
 
-Entity::Entity(Game* gm, Vec2 pos, int typ, Rect are) : Base(gm, pos, typ, are)
+Entity::Entity(Game* gm, Vec2 pos, int typ, Rect are,int hp,int time_left) : Base(gm, pos, typ, are)
 
 {
 	game = gm;
@@ -14,69 +14,48 @@ Entity::Entity(Game* gm, Vec2 pos, int typ, Rect are) : Base(gm, pos, typ, are)
 	GoPos = { Random(1,100),Random(1,100) };
 	Time_Left = 0;
 
+	Hp = hp;
+	Max_Hp = hp;
+	Time_Left = time_left;
+
 		;
 	//タイプ別の初期値の初期化
 	switch (Typ) {
 	case 11:
 		//直線
-		Nam = U"敵_A";
-		Hp = 100;
-		Max_Hp = 100;
-		Time_Left = 20;
 		break;
 
 	case 12:
 		//向き追跡
 		Nam = U"敵_B";
-		Hp = 100;
-		Max_Hp =100;
-		Time_Left = 20;
 		break;
 
 	case 13:
 		//弾幕
 		Nam = U"敵_C";
-		Hp = 100;
-		Max_Hp =100;
-		Time_Left = 20;
 		break;
 
 	case 14:
 		Nam = U"敵_D";
-		Hp = 100;
-		Max_Hp =100;
-		Time_Left = 20;
 		break;
 
 	case 21:
 		//直線
 		Nam = U"敵_A";
-		Hp = 400;
-		Max_Hp = 400;
-		Time_Left = 10;
 		break;
 
 	case 22:
 		//向き追跡
 		Nam = U"敵_B";
-		Hp = 200;
-		Max_Hp =200;
-		Time_Left = 10;
 		break;
 
 	case 23:
 		//弾幕
 		Nam = U"敵_C";
-		Hp = 400;
-		Max_Hp =400;
-		Time_Left = 10;
 		break;
 
 	case 24:
 		Nam = U"敵_D";
-		Hp = 400;
-		Max_Hp =400;
-		Time_Left = 10;
 		break;
 	}
 }

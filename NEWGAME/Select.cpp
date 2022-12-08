@@ -57,11 +57,6 @@ void Select::update()
 		getData().stage = 5;
 	}
 
-	if (SimpleGUI::Button(U"Setting", Vec2{ 350, 500 }))
-	{
-		// ゲームシーンに遷移
-		changeScene(State::Setting);
-	}
 }
 
 void Select::draw() const

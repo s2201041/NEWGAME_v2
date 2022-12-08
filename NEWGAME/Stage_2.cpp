@@ -23,7 +23,7 @@ void Stage_2::sub_update() {
 
 	//敵の出現
 	if (Time >= Entity_Time) {
-		entity << Entity{ this, { 300 , 50 },Random(11,14) ,Are };
+		//entity << Entity{ this, { 300 , 50 },Random(11,14) ,Are };
 		Entity_Time += 10;
 	}
 

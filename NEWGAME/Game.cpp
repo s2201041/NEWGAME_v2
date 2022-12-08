@@ -160,6 +160,7 @@ void Game::update() {
 		//AudioAsset(U"clear_sound").playOneShot();
 		Game_Over();
 	}
+
 	
 	//派生シーンの更新処理
 	sub_update();

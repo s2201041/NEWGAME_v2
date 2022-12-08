@@ -65,6 +65,13 @@ protected:
 
 	//待機状態
 	bool standby;
+
+	//エンティティのリスト
+	struct en {
+		Entity entity;
+		int num;
+	};
+	Array<en> Entity_List;
 	
 	const Font hp_font{ FontMethod::MSDF, 20, Typeface::Bold };
 
