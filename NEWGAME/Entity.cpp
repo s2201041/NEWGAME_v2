@@ -39,25 +39,10 @@ Entity::Entity(Game* gm, Vec2 pos, int typ, Rect are,int hp,int time_left) : Bas
 		Nam = U"敵_D";
 		break;
 
-	case 21:
-		//直線
-		Nam = U"敵_A";
+	case 15:
+		Nam = U"敵_E";
 		break;
-
-	case 22:
-		//向き追跡
-		Nam = U"敵_B";
-		break;
-
-	case 23:
-		//弾幕
-		Nam = U"敵_C";
-		break;
-
-	case 24:
-		Nam = U"敵_D";
-		break;
-	}
+		}
 }
 
 void Entity::sub_update()
@@ -122,6 +107,19 @@ void Entity::sub_update()
 
 		break;
 
+	case 15:
+
+		Pos = Pos.lerp(NearPos, 0.05);
+
+		if (Timer > 1.5) {
+			game->item << Item{ game,Pos,2,Are };
+			Timer = 0;
+		}
+
+		//タイマーの加算
+		Timer += Scene::DeltaTime();
+
+		break;
 	}
 
 	//自動消滅	
@@ -146,8 +144,7 @@ void Entity::sub_update()
 void Entity::sub_draw() const
 {
 	const Vec2 Pos_D = Pos - GoPos;
-
-
+	const Vec2 Pos_E = Pos - NearPos;
 
 	switch (Typ) {
 	case 11:
@@ -169,7 +166,6 @@ void Entity::sub_draw() const
 			TextureAsset(U"enemy_2_down").scaled(2.0).drawAt(Pos);
 		else 
 			TextureAsset(U"enemy_2_up").scaled(2.0).drawAt(Pos);
-
 		break;
 	case 13:
 			TextureAsset(U"enemy_1").scaled(2.0).drawAt(Pos);
@@ -178,6 +174,11 @@ void Entity::sub_draw() const
 	case 14:
 		TextureAsset(U"ki").scaled(2.0).drawAt(Pos);
 		break;
+	case 15:
+		if(Pos_E.x<0)
+			TextureAsset(U"enemy_4_right").scaled(2.0).drawAt(Pos);
+		else
+			TextureAsset(U"enemy_4_left").scaled(2.0).drawAt(Pos);
 	}
 }
 

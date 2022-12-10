@@ -15,7 +15,7 @@ Title::Title(const InitData& init)
 void Title::update()
 {
 	// 左クリックで
-	if (MouseL.down())
+	if (MouseL.down()||KeySpace.pressed())
 	{
 		// ゲームシーンに遷移
 		changeScene(State::Select);

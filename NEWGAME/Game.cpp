@@ -180,7 +180,7 @@ void Game::draw() const
 	const int Time_L = Time_Left;
 	font(U"残り時間" + Format(Time_L)).draw(610, 93, Palette::Black);
 	font(U"スコア:" + Format(Score)).draw(610, 160, Palette::Black);
-	font(U"単位数：" + Format(Kill) + U"/\n		" + Format(norma_Kill)).draw(610, 200, Palette::Black);
+	font(U"単位数:" + Format(Kill) + U"/" + Format(norma_Kill)).draw(610, 200, Palette::Black);
 
 	//敵ショットの描画
 	for (int i = 0; i < en_shot.size(); i++) {

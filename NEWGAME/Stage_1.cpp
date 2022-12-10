@@ -23,8 +23,8 @@ Stage_1::Stage_1(const InitData& init)
 	Time_Left = 70;
 
 	norma_Kill = 5;
-	
 
+	kaihuku = true;
 }
 
 void Stage_1::sub_update() {
@@ -45,6 +45,12 @@ void Stage_1::sub_update() {
 		Entity_Time += 10;
 	}
 	*/
+
+	if (Time > Time_Left / 2 && kaihuku == true) {
+		item << Item{ this, { Random(0,600) , Random(150,600)},4 ,Are };
+		kaihuku = false;
+	}
+		
 
 	//アイテムの出現
 	if (Time >= Item_Time) {

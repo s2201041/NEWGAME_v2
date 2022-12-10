@@ -3,19 +3,19 @@
 Stage_3::Stage_3(const InitData& init)
 	: Game{init},
 	Entity_List{
-		{Entity{ this, { 300 , 50 },12 ,Are ,180,15}, 5 },
-		{Entity{ this, { 300 , 50 },14 ,Are ,180,15}, 5 },
-		{Entity{ this, { 300 , 50 },13 ,Are ,180,15}, 15 },
-		{Entity{ this, { 300 , 50 },12 ,Are ,180,15}, 25 },
-		{Entity{ this, { 300 , 50 },13 ,Are ,180,15}, 35 },
-		{Entity{ this, { 300 , 50 },14 ,Are ,180,15}, 45 },
-		{Entity{ this, { 300 , 50 },11 ,Are ,180,10}, 50 },
-		{Entity{ this, { 300 , 50 },12 ,Are ,180,10}, 60 },
-		{Entity{ this, { 300 , 50 },12 ,Are ,180,10}, 70 },
-		{Entity{ this, { 300 , 50 },12 ,Are ,180,10}, 80 },
-		{Entity{ this, { 300 , 50 },12 ,Are ,250,10}, 90 },
-		{Entity{ this, { 300 , 50 },14 ,Are ,200,10}, 110 },
-		{Entity{ this, { 300 , 50 },12 ,Are ,200,10}, 110 },
+		{Entity{ this, { 300 , 50 },12 ,Are ,200,15}, 1 },
+		{Entity{ this, { 300 , 50 },15 ,Are ,250,15}, 5 },
+		{Entity{ this, { 300 , 50 },13 ,Are ,200,15}, 15 },
+		{Entity{ this, { 300 , 50 },12 ,Are ,200,15}, 25 },
+		{Entity{ this, { 300 , 50 },13 ,Are ,200,15}, 35 },
+		{Entity{ this, { 300 , 50 },14 ,Are ,200,15}, 45 },
+		{Entity{ this, { 300 , 50 },11 ,Are ,400,20}, 50 },
+		{Entity{ this, { 300 , 50 },12 ,Are ,200,10}, 60 },
+		{Entity{ this, { 300 , 50 },15 ,Are ,220,10}, 70 },
+		{Entity{ this, { 300 , 50 },14 ,Are ,200,10}, 80 },
+		{Entity{ this, { 300 , 50 },14 ,Are ,280,10}, 90 },
+		{Entity{ this, { 300 , 50 },14 ,Are ,240,10}, 110 },
+		{Entity{ this, { 300 , 50 },12 ,Are ,240,10}, 110 },
 }
 {
 	player << Player{ this, { 300 , 400 } ,1 ,Are ,290};

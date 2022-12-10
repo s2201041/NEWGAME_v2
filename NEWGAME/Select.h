@@ -18,8 +18,12 @@ private:
 
 	double time;
 
-	const Font hp_font{ FontMethod::MSDF, 10, Typeface::Bold };
+	const Font hp_font{ FontMethod::MSDF, 24};
+
+	const Font font{ 24, U"example/font/DotGothic16/DotGothic16-Regular.ttf", FontStyle::Bitmap };
 
 	// 音声ファイルを読み込んで Audio を作成（ストリーミング再生をリクエスト）
 	const Audio audio{ Audio::Stream, U"sound/bgm_2.ogg" };
+
+
 };

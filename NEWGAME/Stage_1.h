@@ -16,4 +16,6 @@ private:
 
 	Array<en> Entity_List;
 	
+	bool kaihuku;
 };
+

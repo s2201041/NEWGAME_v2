@@ -138,7 +138,7 @@ void Shot::cla(Base* en) {
 
 	if(en!=entity) {
 		Del = true;
-		en->Hp -= (Dam * en->p_Dam) / 100;
+		en->Hp -= Dam;
 	}
 }
 
@@ -149,6 +149,6 @@ void Shot::cla(Player* en) {
 
 	if (en != entity) {
 		Del = true;
-		en->Hp -= Dam;
+		en->Hp -= (Dam * en->p_Dam) / 100;
 	}
 }

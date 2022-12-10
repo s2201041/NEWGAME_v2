@@ -3,8 +3,10 @@
 Result::Result(const InitData& init)
 	: IScene{ init }
 {
-	if (getData().kill >= getData().norma_kill)
+	if (getData().kill >= getData().norma_kill) {
 		win = true;
+		getData().tani = getData().stage;
+	}
 	else
 		win = false;
 
@@ -21,7 +23,7 @@ Result::Result(const InitData& init)
 
 void Result::update(){
 
-	if (MouseL.down())
+	if (MouseL.down()||KeySpace.pressed())
 	{
 		changeScene(State::Title);
 	}

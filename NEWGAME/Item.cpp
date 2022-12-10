@@ -9,13 +9,13 @@ Item::Item(Game* gm, Vec2 pos, int typ, Rect are):Base(gm,pos,typ,are)
 	case 1:
 		Nam = U"魔材";
 		break;
-	case 2:
+	case 4:
 		Nam = U"回復";
 		break;
 	case 3:
 		Nam = U"過去問";
 		break;
-	case 4:
+	case 2:
 		Nam = U"レポート";
 		break;
 	case 5:
@@ -74,13 +74,13 @@ void Item::sub_draw() const
 	case 1:
 		TextureAsset(U"mazai").scaled(2.0).drawAt(Pos);
 		break;
-	case 2:
+	case 4:
 		TextureAsset(U"item_2").scaled(2.0).drawAt(Pos);
 		break;
 	case 3:
 		TextureAsset(U"kakomon").scaled(2.0).drawAt(Pos);
 		break;
-	case 4:
+	case 2:
 		TextureAsset(U"report").scaled(2.0).drawAt(Pos);
 		break;
 	case 5:
@@ -95,7 +95,7 @@ void Item::cla(Player* pl) {
 	whose = pl;
 
 	switch (Typ) {
-	case 4:
+	case 2:
 		use(pl);
 		return;
 	}
@@ -110,8 +110,9 @@ void Item::use(Player* pl) {
 	case 1:
 		Del = true;
 		whose->effect.add<Mazai>(&whose->Vel,10);
+		whose->effect.add<Damage_Down>(&whose->p_Dam,5);
 		return;
-	case 2:
+	case 4:
 		Del = true;
 		whose->Hp = 100;
 		return;
@@ -119,7 +120,7 @@ void Item::use(Player* pl) {
 		Del = true;
 		whose->effect.add<Speed_Up>(&whose->Vel,5);
 		return;
-	case 4:
+	case 2:
 		Del = true;
 		whose->effect.add<Speed_Down>(&whose->Vel,5);
 		return;

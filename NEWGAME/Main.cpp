@@ -47,6 +47,10 @@ void Main()
 
 	TextureAsset::Register(U"ki", U"texture/entity/ki.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"ki2", U"texture/entity/ki2.png", TextureDesc::Mipped);
+	
+	
+	TextureAsset::Register(U"enemy_4_left", U"texture/entity/enemy_4_left.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"enemy_4_right", U"texture/entity/enemy_4_right.png", TextureDesc::Mipped);
 
 
 	//Playerアセット

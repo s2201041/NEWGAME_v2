@@ -33,6 +33,9 @@ struct GameData
 	//勝利判定
 	bool win = false;
 
+	//合格
+	int tani = 0;
+
 	struct score_data {
 		int score;
 		int kill;

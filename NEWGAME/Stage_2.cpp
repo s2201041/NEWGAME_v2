@@ -10,7 +10,7 @@ Stage_2::Stage_2(const InitData& init)
 		{Entity{ this, { 300 , 50 },14 ,Are ,170,15}, 45 },
 		{Entity{ this, { 300 , 50 },11 ,Are ,150,10}, 50 },
 		{Entity{ this, { 300 , 50 },13 ,Are ,200,10}, 60 },
-		{Entity{ this, { 300 , 50 },12 ,Are ,150,10}, 70 },
+		{Entity{ this, { 300 , 50 },14 ,Are ,200,10}, 70 },
 		{Entity{ this, { 300 , 50 },11 ,Are ,150,10}, 80 },
 		{Entity{ this, { 300 , 50 },12 ,Are ,170,10}, 50 }
 }
