@@ -3,7 +3,7 @@
 Stage_4::Stage_4(const InitData& init)
 	: Game{init},
 	Entity_List{
-		{Entity{ this, { 300 , 50 },12 ,Are ,200,10}, 5 },
+		{Entity{ this, { 300 , 50 },12 ,Are ,200,10}, 1 },
 		{Entity{ this, { 300 , 50 },13 ,Are ,200,15}, 10 },
 		{Entity{ this, { 300 , 50 },14 ,Are ,200,15}, 10 },
 		{Entity{ this, { 300 , 50 },12 ,Are ,200,10}, 15 },
@@ -12,7 +12,13 @@ Stage_4::Stage_4(const InitData& init)
 		{Entity{ this, { 300 , 50 },11 ,Are ,200,15}, 35 },
 		{Entity{ this, { 300 , 50 },14 ,Are ,400,15}, 45 },
 		{Entity{ this, { 300 , 50 },14 ,Are ,400,15}, 65 },
-		{Entity{ this, { 300 , 50 },13 ,Are ,400,15}, 65 },
+		{Entity{ this, { 300 , 50 },12 ,Are ,500,15}, 70 },
+		{Entity{ this, { 300 , 50 },11 ,Are ,500,15}, 80 },
+		{Entity{ this, { 300 , 50 },13 ,Are ,500,15}, 90 },
+		{Entity{ this, { 300 , 50 },14 ,Are ,600,15}, 100 },
+		{Entity{ this, { 300 , 50 },13 ,Are ,600,15}, 110 },
+		{Entity{ this, { 300 , 50 },12 ,Are ,500,15}, 140 },
+		{Entity{ this, { 300 , 50 },11 ,Are ,400,15}, 140 }
 }
 {
 	player << Player{ this, { 300 , 400 } ,1 ,Are ,250};
@@ -22,7 +28,7 @@ Stage_4::Stage_4(const InitData& init)
 
 	Item_Time = 5;
 
-	Time_Left = 90;
+	Time_Left = 160;
 
 	norma_Kill = 9;
 }

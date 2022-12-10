@@ -3,22 +3,33 @@
 Stage_5::Stage_5(const InitData& init)
 	: Game{init},
 	Entity_List{
-		{Entity{ this, { 300 , 50 },12 ,Are ,150,15}, 5 },
-		{Entity{ this, { 300 , 50 },12 ,Are ,150,15}, 5 },
-		{Entity{ this, { 300 , 50 },12 ,Are ,150,15}, 5 },
-		{Entity{ this, { 300 , 50 },12 ,Are ,150,15}, 5 },
-		{Entity{ this, { 300 , 50 },12 ,Are ,150,15}, 5 },
-		{Entity{ this, { 300 , 50 },12 ,Are ,150,15}, 5 }
+		{Entity{ this, { 300 , 50 },13 ,Are ,1000,180}, 1 },
+		{Entity{ this, { 300 , 50 },11 ,Are ,200,15}, 10 },
+		{Entity{ this, { 300 , 50 },14 ,Are ,200,15}, 10 },
+		{Entity{ this, { 300 , 50 },12 ,Are ,200,10}, 15 },
+		{Entity{ this, { 300 , 50 },11 ,Are ,200,10}, 25 },
+		{Entity{ this, { 300 , 50 },12 ,Are ,200,15}, 35 },
+		{Entity{ this, { 300 , 50 },11 ,Are ,200,15}, 35 },
+		{Entity{ this, { 300 , 50 },14 ,Are ,400,15}, 45 },
+		{Entity{ this, { 300 , 50 },14 ,Are ,1000,115}, 65 },
+		{Entity{ this, { 300 , 50 },12 ,Are ,500,15}, 70 },
+		{Entity{ this, { 300 , 50 },11 ,Are ,500,15}, 80 },
+		{Entity{ this, { 300 , 50 },13 ,Are ,500,15}, 90 },
+		{Entity{ this, { 300 , 50 },14 ,Are ,600,15}, 100 },
+		{Entity{ this, { 300 , 50 },13 ,Are ,600,15}, 110 },
+		{Entity{ this, { 300 , 50 },12 ,Are ,500,15}, 140 },
+		{Entity{ this, { 300 , 50 },12 ,Are ,500,15}, 150 },
+		{Entity{ this, { 300 , 50 },12 ,Are ,500,15}, 170 },
 }
 {
-	player << Player{ this, { 300 , 400 } ,1 ,Are ,200};
+	player << Player{ this, { 300 , 400 } ,1 ,Are ,210};
 	
 	//経過時間の初期化
 	Entity_Time = 10;
 
 	Item_Time = 5;
 
-	Time_Left = 120;
+	Time_Left = 180;
 
 	norma_Kill = 10;
 }

@@ -159,6 +159,8 @@ void Game::update() {
 		Game_Over();
 	}
 
+	// オーディオを再生
+	audio.play();
 	
 	//派生シーンの更新処理
 	sub_update();
@@ -174,11 +176,11 @@ void Game::draw() const
 	Line{ 605, 80, 800, 80 }.draw(3, Palette::Black);
 	Line{ 605, 160, 800, 160 }.draw(3, Palette::Black);
 	Line{ 605, 500, 800, 500 }.draw(3, Palette::Black);
-	font(U"ステージ" + stage).draw(620, 13, Palette::Black);
+	font(U"ステージ" + stage).draw(610, 13, Palette::Black);
 	const int Time_L = Time_Left;
-	font(U"残り時間" + Format(Time_L)).draw(620, 93, Palette::Black);
-	font(U"スコア:" + Format(Score)).draw(620, 160, Palette::Black);
-	font(U"単位数：" + Format(Kill)).draw(620, 200, Palette::Black);
+	font(U"残り時間" + Format(Time_L)).draw(610, 93, Palette::Black);
+	font(U"スコア:" + Format(Score)).draw(610, 160, Palette::Black);
+	font(U"単位数：" + Format(Kill) + U"/\n		" + Format(norma_Kill)).draw(610, 200, Palette::Black);
 
 	//敵ショットの描画
 	for (int i = 0; i < en_shot.size(); i++) {

@@ -3,13 +3,19 @@
 Stage_3::Stage_3(const InitData& init)
 	: Game{init},
 	Entity_List{
-		{Entity{ this, { 300 , 50 },12 ,Are ,150,15}, 5 },
-		{Entity{ this, { 300 , 50 },13 ,Are ,150,15}, 15 },
-		{Entity{ this, { 300 , 50 },12 ,Are ,150,15}, 25 },
-		{Entity{ this, { 300 , 50 },13 ,Are ,150,15}, 35 },
-		{Entity{ this, { 300 , 50 },14 ,Are ,150,15}, 45 },
-		{Entity{ this, { 300 , 50 },11 ,Are ,150,10}, 50 },
-		{Entity{ this, { 300 , 50 },12 ,Are ,150,10}, 50 },
+		{Entity{ this, { 300 , 50 },12 ,Are ,180,15}, 5 },
+		{Entity{ this, { 300 , 50 },14 ,Are ,180,15}, 5 },
+		{Entity{ this, { 300 , 50 },13 ,Are ,180,15}, 15 },
+		{Entity{ this, { 300 , 50 },12 ,Are ,180,15}, 25 },
+		{Entity{ this, { 300 , 50 },13 ,Are ,180,15}, 35 },
+		{Entity{ this, { 300 , 50 },14 ,Are ,180,15}, 45 },
+		{Entity{ this, { 300 , 50 },11 ,Are ,180,10}, 50 },
+		{Entity{ this, { 300 , 50 },12 ,Are ,180,10}, 60 },
+		{Entity{ this, { 300 , 50 },12 ,Are ,180,10}, 70 },
+		{Entity{ this, { 300 , 50 },12 ,Are ,180,10}, 80 },
+		{Entity{ this, { 300 , 50 },12 ,Are ,250,10}, 90 },
+		{Entity{ this, { 300 , 50 },14 ,Are ,200,10}, 110 },
+		{Entity{ this, { 300 , 50 },12 ,Are ,200,10}, 110 },
 }
 {
 	player << Player{ this, { 300 , 400 } ,1 ,Are ,290};
@@ -21,7 +27,7 @@ Stage_3::Stage_3(const InitData& init)
 
 	Time_Left = 120;
 
-	norma_Kill = 4;
+	norma_Kill = 9;
 }
 
 void Stage_3::sub_update() {

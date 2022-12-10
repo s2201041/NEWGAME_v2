@@ -19,6 +19,8 @@ void Main()
 	Scene::SetResizeMode(ResizeMode::Keep);
 	Window::SetStyle(WindowStyle::Sizable);
 
+	Window::SetTitle(U"破壊高専");
+	
 	//アセットの定義.
 	FontAsset::Register(U"TitleFont", 60, Typeface::Heavy, FontStyle::Bitmap);
 	TextureAsset::Register(U"Title", U"example/Title.jpg", TextureDesc::Mipped);
@@ -32,8 +34,17 @@ void Main()
 	
 	//Entityアセット
 	TextureAsset::Register(U"enemy_1", U"texture/entity/enemy_1_down.png", TextureDesc::Mipped);
-	TextureAsset::Register(U"enemy_2", U"texture/entity/enemy_2_down.png", TextureDesc::Mipped);
-	TextureAsset::Register(U"enemy_3", U"texture/entity/enemy_3_down.png", TextureDesc::Mipped);
+
+	TextureAsset::Register(U"enemy_2_down", U"texture/entity/enemy_2_down.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"enemy_2_up", U"texture/entity/enemy_2_up.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"enemy_2_right", U"texture/entity/enemy_2_right.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"enemy_2_left", U"texture/entity/enemy_2_left.png", TextureDesc::Mipped);
+
+	TextureAsset::Register(U"enemy_3_down", U"texture/entity/enemy_3_down.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"enemy_3_up", U"texture/entity/enemy_3_up.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"enemy_3_right", U"texture/entity/enemy_3_right.png", TextureDesc::Mipped);
+	TextureAsset::Register(U"enemy_3_left", U"texture/entity/enemy_3_left.png", TextureDesc::Mipped);
+
 	TextureAsset::Register(U"ki", U"texture/entity/ki.png", TextureDesc::Mipped);
 	TextureAsset::Register(U"ki2", U"texture/entity/ki2.png", TextureDesc::Mipped);
 

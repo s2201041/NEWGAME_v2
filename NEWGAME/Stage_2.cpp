@@ -7,9 +7,12 @@ Stage_2::Stage_2(const InitData& init)
 		{Entity{ this, { 300 , 50 },13 ,Are ,150,15}, 15 },
 		{Entity{ this, { 300 , 50 },12 ,Are ,150,15}, 25 },
 		{Entity{ this, { 300 , 50 },13 ,Are ,150,15}, 35 },
-		{Entity{ this, { 300 , 50 },14 ,Are ,150,15}, 45 },
+		{Entity{ this, { 300 , 50 },14 ,Are ,170,15}, 45 },
 		{Entity{ this, { 300 , 50 },11 ,Are ,150,10}, 50 },
-		{Entity{ this, { 300 , 50 },12 ,Are ,150,10}, 50 },
+		{Entity{ this, { 300 , 50 },13 ,Are ,200,10}, 60 },
+		{Entity{ this, { 300 , 50 },12 ,Are ,150,10}, 70 },
+		{Entity{ this, { 300 , 50 },11 ,Are ,150,10}, 80 },
+		{Entity{ this, { 300 , 50 },12 ,Are ,170,10}, 50 }
 }
 {
 	player << Player{ this, { 300 , 400 } ,1 ,Are ,300};
@@ -19,9 +22,9 @@ Stage_2::Stage_2(const InitData& init)
 
 	Item_Time = 5;
 
-	Time_Left = 120;
+	Time_Left = 90;
 
-	norma_Kill = 4;
+	norma_Kill = 7;
 
 }
 

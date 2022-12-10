@@ -145,18 +145,34 @@ void Entity::sub_update()
 
 void Entity::sub_draw() const
 {
+	const Vec2 Pos_D = Pos - GoPos;
+
+
 
 	switch (Typ) {
 	case 11:
-		TextureAsset(U"enemy_1").scaled(2.0).drawAt(Pos);
+		if(Pos_D.x<-10)
+			TextureAsset(U"enemy_3_right").scaled(2.0).drawAt(Pos);
+		else if(Pos_D.x>10)
+			TextureAsset(U"enemy_3_left").scaled(2.0).drawAt(Pos);
+		else if(0>=Pos_D.y)
+			TextureAsset(U"enemy_3_down").scaled(2.0).drawAt(Pos);
+		else 
+			TextureAsset(U"enemy_3_up").scaled(2.0).drawAt(Pos);
 		break;
-
 	case 12:
-		TextureAsset(U"enemy_2").scaled(2.0).drawAt(Pos);
-		break;
+		if(Pos_D.x<-10)
+			TextureAsset(U"enemy_2_right").scaled(2.0).drawAt(Pos);
+		else if(Pos_D.x>10)
+			TextureAsset(U"enemy_2_left").scaled(2.0).drawAt(Pos);
+		else if(0>=Pos_D.y)
+			TextureAsset(U"enemy_2_down").scaled(2.0).drawAt(Pos);
+		else 
+			TextureAsset(U"enemy_2_up").scaled(2.0).drawAt(Pos);
 
+		break;
 	case 13:
-		TextureAsset(U"enemy_3").scaled(2.0).drawAt(Pos);
+			TextureAsset(U"enemy_1").scaled(2.0).drawAt(Pos);
 		break;
 
 	case 14:

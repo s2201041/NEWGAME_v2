@@ -16,7 +16,4 @@ private:
 
 	Array<en> Entity_List;
 	
-	// 音声ファイルを読み込んで Audio を作成（ストリーミング再生をリクエスト）
-	const Audio audio{ Audio::Stream, U"sound/bgm_1.mp3" };
-
 };

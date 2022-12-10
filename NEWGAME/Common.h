@@ -30,24 +30,16 @@ struct GameData
 
 	int norma_kill = 0;
 
-	//単位数
-	int tani = 0;
-
 	//勝利判定
 	bool win = false;
 
-		
+	struct score_data {
+		int score;
+		int kill;
+		int norma_kill;
+	};
 
-	//キーコンフィグの定義
-	//struct keyconfig{
-	//	InputGroup inputLeft;
-	//	InputGroup inputRight;
-	//	InputGroup inputUp;
-	//	InputGroup inputDown;
-	//	InputGroup inputShot;
-	//};
-
-	//Array<keyconfig> Keyconfig;
+	score_data ranking[5][10];
 };
 
 using App = SceneManager<State,GameData>;

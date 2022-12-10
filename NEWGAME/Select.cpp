@@ -12,7 +12,7 @@ void Select::update()
 	TextureAsset(U"Select").draw();
 
 	// ボタン処理
-	if (SimpleGUI::Button(U"Stage_1", Vec2{ 350, 250 }))
+	if (SimpleGUI::Button(U"１年", Vec2{ 350, 250 }))
 	{
 		// ゲームシーンに遷移
 		changeScene(State::Stage_1);
@@ -21,7 +21,7 @@ void Select::update()
 		getData().stage = 1;
 	}
 
-	if (SimpleGUI::Button(U"Stage_2", Vec2{ 350, 300 }))
+	if (SimpleGUI::Button(U"２年", Vec2{ 350, 300 }))
 	{
 		// ゲームシーンに遷移
 		changeScene(State::Stage_2);
@@ -30,7 +30,7 @@ void Select::update()
 		getData().stage = 2;
 	}
 
-	if (SimpleGUI::Button(U"Stage_3", Vec2{ 350, 350 }))
+	if (SimpleGUI::Button(U"３年", Vec2{ 350, 350 }))
 	{
 		// ゲームシーンに遷移
 		changeScene(State::Stage_3);
@@ -39,7 +39,7 @@ void Select::update()
 		getData().stage = 3;
 	}
 
-	if (SimpleGUI::Button(U"Stage_4", Vec2{ 350, 400 }))
+	if (SimpleGUI::Button(U"４年", Vec2{ 350, 400 }))
 	{
 		// ゲームシーンに遷移
 		changeScene(State::Stage_4);
@@ -48,7 +48,7 @@ void Select::update()
 		getData().stage = 4;
 	}
 
-	if (SimpleGUI::Button(U"Stage_5", Vec2{ 350, 450 }))
+	if (SimpleGUI::Button(U"５年", Vec2{ 350, 450 }))
 	{
 		// ゲームシーンに遷移
 		changeScene(State::Stage_5);

@@ -53,32 +53,16 @@ void Player::sub_update()
 
 	Pos.moveBy(move).clamp(Are);
 
-	/*
-	Vel2.x += inputRight.pressed() - inputLeft.pressed();
-	if (Vel2.x > 0) Vel2.x -= 0.5; else if (Vel2.x < 0) Vel2.x += 0.5;
-	Vel2.y += inputDown.pressed() - inputUp.pressed();
-	if (Vel2.y > 0) Vel2.y -= 0.5; else if (Vel2.y < 0) Vel2.y += 0.5;
-
-	Vel2.clamp(Rect{-10,-10,20,20});
-
-	Pos.moveBy(Vel2).clamp(Are);
-
-	ClearPrint();
-	Print << Vel2;
-	*/
-
-	/*/ショットの角度調節
-	const Vec2 shot_dir = Vec2{ (KeyD.pressed() - KeyA.pressed()), (KeyS.pressed() - KeyW.pressed()) }
-	.setLength(1);
-	*/
-
 	//ショットの処理
 	if (inputShot.down()) {
+		game->pl_shot << Shot{game, this, Pos ,{0,-1},500 ,1 , game->Are};
+		/*
 		if (KeyShift.pressed()) {
 			game->pl_shot << Shot{ game, this, Pos,dir(NearPos,Pos),1000, 1, game->Are };
 		}
 		else
 			game->pl_shot << Shot{game, this, Pos ,{0,-1},500 ,1 , game->Are};
+		*/
 	}
 
 	//アイテムの使用処理

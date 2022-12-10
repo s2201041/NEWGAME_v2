@@ -11,7 +11,7 @@ Shot::Shot(Game* gm, Base* ent, Vec2 pos, Vec2 dir, int vel,int typ ,Rect are):B
 	NearPos = { 300,300 };
 
 	//コライダーの初期化
-	Col = Circle{ Pos, 8 };
+	Col = Circle{ Pos, 5 };
 
 	switch (Typ) {
 	case 1:
@@ -97,7 +97,7 @@ void Shot::sub_update()
 		Del = true;
 
 	//コライダーの更新
-	Col = Circle{ Pos, 8 };
+	Col = Circle{ Pos, 5 };
 
 }
 

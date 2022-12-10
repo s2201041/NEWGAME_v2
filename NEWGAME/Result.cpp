@@ -7,6 +7,16 @@ Result::Result(const InitData& init)
 		win = true;
 	else
 		win = false;
+
+	if (getData().ranking[getData().stage][0].score < getData().score)
+		getData().ranking[getData().stage][0].score = getData().score;
+	/*
+	JSON json;
+
+	json = getData().ranking;
+	
+	json.save(U"score.json");
+	*/
 }
 
 void Result::update(){

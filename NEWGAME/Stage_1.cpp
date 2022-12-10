@@ -3,16 +3,14 @@
 Stage_1::Stage_1(const InitData& init)
 	: Game{ init },
 	Entity_List{
-		{Entity{ this, { 300 , 50 },12 ,Are ,200,10}, 5 },
-		{Entity{ this, { 300 , 50 },13 ,Are ,200,15}, 10 },
-		{Entity{ this, { 300 , 50 },14 ,Are ,200,15}, 10 },
-		{Entity{ this, { 300 , 50 },12 ,Are ,200,10}, 15 },
-		{Entity{ this, { 300 , 50 },13 ,Are ,200,10}, 25 },
-		{Entity{ this, { 300 , 50 },12 ,Are ,200,15}, 35 },
-		{Entity{ this, { 300 , 50 },11 ,Are ,200,15}, 35 },
-		{Entity{ this, { 300 , 50 },14 ,Are ,400,15}, 45 },
-		{Entity{ this, { 300 , 50 },14 ,Are ,400,15}, 65 },
-		{Entity{ this, { 300 , 50 },13 ,Are ,400,15}, 65 },
+		{Entity{ this, { 300 , 50 },11 ,Are ,100,15}, 5 },
+		{Entity{ this, { 300 , 50 },13 ,Are ,100,15}, 15 },
+		{Entity{ this, { 300 , 50 },12 ,Are ,100,15}, 25 },
+		{Entity{ this, { 300 , 50 },13 ,Are ,100,15}, 35 },
+		{Entity{ this, { 300 , 50 },14 ,Are ,130,15}, 45 },
+		{Entity{ this, { 300 , 50 },13 ,Are ,100,20}, 50 },
+		{Entity{ this, { 300 , 50 },11 ,Are ,160,20}, 55 },
+		{Entity{ this, { 300 , 50 },12 ,Are ,220,20}, 60 },
 }
 {
 	player << Player{ this, { 300 , 400 } ,1 ,Are ,330};
@@ -22,12 +20,10 @@ Stage_1::Stage_1(const InitData& init)
 
 	Item_Time = 5;
 
-	Time_Left = 90;
+	Time_Left = 70;
 
-	norma_Kill = 6;
+	norma_Kill = 5;
 	
-	// オーディオを再生
-	audio.play();
 
 }
 

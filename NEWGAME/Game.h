@@ -80,5 +80,8 @@ protected:
 	const Font font{ 32, U"example/font/DotGothic16/DotGothic16-Regular.ttf", FontStyle::Bitmap };
 	const String stage = Format(getData().stage);
 
-	
+	// 音声ファイルを読み込んで Audio を作成（ストリーミング再生をリクエスト）
+	const Audio audio{ Audio::Stream, U"sound/bgm_1.mp3" };
+
+
 };
