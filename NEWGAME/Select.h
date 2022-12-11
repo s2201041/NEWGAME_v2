@@ -16,6 +16,8 @@ public:
 
 private:
 
+	int s_stage;
+
 	double time;
 
 	const Font hp_font{ FontMethod::MSDF, 24};

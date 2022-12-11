@@ -36,8 +36,8 @@ void Game::update() {
 		//プレイヤーの動作処理
 		for (auto& pl : player) {
 			pl.update();
-			if (pl.Del)
-				game_over = true;
+			//if (pl.Del)
+			//	game_over = true;
 		}
 
 		//敵ショットの動作処理
@@ -153,6 +153,10 @@ void Game::update() {
 		pl_shot.remove_if([](const Shot& sh) { return sh.Del == true; });
 		item.remove_if([](const Item& it) { return it.Del == true; });
 	}
+
+	if (player.size() == 0)
+		game_over = true;
+
 	//ゲームオーバー時の処理
 	if (game_over) {
 		//AudioAsset(U"clear_sound").playOneShot();
@@ -193,13 +197,23 @@ void Game::draw() const
 	}
 
 	//プレイヤーの描画
-	for (auto& pl : player) {
-		pl.draw();
-		RectF{ 610 , 550, 180, 20 }.draw(Palette::Orange);;
-		RectF{ 610 , 550, pl.Hp * 1.8, 20 }.draw(Palette::Red);;
-		hp_font(pl.Nam).drawAt(700, 530, Palette::Black);
-		hp_font(Format(pl.Hp)+U"/"+Format(pl.Max_Hp)).drawAt(700, 560);
-	}
+	if(player.size()==1)
+		for (auto& pl : player) {
+			pl.draw();
+			RectF{ 610 , 550, 180, 20 }.draw(Palette::Orange);;
+			RectF{ 610 , 550, pl.Hp * 1.8, 20 }.draw(Palette::Red);;
+			hp_font(pl.Nam).drawAt(700, 540, Palette::Black);
+			hp_font(Format(pl.Hp)+U"/"+Format(pl.Max_Hp)).drawAt(700, 560);
+		}
+	else
+		for (int i = 0; i < player.size(); i++) {
+			player[i].draw();
+			RectF{ 610 , 525 + i * 45, 180, 20 }.draw(Palette::Orange);;
+			RectF{ 610 , 525 + i * 45, player[i].Hp * 1.8, 20}.draw(Palette::Red);;
+			hp_font(player[i].Nam).drawAt(700, 515 + i * 45, Palette::Black);
+			hp_font(Format(player[i].Hp)+U"/"+Format(player[i].Max_Hp)).drawAt(700, 535+ i * 45);
+		}
+
 
 	//敵の描画
 	for (int i = 0; i < entity.size(); i++) {
@@ -211,7 +225,7 @@ void Game::draw() const
 		RectF{ 25 , 40 + i * 35 , 550, 5 }.draw(Palette::White);;
 		RectF{ 25 , 40 + i * 35 , (entity[i].Time_Left - entity[i].Time) * 550 / entity[i].Time_Left, 5}.draw(Palette::Blue);;
 
-		hp_font(entity[i].Nam).drawAt(300, 50 + i * 35, Palette::Black);
+		//hp_font(entity[i].Nam).drawAt(300, 50 + i * 35, Palette::Black);
 		hp_font(Format(entity[i].Hp)+U"/"+Format(entity[i].Max_Hp)).drawAt(300, 33 + i * 35);
 	}
 

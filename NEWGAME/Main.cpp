@@ -16,10 +16,11 @@
 
 void Main()
 {
+
+
 	Scene::SetResizeMode(ResizeMode::Keep);
 	Window::SetStyle(WindowStyle::Sizable);
 
-	Window::SetTitle(U"破壊高専");
 	
 	//アセットの定義.
 	FontAsset::Register(U"TitleFont", 60, Typeface::Heavy, FontStyle::Bitmap);
@@ -92,7 +93,7 @@ void Main()
 		const ScopedRenderStates2D state(SamplerState::ClampNearest);
 
 		//window名を設定
-		Window::SetTitle(U"NewGame");
+		Window::SetTitle(U"破壊高専");
 
 		if (not manager.update())
 		{

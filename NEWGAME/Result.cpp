@@ -23,7 +23,9 @@ Result::Result(const InitData& init)
 
 void Result::update(){
 
-	if (MouseL.down()||KeySpace.pressed())
+	auto controller = XInput(0);
+
+	if (MouseL.down()||KeySpace.pressed()||KeySpace.pressed()||controller.buttonA.down())
 	{
 		changeScene(State::Title);
 	}

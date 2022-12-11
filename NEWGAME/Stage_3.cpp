@@ -23,11 +23,11 @@ Stage_3::Stage_3(const InitData& init)
 	//経過時間の初期化
 	Entity_Time = 10;
 
-	Item_Time = 5;
+	Item_Time = 10;
 
 	Time_Left = 120;
 
-	norma_Kill = 9;
+	norma_Kill = 10;
 }
 
 void Stage_3::sub_update() {
@@ -42,11 +42,17 @@ if (0 < Time)
 			Entity_List.erase(Entity_List.begin());
 	}
 
+
 	//アイテムの出現
 	if (Time >= Item_Time) {
-		item << Item{this, { Random(0,600) , Random(150,600)},Random(1,4) ,Are };
-		Item_Time += 5;
+		const int item_time = Item_Time;
+		if (item_time % 30 == 0)
+			item << Item{this, { Random(0,600) , Random(150,600)},4 ,Are };
+		else
+			item << Item{this, { Random(0,600) , Random(150,600)},Random(1,3) ,Are };
+		Item_Time += 10;
 	}
+
 }
 
 void Stage_3::sub_draw() const {

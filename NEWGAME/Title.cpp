@@ -3,9 +3,6 @@
 Title::Title(const InitData& init)
 	: IScene{ init }
 {
-	//Keyconfigの初期化
-	//getData().Keyconfig[0] = { KeyLeft, KeyRight, KeyUp, KeyDown, KeySpace, };
-	//getData().Keyconfig[1] = { KeyLeft, KeyRight, KeyUp, KeyDown, KeySpace, };
 
 
 	// オーディオを再生
@@ -14,8 +11,10 @@ Title::Title(const InitData& init)
 
 void Title::update()
 {
+	auto controller = XInput(0);
+
 	// 左クリックで
-	if (MouseL.down()||KeySpace.pressed())
+	if (MouseL.down()||KeySpace.pressed()||controller.buttonA.down())
 	{
 		// ゲームシーンに遷移
 		changeScene(State::Select);

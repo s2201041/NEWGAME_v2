@@ -5,12 +5,37 @@ Select::Select(const InitData& init)
 {
 	// オーディオを再生
 	audio.play();
+
+	s_stage = getData().tani+1;
 }
 
 void Select::update()
 {
+	auto controller = XInput(0);
+
 	TextureAsset(U"Select").draw();
 
+
+	if (KeyUp.down() || controller.buttonUp.down())
+		if (s_stage != 1)
+			s_stage--;
+		else
+			s_stage = 5;
+	if (KeyDown.down() || controller.buttonDown.down()||controller.buttonB.down())
+		if (s_stage != 5)
+			s_stage++;
+		else
+			s_stage = 1;
+
+	if(controller.buttonA.down()||KeySpace.down())
+		if (s_stage <= getData().tani+1) {
+			if (s_stage == 1) changeScene(State::Stage_1);
+			if (s_stage == 2) changeScene(State::Stage_2);
+			if (s_stage == 3) changeScene(State::Stage_3);
+			if (s_stage == 4) changeScene(State::Stage_4);
+			if (s_stage == 5) changeScene(State::Stage_5);
+		getData().stage = s_stage ;
+		}
 	// ボタン処理
 	if ((SimpleGUI::Button(U"１年", Vec2{ 350, 250 })||Key1.pressed())&&getData().tani>=0)
 	{
@@ -57,14 +82,20 @@ void Select::update()
 		getData().stage = 5;
 	}
 
-	if(getData().tani < 1)
-		hp_font(U"×").draw(350,300,Palette::Red);
-	if(getData().tani < 2)
-		hp_font(U"×").draw(350,350,Palette::Red);
-	if(getData().tani < 3)
-		hp_font(U"×").draw(350,400,Palette::Red);
-	if(getData().tani < 4)
-		hp_font(U"×").draw(350,450,Palette::Red);
+	Rect{ 350, 200 + 50 *s_stage, 80, 37 }.drawFrame(3,0,ColorF(1,0,0,0.5));
+
+	if (getData().tani < 1) {
+		Rect{ 350, 200 + 50 * 2, 80, 37 }.draw( ColorF(0, 0, 0, 0.5));
+	}
+	if (getData().tani < 2) {
+		Rect{ 350, 200 + 50 * 3, 80, 37 }.draw( ColorF(0, 0, 0, 0.5));
+	}
+	if (getData().tani < 3) {
+		Rect{ 350, 200 + 50 * 4, 80, 37 }.draw( ColorF(0, 0, 0, 0.5));
+	}
+	if (getData().tani < 4) {
+		Rect{ 350, 200 + 50 * 5, 80, 37 }.draw( ColorF(0, 0, 0, 0.5));
+	}
 
 
 }
