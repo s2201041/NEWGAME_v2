@@ -109,7 +109,7 @@ void Select::update()
 		Rect{ 350, 200 + 50 * 5, 80, 37 }.draw( ColorF(0, 0, 0, 0.5));
 	}
 
-	SimpleGUI::RadioButtons(player_select, { U"1人でプレイ", U"２人でプレイ" }, Vec2{ 600, 400 });
+	SimpleGUI::RadioButtons(player_select, { U"1人でプレイ", U"２人でプレイ" }, Vec2{ 600, 500 });
 	getData().player_data = player_select;
 }
 

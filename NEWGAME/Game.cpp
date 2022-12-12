@@ -35,7 +35,7 @@ void Game::update() {
 		for (auto& pl : player) {
 			pl.update();
 			if (pl.Del)
-				getData().p_data[pl.Typ].score = pl.score;
+				getData().p_data[pl.Typ - 1].score = pl.score;
 		}
 
 		//敵ショットの動作処理
@@ -181,8 +181,8 @@ void Game::draw() const
 	font(U"ステージ" + stage).draw(610, 13, Palette::Black);
 	const int Time_L = Time_Left;
 	font(U"残り時間" + Format(Time_L)).draw(610, 93, Palette::Black);
-	//const int Score = player[0].score + player[1].score ;
-	font(U"スコア:" + Format(Kill)).draw(610, 160, Palette::Black);
+	const int Score = player[0].score + player[1].score ;
+	font(U"スコア:" + Format(Score)).draw(610, 160, Palette::Black);
 	font(U"単位数:" + Format(Kill) + U"/" + Format(norma_Kill)).draw(610, 200, Palette::Black);
 
 	//敵ショットの描画
