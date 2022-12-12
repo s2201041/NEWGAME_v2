@@ -7,6 +7,12 @@ Select::Select(const InitData& init)
 	audio.play();
 
 	s_stage = getData().tani+1;
+
+	player_select = 0;
+
+	getData().p_data[0].name = U"プレイヤー１";
+	getData().p_data[1].name = U"プレイヤー２";
+
 }
 
 void Select::update()
@@ -26,6 +32,12 @@ void Select::update()
 			s_stage++;
 		else
 			s_stage = 1;
+
+	if (KeyP.down() || controller.buttonX.down())
+		if (player_select != 1)
+			player_select++;
+		else
+			player_select--;
 
 	if(controller.buttonA.down()||KeySpace.down())
 		if (s_stage <= getData().tani+1) {
@@ -97,7 +109,8 @@ void Select::update()
 		Rect{ 350, 200 + 50 * 5, 80, 37 }.draw( ColorF(0, 0, 0, 0.5));
 	}
 
-
+	SimpleGUI::RadioButtons(player_select, { U"1人でプレイ", U"２人でプレイ" }, Vec2{ 600, 400 });
+	getData().player_data = player_select;
 }
 
 void Select::draw() const

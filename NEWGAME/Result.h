@@ -23,7 +23,11 @@ private:
 	const Font t_font{ 64, U"example/font/DotGothic16/DotGothic16-Regular.ttf", FontStyle::Bitmap };
 
 	const String stage = Format(getData().stage);
-	const String score = Format(getData().score);
+	const String score = Format(getData().p_data[0].score);
+	const String score2 = Format(getData().p_data[1].score);
+
+	const String name = Format(getData().p_data[0].name);
+	const String name2 = Format(getData().p_data[1].name);
 	const String kill = Format(getData().kill);
 	const String norma_kill = Format(getData().norma_kill);
 };

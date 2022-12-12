@@ -16,6 +16,8 @@ Player::Player(Game* gm, Vec2 pos,int typ,Rect are,int vel) : Base(gm, pos, typ,
 
 	shot_cool = 0;
 
+	score = 0;
+
 	NearPos.clear();
 
 	//コライダーの初期化
@@ -30,16 +32,20 @@ Player::Player(Game* gm, Vec2 pos,int typ,Rect are,int vel) : Base(gm, pos, typ,
 			inputDown = KeyDown;
 			inputShot = KeySpace;
 			inputItem = KeyZ;
-	Nam = U"プレイヤー1";
+			Nam = U"プレイヤー1";
+			playerIndex = 0;
+
 			break;
 		case 2:
 			inputLeft = KeyA;
 			inputRight = KeyD;
 			inputUp = KeyW;
 			inputDown = KeyS;
-			inputShot = KeyZ;
-			inputItem = KeyZ;
-	Nam = U"プレイヤー2";
+			inputShot = KeyK;
+			inputItem = KeyL;
+			Nam = U"プレイヤー2";
+			playerIndex = 1;
+
 			break;
 		}
 
@@ -56,6 +62,7 @@ void Player::sub_update()
 	//クールタイム
 	if (shot_cool >= 0) shot_cool -= Scene::DeltaTime();
 
+	//コントローラ関連
 	auto controller = XInput(playerIndex);
 
 	const Vec2 m_c = Vec2{ controller.leftThumbX,-controller.leftThumbY } * Scene::DeltaTime() * zero(Vel);

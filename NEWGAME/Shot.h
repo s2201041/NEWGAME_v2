@@ -37,12 +37,11 @@ public:
 	//ダメージの定義
 	int Dam;
 
+	Base* entity;
 private:
 
 	Texture m_texture;
 	//タイマー変数の定義
-
-	Base* entity;
 
 };
 

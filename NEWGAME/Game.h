@@ -41,7 +41,7 @@ public:
 	//動作範囲
 	Rect Are;
 
-	int Score, Kill;
+	int Kill;
 
 	int norma_Kill;
 

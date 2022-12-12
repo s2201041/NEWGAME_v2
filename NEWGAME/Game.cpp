@@ -6,8 +6,6 @@ Game::Game(const InitData& init)
 {
 	Kill = 0;
 
-	Score = 0;
-
 	win = false;
 
 	game_over = false;
@@ -36,8 +34,8 @@ void Game::update() {
 		//プレイヤーの動作処理
 		for (auto& pl : player) {
 			pl.update();
-			//if (pl.Del)
-			//	game_over = true;
+			if (pl.Del)
+				getData().p_data[pl.Typ].score = pl.score;
 		}
 
 		//敵ショットの動作処理
@@ -183,7 +181,8 @@ void Game::draw() const
 	font(U"ステージ" + stage).draw(610, 13, Palette::Black);
 	const int Time_L = Time_Left;
 	font(U"残り時間" + Format(Time_L)).draw(610, 93, Palette::Black);
-	font(U"スコア:" + Format(Score)).draw(610, 160, Palette::Black);
+	//const int Score = player[0].score + player[1].score ;
+	font(U"スコア:" + Format(Kill)).draw(610, 160, Palette::Black);
 	font(U"単位数:" + Format(Kill) + U"/" + Format(norma_Kill)).draw(610, 200, Palette::Black);
 
 	//敵ショットの描画
@@ -243,7 +242,6 @@ void Game::draw() const
 }
 
 void Game::Game_Over() {
-	getData().score = Score;
 	getData().kill = Kill;
 	getData().norma_kill = norma_Kill;
 	getData().win = win;

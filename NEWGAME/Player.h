@@ -43,7 +43,7 @@ public:
 	InputGroup inputShot;
 	InputGroup inputItem;
 
-	size_t playerIndex = 0;
+	size_t playerIndex;
 
 	XInputVibration vibration;
 

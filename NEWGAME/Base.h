@@ -79,6 +79,8 @@ public:
 	//インスタンス化からの時間
 	double Time;
 
+	int score;
+
 protected:
 
 	//座標と向きの定義

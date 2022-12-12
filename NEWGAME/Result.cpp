@@ -10,8 +10,6 @@ Result::Result(const InitData& init)
 	else
 		win = false;
 
-	if (getData().ranking[getData().stage][0].score < getData().score)
-		getData().ranking[getData().stage][0].score = getData().score;
 	/*
 	JSON json;
 
@@ -38,7 +36,11 @@ void Result::draw() const {
 	else
 		t_font(U"留年…").drawAt(400, 100, Palette::White);
 
-	font(U"ステージ："+ stage).draw(300, 300, Palette::White);
-	font(U"スコア：" + score).draw(300, 400, Palette::White);
+	font(U"ステージ："+ stage).draw(300, 200, Palette::White);
+
+	font(name + U"スコア：" + score).draw(250, 300, Palette::White);
+	if(getData().player_data == 1)
+		font(name2 + U"スコア：" + score2).draw(250, 400, Palette::White);
+
 	font(U"必要単位数：" + kill + U"/" + norma_kill).draw(300, 500, Palette::White);
 }

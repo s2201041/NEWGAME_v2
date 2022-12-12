@@ -16,6 +16,8 @@ public:
 
 private:
 
+	size_t player_select;
+
 	int s_stage;
 
 	double time;

@@ -15,6 +15,10 @@ Stage_1::Stage_1(const InitData& init)
 {
 	player << Player{ this, { 300 , 400 } ,1 ,Are ,330};
 
+	if (getData().player_data == 1) {
+		player << Player{ this, { 300 , 500 } ,2 ,Are ,330 };
+	}
+
 	//経過時間の初期化
 	Entity_Time = 10;
 

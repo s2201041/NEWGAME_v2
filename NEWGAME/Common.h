@@ -19,6 +19,8 @@ enum class State
 //シーン間で共有するデータ
 struct GameData
 {
+	int player_data = 1;
+
 	//選択したステージ
 	int stage = 0;
 
@@ -36,13 +38,13 @@ struct GameData
 	//合格
 	int tani = 0;
 
-	struct score_data {
+	struct pl_data {
 		int score;
-		int kill;
-		int norma_kill;
+		int tani;
+		String name;
 	};
 
-	score_data ranking[5][10];
+	pl_data p_data[2];
 };
 
 using App = SceneManager<State,GameData>;
